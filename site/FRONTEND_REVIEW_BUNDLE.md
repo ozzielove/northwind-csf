@@ -1,35 +1,62 @@
-# FRONTEND REVIEW BUNDLE — Northwind CSF 2.0 (employer-facing portfolio site)
+# FRONTEND REVIEW BUNDLE — Northwind CSF 2.0 (employer-facing GRC portfolio site)
 
-> PASTE THIS ENTIRE FILE INTO CHATGPT WITH THE PROMPT BELOW.
+> PASTE THIS ENTIRE FILE INTO CHATGPT. The review prompt is at the top; all source files follow.
+
+## What this portfolio IS (context for the reviewer)
+This site is the **live, employer-facing presentation** of a self-directed Governance, Risk &
+Compliance (GRC) portfolio project — it is what a hiring manager opens in an interview, **in place of
+a GitHub repo**. It must stand on its own as proof of work. The underlying project:
+
+- An **end-to-end GRC assessment of a fictional healthcare-software company** (Northwind Health
+  Systems), evaluating controls against all six **NIST Cybersecurity Framework (CSF) 2.0** Functions
+  (Govern, Identify, Protect, Detect, Respond, Recover) and scoring maturity with a Python tool that
+  outputs per-Function scores and a KPI summary.
+- A **multi-framework control crosswalk** mapping NIST CSF 2.0 → NIST SP 800-53 Rev 5 →
+  ISO/IEC 27001:2022 Annex A → SOC 2 Trust Services Criteria → HITRUST CSF v11 → HIPAA Security Rule,
+  with every control identifier verified against authoritative published sources.
+- A complete **artifact set**: scope statement, risk methodology + risk register, control test plan
+  (design vs. operating effectiveness), audit findings report, Plan of Action & Milestones (POA&M),
+  information security policy, and evidence collection log.
+- A **tiered third-party-risk (TPRM) program** with a SIG/CAIQ-style questionnaire and a SOC 2
+  report-review step.
+
+The author is an entry-level GRC candidate (US Army veteran, BS Cybersecurity in progress, Google
+Cybersecurity Certificate). Everything is **simulated / portfolio work on a fictional organization** —
+NOT real client work, NOT production GRC employment, NOT platform administration, and must stay
+labeled that way. Every figure on the site traces to the project's data (see `data.js`).
+
+The site is intentionally **vanilla HTML/CSS/JS** — no framework, no bundler, no dependencies
+(Google Fonts CDN only), deployable to Vercel as static files. Aesthetic: dark "audit instrument"
+console; Fraunces display + IBM Plex Mono/Sans; hand-built SVG/DOM visualizations (maturity radar,
+5x5 risk matrix, POA&M gantt, framework crosswalk), tiered-vendor and deliverables sections.
 
 ## Review prompt (use verbatim)
-You are a principal frontend engineer + design director reviewing a static, dependency-free
-portfolio site (vanilla HTML/CSS/JS, no framework, no build step) that will be FRONT-FACING TO
-EMPLOYERS. It is a dark "audit instrument" data-viz site presenting a NIST CSF 2.0 GRC assessment.
-Hand-built SVG/DOM visualizations (maturity radar, 5x5 risk matrix, POA&M gantt, framework crosswalk).
+You are a principal frontend engineer + design director reviewing the site above. It is FRONT-FACING
+TO EMPLOYERS and represents the candidate's competence — treat polish and correctness as career-stakes.
 
 Audit it for EVERY frontend issue across: (1) correctness/bugs, (2) accessibility (WCAG 2.2 AA:
-contrast, focus order, keyboard, ARIA, reduced-motion), (3) responsive/layout (320px -> 1920px,
-overflow, font scaling), (4) performance (paint, layout thrash, font loading, CLS), (5) cross-browser
-(Safari/Firefox: backdrop-filter, color-mix, mask-image, :has, svg transform-box), (6) SEO/meta/OG,
-(7) visual polish / design taste, (8) resilience (JS disabled, slow fonts, prefers-reduced-motion).
+contrast, focus order, keyboard operability of the interactive risk matrix + crosswalk tabs, ARIA,
+reduced-motion, screen-reader semantics), (3) responsive/layout from 320px to 1920px (overflow,
+clamp() font scaling, the SVG charts, the grid sections), (4) performance (paint, layout thrash,
+font loading / CLS, IntersectionObserver usage, animation cost), (5) cross-browser — Safari + Firefox
+specifically (backdrop-filter, color-mix(), mask-image, transform-box on SVG, :has if any),
+(6) SEO/social (title, meta description, Open Graph / Twitter cards, favicon, lang, headings outline),
+(7) visual design taste and hierarchy, (8) resilience (JS disabled, slow/failed fonts,
+prefers-reduced-motion, no-data edge cases).
 
 OUTPUT FORMAT — return SURGICAL EDITS only. For each issue:
 - `file` + a short `locator` (the exact existing snippet to find)
 - `severity` (blocker / high / medium / nit)
 - `why` (1 sentence)
 - `before` (exact current code) and `after` (exact replacement)
-Group by file, ordered by severity. Do not rewrite whole files. Keep the vanilla, no-build,
-single-folder architecture. Preserve the aesthetic. Flag anything that would read as
-"AI-generated/generic" to an elite reviewer.
-
-Constraints to respect: no framework, no bundler, no new dependencies (Google Fonts CDN is OK);
-all data is fictional/simulated (Northwind Health Systems) and must stay labeled as such;
-every figure traces to the repo data in data.js.
+Group by file, ordered by severity. Do NOT rewrite whole files. Preserve the vanilla / no-build /
+single-folder architecture, the dark "audit instrument" aesthetic, and the simulated/fictional framing.
+Explicitly flag anything an elite reviewer would read as generic or "AI-generated," and anything that
+would undercut the candidate's credibility (broken layout, weak contrast, misleading claim, dead link).
 
 ---
 
-## FILE: site/index.html  (228 lines)
+## FILE: site/index.html  (272 lines)
 
 ```html
 <!DOCTYPE html>
@@ -59,10 +86,10 @@ every figure traces to the repo data in data.js.
     <a href="#posture">Posture</a>
     <a href="#risk">Risk</a>
     <a href="#controls">Controls</a>
-    <a href="#remediation">POA&amp;M</a>
     <a href="#crosswalk">Crosswalk</a>
+    <a href="#vendors">Vendors</a>
   </nav>
-  <a class="nav__cta" href="https://github.com/ozzielove" target="_blank" rel="noopener">Repository ↗</a>
+  <a class="nav__cta" href="#deliverables">The deliverables ↓</a>
 </header>
 
 <!-- ================= HERO ================= -->
@@ -213,6 +240,50 @@ every figure traces to the repo data in data.js.
   <ul class="counts" id="counts"></ul>
 </section>
 
+<!-- ================= THIRD-PARTY RISK / TPRM ================= -->
+<section class="section" id="vendors">
+  <div class="section__head">
+    <span class="kicker">06 — Third-Party Risk</span>
+    <h2 class="section__title">No vendor touches ePHI unscreened.</h2>
+    <p class="section__sub">
+      A tiered third-party-risk program: rank a vendor on <em>inherent</em> risk at intake, run a
+      SIG / CAIQ-aligned questionnaire, review their SOC&nbsp;2 report, then decide. Higher tier → deeper diligence.
+    </p>
+  </div>
+
+  <div class="tprm">
+    <ol class="tiers" id="tiers" aria-label="Vendor inherent-risk tiers"></ol>
+
+    <div class="tprm__flow">
+      <span class="tprm__h">Assessment lifecycle</span>
+      <ol class="flow" id="flow"></ol>
+    </div>
+
+    <div class="tprm__grid">
+      <div class="qcard">
+        <span class="tprm__h">Questionnaire domains <span class="muted">· SIG-Lite → CAIQ</span></span>
+        <ul class="qdomains" id="qdomains"></ul>
+      </div>
+      <figure class="example" id="example" aria-label="Worked vendor example">
+        <figcaption class="example__cap">Worked example</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DELIVERABLES / ARTIFACT SET ================= -->
+<section class="section" id="deliverables">
+  <div class="section__head">
+    <span class="kicker">07 — The Deliverables</span>
+    <h2 class="section__title">Twelve artifacts. One coherent engagement.</h2>
+    <p class="section__sub">
+      Everything visualized above is backed by a complete, audit-grade artifact set — the same
+      documents a real GRC engagement produces, authored end to end.
+    </p>
+  </div>
+  <ul class="artifacts" id="artifacts"></ul>
+</section>
+
 <!-- ================= FOOTER ================= -->
 <footer class="footer" id="foot">
   <div class="footer__lead">
@@ -262,7 +333,7 @@ every figure traces to the repo data in data.js.
 
 ```
 
-## FILE: site/styles.css  (324 lines)
+## FILE: site/styles.css  (377 lines)
 
 ```css
 /* ============================================================================
@@ -562,6 +633,59 @@ body::before{
 .counts .cf{ font-size:.86rem; color:var(--ink); margin-top:.5rem; display:block; }
 .counts .cnote{ font-family:var(--f-mono); font-size:.62rem; color:var(--muted); margin-top:.3rem; display:block; letter-spacing:.03em; }
 
+/* ---------- TPRM / third-party risk ---------- */
+.tprm{ display:flex; flex-direction:column; gap:clamp(2.5rem,5vw,3.5rem); }
+.tiers{ list-style:none; display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden; }
+.tier{ background:var(--bg-2); padding:1.4rem 1.2rem; position:relative; transition:background .3s; }
+.tier:hover{ background:var(--surface); }
+.tier::before{ content:""; position:absolute; left:0; top:0; bottom:0; width:3px; }
+.tier[data-tone="critical"]::before{ background:var(--critical); }
+.tier[data-tone="high"]::before{ background:var(--high); }
+.tier[data-tone="mod"]::before{ background:var(--mint); }
+.tier[data-tone="low"]::before{ background:var(--faint); }
+.tier__t{ font-family:var(--f-mono); font-size:.78rem; color:var(--muted); letter-spacing:.08em; }
+.tier__label{ font-family:var(--f-display); font-size:1.35rem; font-weight:400; margin:.2rem 0 .6rem; }
+.tier[data-tone="critical"] .tier__label{ color:var(--critical); }
+.tier[data-tone="high"] .tier__label{ color:var(--high); }
+.tier[data-tone="mod"] .tier__label{ color:var(--mint); }
+.tier__def{ font-size:.82rem; color:var(--ink-soft); line-height:1.45; }
+
+.tprm__h{ font-family:var(--f-mono); font-size:.66rem; letter-spacing:.16em; text-transform:uppercase; color:var(--mint-dim); display:block; margin-bottom:1.2rem; }
+.flow{ list-style:none; display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden; counter-reset:f; }
+.flowstep{ background:var(--bg-2); padding:1.2rem 1.1rem; display:flex; flex-direction:column; gap:.4rem; }
+.flowstep__n{ font-family:var(--f-mono); font-size:.72rem; color:var(--mint); }
+.flowstep__s{ font-size:.92rem; color:var(--ink); }
+.flowstep__d{ font-size:.74rem; color:var(--muted); line-height:1.4; }
+
+.tprm__grid{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:1.5rem; align-items:start; }
+.qcard{ border:1px solid var(--line); border-radius:8px; padding:1.6rem; background:var(--surface); }
+.qdomains{ list-style:none; display:flex; flex-direction:column; gap:.9rem; }
+.qdomains li{ display:grid; grid-template-columns:1.8rem 1fr; gap:.8rem; align-items:baseline; }
+.qdomains b{ font-family:var(--f-mono); color:var(--mint-dim); font-weight:500; }
+.qdomains .qt{ font-size:.96rem; color:var(--ink); }
+.qdomains .qm{ font-family:var(--f-mono); font-size:.7rem; color:var(--muted); display:block; margin-top:.15rem; letter-spacing:.02em; }
+.example{ border:1px solid color-mix(in srgb,var(--critical) 30%,var(--line)); border-radius:8px; padding:1.6rem; background:linear-gradient(160deg,color-mix(in srgb,var(--critical) 7%,var(--bg-2)),var(--bg-2)); }
+.example__cap{ font-family:var(--f-mono); font-size:.64rem; letter-spacing:.14em; text-transform:uppercase; color:var(--critical); margin-bottom:1rem; }
+.example__vendor{ font-family:var(--f-display); font-size:1.5rem; font-weight:400; }
+.example__vendor span{ font-family:var(--f-sans); font-size:.7rem; color:var(--muted); font-style:italic; margin-left:.5rem; }
+.example__meta{ display:flex; flex-direction:column; gap:.6rem; margin:1.1rem 0; }
+.example__meta div{ display:flex; gap:.7rem; font-size:.86rem; }
+.example__meta dt{ font-family:var(--f-mono); font-size:.64rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); min-width:4.5rem; padding-top:.15rem; }
+.example__meta dd{ color:var(--ink); }
+.example__path{ font-family:var(--f-mono); font-size:.72rem; color:var(--ink-soft); line-height:1.6; border-top:1px solid var(--line); padding-top:1rem; }
+@media (max-width:760px){ .tiers{ grid-template-columns:1fr 1fr; } .tprm__grid{ grid-template-columns:1fr; } }
+@media (max-width:440px){ .tiers{ grid-template-columns:1fr; } }
+
+/* ---------- deliverables / artifacts ---------- */
+.artifacts{ list-style:none; display:grid; grid-template-columns:repeat(auto-fill,minmax(255px,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden; }
+.artifact{ background:var(--bg-2); padding:1.5rem 1.4rem; display:flex; flex-direction:column; gap:.5rem; position:relative; transition:background .3s, transform .3s; opacity:0; transform:translateY(14px); }
+.artifact.is-in{ opacity:1; transform:none; }
+.artifact:hover{ background:var(--surface); }
+.artifact__n{ font-family:var(--f-mono); font-size:.7rem; color:var(--mint-dim); letter-spacing:.1em; }
+.artifact__t{ font-family:var(--f-display); font-size:1.12rem; font-weight:400; line-height:1.2; }
+.artifact__d{ font-size:.82rem; color:var(--ink-soft); line-height:1.5; }
+.artifact::after{ content:"✓"; position:absolute; top:1.3rem; right:1.3rem; font-family:var(--f-mono); font-size:.7rem; color:var(--mint-dim); opacity:.55; }
+
 /* ---------- footer ---------- */
 .footer{ position:relative; z-index:1; max-width:var(--maxw); margin:0 auto; padding:clamp(5rem,10vw,8rem) clamp(1.25rem,5vw,3rem) 4rem; border-top:1px solid var(--line); }
 .footer__lead{ max-width:760px; margin-bottom:4rem; }
@@ -591,7 +715,7 @@ body::before{
 
 ```
 
-## FILE: site/app.js  (391 lines)
+## FILE: site/app.js  (443 lines)
 
 ```javascript
 /* ============================================================================
@@ -600,7 +724,7 @@ body::before{
    ========================================================================== */
 (function () {
   "use strict";
-  const { ASSESSMENT, FUNCTIONS, SUBSCORES, RISKS, TESTS, POAM, CROSSWALK, FRAMEWORK_COUNTS } = window.GRC;
+  const { ASSESSMENT, FUNCTIONS, SUBSCORES, RISKS, TESTS, POAM, CROSSWALK, FRAMEWORK_COUNTS, TPRM, DELIVERABLES } = window.GRC;
   const SVGNS = "http://www.w3.org/2000/svg";
   const $ = (s, r = document) => r.querySelector(s);
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -953,6 +1077,56 @@ body::before{
     render();
   }
 
+  /* ===================== TPRM ===================== */
+  function tprm() {
+    const tiers = $("#tiers");
+    TPRM.tiers.forEach((t) => {
+      const li = document.createElement("li");
+      li.className = "tier"; li.dataset.tone = t.tone;
+      li.innerHTML = `<span class="tier__t">${t.t} — Inherent</span>
+        <span class="tier__label">${t.label}</span>
+        <span class="tier__def">${t.def}</span>`;
+      tiers.appendChild(li);
+    });
+    const flow = $("#flow");
+    TPRM.lifecycle.forEach((f) => {
+      const li = document.createElement("li");
+      li.className = "flowstep";
+      li.innerHTML = `<span class="flowstep__n">${f.n}</span><span class="flowstep__s">${f.s}</span><span class="flowstep__d">${f.d}</span>`;
+      flow.appendChild(li);
+    });
+    const qd = $("#qdomains");
+    TPRM.domains.forEach((d) => {
+      const li = document.createElement("li");
+      li.innerHTML = `<b>${d.k}</b><span class="qt">${d.t}<span class="qm">${d.m}</span></span>`;
+      qd.appendChild(li);
+    });
+    const ex = $("#example"), e = TPRM.example;
+    ex.insertAdjacentHTML("beforeend", `
+      <p class="example__vendor">${e.vendor}<span>${e.note}</span></p>
+      <dl class="example__meta">
+        <div><dt>Tier</dt><dd>${e.tier}</dd></div>
+        <div><dt>Data</dt><dd>${e.data}</dd></div>
+      </dl>
+      <p class="example__path">${e.path}</p>`);
+  }
+
+  /* ===================== DELIVERABLES ===================== */
+  function deliverables() {
+    const ul = $("#artifacts");
+    DELIVERABLES.forEach((a, i) => {
+      const li = document.createElement("li");
+      li.className = "artifact";
+      li.style.transition = "opacity .6s var(--ease-out), transform .6s var(--ease-out), background .3s";
+      li.style.transitionDelay = (i % 3) * 80 + "ms";
+      li.innerHTML = `<span class="artifact__n">${a.n}</span>
+        <span class="artifact__t">${a.t}</span>
+        <span class="artifact__d">${a.d}</span>`;
+      ul.appendChild(li);
+      io.observe(li);
+    });
+  }
+
   function counts() {
     const ul = $("#counts");
     FRAMEWORK_COUNTS.forEach((c) => {
@@ -978,6 +1152,8 @@ body::before{
   tests();
   gantt();
   crosswalk();
+  tprm();
+  deliverables();
   counts();
   setRisk(RISKS[0], null);
 
@@ -987,7 +1163,7 @@ body::before{
 
 ```
 
-## FILE: site/data.js  (136 lines)
+## FILE: site/data.js  (182 lines)
 
 ```javascript
 /* ============================================================================
@@ -1124,7 +1300,53 @@ const FRAMEWORK_COUNTS = [
   { name:"HIPAA Security Rule",   n:"16", note:"Admin · Physical · Technical safeguards" },
 ];
 
-window.GRC = { ASSESSMENT, FUNCTIONS, SUBSCORES, RISKS, TESTS, POAM, CROSSWALK, FRAMEWORK_COUNTS };
+/* Third-party / vendor risk program (TPRM). */
+const TPRM = {
+  tiers: [
+    { t:"T1", label:"Critical", tone:"critical", def:"Production access to ePHI / PII or to production systems — BAA required before data flows." },
+    { t:"T2", label:"High",     tone:"high",     def:"Access to confidential business data or internal systems." },
+    { t:"T3", label:"Moderate", tone:"mod",      def:"Limited or de-identified data; no production access." },
+    { t:"T4", label:"Low",      tone:"low",      def:"No sensitive data; informational / marketing only." },
+  ],
+  lifecycle: [
+    { n:"01", s:"Intake & data classification", d:"Capture sponsor, service, data accessed, subprocessors." },
+    { n:"02", s:"Inherent-risk tiering",        d:"Tier on what could go wrong before controls — by data sensitivity." },
+    { n:"03", s:"SIG / CAIQ questionnaire",     d:"SIG-Lite-aligned domains, exportable to CAIQ." },
+    { n:"04", s:"SOC 2 report review",          d:"Read the Type II report; check scope, period, exceptions." },
+    { n:"05", s:"Gap identification",           d:"Compare answers + report against required controls." },
+    { n:"06", s:"Remediation",                  d:"Track conditions of approval to closure." },
+    { n:"07", s:"Onboarding decision",          d:"Approve / approve-with-conditions / reject." },
+  ],
+  domains: [
+    { k:"A", t:"Company & compliance",      m:"SOC 2 Type II · ISO 27001 · BAA · breach history" },
+    { k:"B", t:"Access & data protection",  m:"MFA · encryption at rest/in transit · least privilege · tenant segregation" },
+    { k:"C", t:"Operations & resilience",   m:"tested IR plan · breach-notification SLAs · backup restore · vuln scanning" },
+    { k:"D", t:"Subprocessors",             m:"fourth-party inventory · security flow-down" },
+  ],
+  example: {
+    vendor:"MedStream Analytics", note:"fictional worked example",
+    tier:"T1 · Critical", data:"ePHI (member name, DOB, claim detail)",
+    path:"Intake → Tier 1 → BAA → SIG/CAIQ → SOC 2 review → gaps → remediation → approve-with-conditions",
+  },
+};
+
+/* Full deliverable / artifact set — the complete body of work. */
+const DELIVERABLES = [
+  { n:"01", t:"Assessment scope statement",        d:"Boundary, systems, data types, and exclusions for the engagement." },
+  { n:"02", t:"CSF 2.0 controls checklist",        d:"All six Functions assessed across 23 subcategories." },
+  { n:"03", t:"Multi-framework crosswalk",         d:"CSF → 800-53 · ISO 27001:2022 · SOC 2 · HITRUST · HIPAA, IDs verified." },
+  { n:"04", t:"Control test plan",                 d:"Design vs. operating effectiveness with evidence references." },
+  { n:"05", t:"Risk methodology & register",       d:"Likelihood × impact scoring; 10 risks owned and treated." },
+  { n:"06", t:"Audit findings report",             d:"Findings with severity, root cause, and close-the-loop matrix." },
+  { n:"07", t:"Plan of Action & Milestones",       d:"10 sequenced remediation items with owners and dates." },
+  { n:"08", t:"Information security policy",        d:"Baseline policy tied to assessed control objectives." },
+  { n:"09", t:"Evidence collection log",           d:"Nine evidence items mapped to the controls they satisfy." },
+  { n:"10", t:"Tiered third-party-risk program",   d:"4-tier model, SIG/CAIQ questionnaire, SOC 2 review, worked example." },
+  { n:"11", t:"CSF maturity scoring tool",         d:"Python — per-Function scores, KPI summary, priority sequencing." },
+  { n:"12", t:"Gap analysis & roadmap",            d:"Current vs. target state with a phased path to Tier 3." },
+];
+
+window.GRC = { ASSESSMENT, FUNCTIONS, SUBSCORES, RISKS, TESTS, POAM, CROSSWALK, FRAMEWORK_COUNTS, TPRM, DELIVERABLES };
 
 ```
 

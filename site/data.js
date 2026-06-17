@@ -132,4 +132,50 @@ const FRAMEWORK_COUNTS = [
   { name:"HIPAA Security Rule",   n:"16", note:"Admin · Physical · Technical safeguards" },
 ];
 
-window.GRC = { ASSESSMENT, FUNCTIONS, SUBSCORES, RISKS, TESTS, POAM, CROSSWALK, FRAMEWORK_COUNTS };
+/* Third-party / vendor risk program (TPRM). */
+const TPRM = {
+  tiers: [
+    { t:"T1", label:"Critical", tone:"critical", def:"Production access to ePHI / PII or to production systems — BAA required before data flows." },
+    { t:"T2", label:"High",     tone:"high",     def:"Access to confidential business data or internal systems." },
+    { t:"T3", label:"Moderate", tone:"mod",      def:"Limited or de-identified data; no production access." },
+    { t:"T4", label:"Low",      tone:"low",      def:"No sensitive data; informational / marketing only." },
+  ],
+  lifecycle: [
+    { n:"01", s:"Intake & data classification", d:"Capture sponsor, service, data accessed, subprocessors." },
+    { n:"02", s:"Inherent-risk tiering",        d:"Tier on what could go wrong before controls — by data sensitivity." },
+    { n:"03", s:"SIG / CAIQ questionnaire",     d:"SIG-Lite-aligned domains, exportable to CAIQ." },
+    { n:"04", s:"SOC 2 report review",          d:"Read the Type II report; check scope, period, exceptions." },
+    { n:"05", s:"Gap identification",           d:"Compare answers + report against required controls." },
+    { n:"06", s:"Remediation",                  d:"Track conditions of approval to closure." },
+    { n:"07", s:"Onboarding decision",          d:"Approve / approve-with-conditions / reject." },
+  ],
+  domains: [
+    { k:"A", t:"Company & compliance",      m:"SOC 2 Type II · ISO 27001 · BAA · breach history" },
+    { k:"B", t:"Access & data protection",  m:"MFA · encryption at rest/in transit · least privilege · tenant segregation" },
+    { k:"C", t:"Operations & resilience",   m:"tested IR plan · breach-notification SLAs · backup restore · vuln scanning" },
+    { k:"D", t:"Subprocessors",             m:"fourth-party inventory · security flow-down" },
+  ],
+  example: {
+    vendor:"MedStream Analytics", note:"fictional worked example",
+    tier:"T1 · Critical", data:"ePHI (member name, DOB, claim detail)",
+    path:"Intake → Tier 1 → BAA → SIG/CAIQ → SOC 2 review → gaps → remediation → approve-with-conditions",
+  },
+};
+
+/* Full deliverable / artifact set — the complete body of work. */
+const DELIVERABLES = [
+  { n:"01", t:"Assessment scope statement",        d:"Boundary, systems, data types, and exclusions for the engagement." },
+  { n:"02", t:"CSF 2.0 controls checklist",        d:"All six Functions assessed across 23 subcategories." },
+  { n:"03", t:"Multi-framework crosswalk",         d:"CSF → 800-53 · ISO 27001:2022 · SOC 2 · HITRUST · HIPAA, IDs verified." },
+  { n:"04", t:"Control test plan",                 d:"Design vs. operating effectiveness with evidence references." },
+  { n:"05", t:"Risk methodology & register",       d:"Likelihood × impact scoring; 10 risks owned and treated." },
+  { n:"06", t:"Audit findings report",             d:"Findings with severity, root cause, and close-the-loop matrix." },
+  { n:"07", t:"Plan of Action & Milestones",       d:"10 sequenced remediation items with owners and dates." },
+  { n:"08", t:"Information security policy",        d:"Baseline policy tied to assessed control objectives." },
+  { n:"09", t:"Evidence collection log",           d:"Nine evidence items mapped to the controls they satisfy." },
+  { n:"10", t:"Tiered third-party-risk program",   d:"4-tier model, SIG/CAIQ questionnaire, SOC 2 review, worked example." },
+  { n:"11", t:"CSF maturity scoring tool",         d:"Python — per-Function scores, KPI summary, priority sequencing." },
+  { n:"12", t:"Gap analysis & roadmap",            d:"Current vs. target state with a phased path to Tier 3." },
+];
+
+window.GRC = { ASSESSMENT, FUNCTIONS, SUBSCORES, RISKS, TESTS, POAM, CROSSWALK, FRAMEWORK_COUNTS, TPRM, DELIVERABLES };

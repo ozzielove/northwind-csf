@@ -4,7 +4,7 @@
    ========================================================================== */
 (function () {
   "use strict";
-  const { ASSESSMENT, FUNCTIONS, SUBSCORES, RISKS, TESTS, POAM, CROSSWALK, FRAMEWORK_COUNTS } = window.GRC;
+  const { ASSESSMENT, FUNCTIONS, SUBSCORES, RISKS, TESTS, POAM, CROSSWALK, FRAMEWORK_COUNTS, TPRM, DELIVERABLES } = window.GRC;
   const SVGNS = "http://www.w3.org/2000/svg";
   const $ = (s, r = document) => r.querySelector(s);
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -357,6 +357,56 @@
     render();
   }
 
+  /* ===================== TPRM ===================== */
+  function tprm() {
+    const tiers = $("#tiers");
+    TPRM.tiers.forEach((t) => {
+      const li = document.createElement("li");
+      li.className = "tier"; li.dataset.tone = t.tone;
+      li.innerHTML = `<span class="tier__t">${t.t} — Inherent</span>
+        <span class="tier__label">${t.label}</span>
+        <span class="tier__def">${t.def}</span>`;
+      tiers.appendChild(li);
+    });
+    const flow = $("#flow");
+    TPRM.lifecycle.forEach((f) => {
+      const li = document.createElement("li");
+      li.className = "flowstep";
+      li.innerHTML = `<span class="flowstep__n">${f.n}</span><span class="flowstep__s">${f.s}</span><span class="flowstep__d">${f.d}</span>`;
+      flow.appendChild(li);
+    });
+    const qd = $("#qdomains");
+    TPRM.domains.forEach((d) => {
+      const li = document.createElement("li");
+      li.innerHTML = `<b>${d.k}</b><span class="qt">${d.t}<span class="qm">${d.m}</span></span>`;
+      qd.appendChild(li);
+    });
+    const ex = $("#example"), e = TPRM.example;
+    ex.insertAdjacentHTML("beforeend", `
+      <p class="example__vendor">${e.vendor}<span>${e.note}</span></p>
+      <dl class="example__meta">
+        <div><dt>Tier</dt><dd>${e.tier}</dd></div>
+        <div><dt>Data</dt><dd>${e.data}</dd></div>
+      </dl>
+      <p class="example__path">${e.path}</p>`);
+  }
+
+  /* ===================== DELIVERABLES ===================== */
+  function deliverables() {
+    const ul = $("#artifacts");
+    DELIVERABLES.forEach((a, i) => {
+      const li = document.createElement("li");
+      li.className = "artifact";
+      li.style.transition = "opacity .6s var(--ease-out), transform .6s var(--ease-out), background .3s";
+      li.style.transitionDelay = (i % 3) * 80 + "ms";
+      li.innerHTML = `<span class="artifact__n">${a.n}</span>
+        <span class="artifact__t">${a.t}</span>
+        <span class="artifact__d">${a.d}</span>`;
+      ul.appendChild(li);
+      io.observe(li);
+    });
+  }
+
   function counts() {
     const ul = $("#counts");
     FRAMEWORK_COUNTS.forEach((c) => {
@@ -382,6 +432,8 @@
   tests();
   gantt();
   crosswalk();
+  tprm();
+  deliverables();
   counts();
   setRisk(RISKS[0], null);
 
