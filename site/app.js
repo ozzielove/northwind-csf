@@ -4,7 +4,13 @@
    ========================================================================== */
 (function () {
   "use strict";
-  const { ASSESSMENT, FUNCTIONS, SUBSCORES, RISKS, TESTS, POAM, CROSSWALK, FRAMEWORK_COUNTS, TPRM, DELIVERABLES } = window.GRC;
+  const GRC = window.GRC;
+  if (!GRC) {
+    document.documentElement.classList.add("data-error");
+    return;
+  }
+  const { ASSESSMENT, FUNCTIONS, SUBSCORES, RISKS, TESTS, POAM, CROSSWALK, FRAMEWORK_COUNTS, TPRM, DELIVERABLES, EVIDENCE, CLAIMS } = GRC;
+  const SCORE = window.GRCScore || null;
   const SVGNS = "http://www.w3.org/2000/svg";
   const $ = (s, r = document) => r.querySelector(s);
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -21,25 +27,32 @@
   onScroll();
 
   /* ---- reveal + section-scoped triggers ---- */
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((e) => {
-        if (!e.isIntersecting) return;
-        e.target.classList.add("is-in");
-        if (e.target.dataset.fire) fire(e.target.dataset.fire);
-        io.unobserve(e.target);
-      });
-    },
-    { threshold: 0.18, rootMargin: "0px 0px -8% 0px" }
-  );
-  document.querySelectorAll(".reveal").forEach((n) => io.observe(n));
+  const io = "IntersectionObserver" in window
+    ? new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (!e.isIntersecting) return;
+            e.target.classList.add("is-in");
+            if (e.target.dataset.fire) fire(e.target.dataset.fire);
+            io.unobserve(e.target);
+          });
+        },
+        { threshold: 0.18, rootMargin: "0px 0px -8% 0px" }
+      )
+    : null;
+
+  document.querySelectorAll(".reveal").forEach((n) => {
+    if (io) io.observe(n);
+    else n.classList.add("is-in");
+  });
 
   const fired = {};
   function watch(sel, key) {
     const node = $(sel);
     if (!node) return;
     node.dataset.fire = key;
-    io.observe(node);
+    if (io) io.observe(node);
+    else fire(key);
   }
   function fire(key) {
     if (fired[key]) return;
@@ -221,8 +234,14 @@
       const spread = group.length > 1 ? (gi - (group.length - 1) / 2) * 26 : 0;
       const cxp = ox + (r.l - 0.5) * cell + spread;
       const cyp = oy + (5 - r.i + 0.5) * cell;
-      const g = svg("g", { class: "riskdot", "data-id": r.id, tabindex: "0", role: "button",
-        "aria-label": `${r.id}, ${r.level}, ${r.desc}` });
+      const g = svg("g", {
+        class: "riskdot",
+        "data-id": r.id,
+        tabindex: "0",
+        role: "button",
+        "aria-pressed": "false",
+        "aria-label": `${r.id}, ${r.level}, score ${r.score}, likelihood ${r.l} of 5, impact ${r.i} of 5. ${r.desc}`
+      });
       const c = svg("circle", { cx: cxp, cy: cyp, r: 16, fill: sevColor[r.level] });
       const tx = svg("text", { x: cxp, y: cyp + 4, "text-anchor": "middle" });
       tx.textContent = r.id.split("-")[1];
@@ -232,6 +251,11 @@
       g.addEventListener("mouseenter", activate);
       g.addEventListener("focus", activate);
       g.addEventListener("click", activate);
+      g.addEventListener("keydown", (e) => {
+        if (e.key !== "Enter" && e.key !== " ") return;
+        e.preventDefault();
+        activate();
+      });
     });
 
     // entrance: pop dots in
@@ -246,8 +270,15 @@
 
   let activeDot = null;
   function setRisk(r, node) {
-    if (activeDot) activeDot.classList.remove("is-active");
-    if (node) { node.classList.add("is-active"); activeDot = node; }
+    if (activeDot) {
+      activeDot.classList.remove("is-active");
+      activeDot.setAttribute("aria-pressed", "false");
+    }
+    if (node) {
+      node.classList.add("is-active");
+      node.setAttribute("aria-pressed", "true");
+      activeDot = node;
+    }
     const card = $("#riskcard");
     card.querySelector(".riskcard__id").textContent = r.id;
     const lvl = card.querySelector(".riskcard__level");
@@ -272,7 +303,8 @@
         <span class="trow__eff"><span>Design</span><span class="pill" data-r="${t.design}">${t.design}</span></span>
         <span class="trow__eff"><span>Operating</span><span class="pill" data-r="${t.operating}">${t.operating}</span></span>`;
       wrap.appendChild(row);
-      io.observe(row);
+      if (io) io.observe(row);
+      else row.classList.add("is-in");
     });
   }
 
@@ -302,10 +334,14 @@
         </span>`;
       wrap.appendChild(row);
       const bar = row.querySelector(".gbar");
-      const obs = new IntersectionObserver((es) => {
-        es.forEach((e) => { if (e.isIntersecting) { setTimeout(() => bar.classList.add("is-in"), idx * 90); obs.disconnect(); } });
-      }, { threshold: 0.4 });
-      obs.observe(row);
+      if ("IntersectionObserver" in window) {
+        const obs = new IntersectionObserver((es) => {
+          es.forEach((e) => { if (e.isIntersecting) { setTimeout(() => bar.classList.add("is-in"), idx * 90); obs.disconnect(); } });
+        }, { threshold: 0.4 });
+        obs.observe(row);
+      } else {
+        bar.classList.add("is-in");
+      }
     });
 
     const axis = $("#ganttAxis");
@@ -317,40 +353,77 @@
   /* ===================== CROSSWALK ===================== */
   function crosswalk() {
     const tabs = $("#xtabs"), table = $("#xtable");
+    tabs.setAttribute("role", "tablist");
+    tabs.setAttribute("aria-label", "Filter crosswalk rows by CSF Function");
+    table.setAttribute("role", "tabpanel");
+    table.id = "xtable";
     const fns = [{ key: "ALL", name: "All" }, ...FUNCTIONS.map((f) => ({ key: f.key, name: f.name }))];
     let active = "ALL";
 
     fns.forEach((f) => {
       const b = document.createElement("button");
       b.className = "xtab" + (f.key === "ALL" ? " is-active" : "");
+      b.type = "button";
+      b.id = `xtab-${f.key}`;
+      b.setAttribute("role", "tab");
+      b.setAttribute("aria-controls", "xtable");
+      b.setAttribute("aria-selected", f.key === "ALL" ? "true" : "false");
+      b.tabIndex = f.key === "ALL" ? 0 : -1;
       b.textContent = f.key === "ALL" ? "All Functions" : `${f.key} · ${f.name}`;
       b.dataset.key = f.key;
-      b.addEventListener("click", () => {
-        active = f.key;
-        tabs.querySelectorAll(".xtab").forEach((t) => t.classList.toggle("is-active", t.dataset.key === active));
-        render();
-      });
+      b.addEventListener("click", () => activateTab(f.key));
+      b.addEventListener("keydown", onTabKeydown);
       tabs.appendChild(b);
     });
+
+    function activateTab(key) {
+      active = key;
+      tabs.querySelectorAll(".xtab").forEach((t) => {
+        const selected = t.dataset.key === active;
+        t.classList.toggle("is-active", selected);
+        t.setAttribute("aria-selected", selected ? "true" : "false");
+        t.tabIndex = selected ? 0 : -1;
+      });
+      table.setAttribute("aria-labelledby", `xtab-${active}`);
+      render();
+    }
+
+    function onTabKeydown(e) {
+      const keys = ["ArrowLeft", "ArrowRight", "Home", "End"];
+      if (!keys.includes(e.key)) return;
+      e.preventDefault();
+      const all = Array.from(tabs.querySelectorAll(".xtab"));
+      const idx = all.indexOf(document.activeElement);
+      const next =
+        e.key === "Home" ? 0 :
+        e.key === "End" ? all.length - 1 :
+        e.key === "ArrowRight" ? (idx + 1) % all.length :
+        (idx - 1 + all.length) % all.length;
+      all[next].focus();
+      activateTab(all[next].dataset.key);
+    }
+
+    table.setAttribute("aria-labelledby", "xtab-ALL");
 
     function render() {
       const rows = CROSSWALK.filter((r) => active === "ALL" || r.fn === active);
       table.innerHTML = `
-        <div class="xhead">
-          <span>CSF 2.0</span><span>Control objective</span><span>NIST 800-53</span>
-          <span>ISO 27001:2022</span><span>SOC 2</span><span>HIPAA</span>
+        <div class="xhead" role="row">
+          <span role="columnheader">CSF 2.0</span><span role="columnheader">Control objective</span><span role="columnheader">NIST 800-53</span>
+          <span role="columnheader">ISO 27001:2022</span><span role="columnheader">SOC 2</span><span role="columnheader">HIPAA</span>
         </div>`;
       rows.forEach((r, i) => {
         const div = document.createElement("div");
         div.className = "xr";
+        div.setAttribute("role", "row");
         div.style.animationDelay = i * 35 + "ms";
         div.innerHTML = `
-          <div class="xsub">${r.sub}</div>
-          <div class="xobj">${r.obj}</div>
-          <div class="xctrl" data-l="NIST 800-53">${r.n8}</div>
-          <div class="xctrl" data-l="ISO 27001:2022">${r.iso}</div>
-          <div class="xctrl" data-l="SOC 2">${r.soc}</div>
-          <div class="xctrl" data-l="HIPAA">${r.hi}</div>`;
+          <div class="xsub" role="cell">${r.sub}</div>
+          <div class="xobj" role="cell">${r.obj}</div>
+          <div class="xctrl" role="cell" data-l="NIST 800-53">${r.n8}</div>
+          <div class="xctrl" role="cell" data-l="ISO 27001:2022">${r.iso}</div>
+          <div class="xctrl" role="cell" data-l="SOC 2">${r.soc}</div>
+          <div class="xctrl" role="cell" data-l="HIPAA">${r.hi}</div>`;
         table.appendChild(div);
       });
     }
@@ -403,7 +476,8 @@
         <span class="artifact__t">${a.t}</span>
         <span class="artifact__d">${a.d}</span>`;
       ul.appendChild(li);
-      io.observe(li);
+      if (io) io.observe(li);
+      else li.classList.add("is-in");
     });
   }
 
@@ -414,6 +488,152 @@
       li.innerHTML = `<span class="cn">${c.n}</span><span class="cf">${c.name}</span><span class="cnote">${c.note}</span>`;
       ul.appendChild(li);
     });
+  }
+
+  /* ===================== RESUME CLAIM PROOF MAP ===================== */
+  const PROOF_TYPES = [
+    { key: "Portfolio",        cls: "pt-portfolio",  label: "Portfolio-proven" },
+    { key: "Backend",          cls: "pt-backend",    label: "Backend-demo-proven" },
+    { key: "Script",           cls: "pt-script",     label: "Script-proven" },
+    { key: "Documentation",    cls: "pt-docs",       label: "Documentation-proven" },
+    { key: "Coursework",       cls: "pt-course",     label: "Coursework exposure" },
+    { key: "Prior operations", cls: "pt-ops",        label: "Prior operations" },
+    { key: "Military",         cls: "pt-mil",        label: "Military experience" },
+  ];
+  const proofClass = (t) => (PROOF_TYPES.find((p) => p.key === t) || { cls: "pt-portfolio" }).cls;
+
+  function claimmap() {
+    if (!CLAIMS) return;
+    const legend = $("#prooflegend");
+    if (legend) {
+      PROOF_TYPES.forEach((p) => {
+        const li = document.createElement("li");
+        li.innerHTML = `<span class="pt ${p.cls}">${p.label}</span>`;
+        legend.appendChild(li);
+      });
+    }
+    const grid = $("#claimgrid");
+    CLAIMS.forEach((c, i) => {
+      const li = document.createElement("li");
+      li.className = "claim reveal";
+      li.dataset.d = Math.min(6, (i % 6) + 1);
+      const badges = (c.types || []).map((t) => `<span class="pt ${proofClass(t)}">${t}</span>`).join("");
+      li.innerHTML = `
+        <p class="claim__claim">${c.claim}</p>
+        <div class="claim__badges">${badges}</div>
+        <dl class="claim__meta">
+          <div><dt>Evidence</dt><dd>${c.evidence}</dd></div>
+          <div><dt>Demo path</dt><dd>${c.demo}</dd></div>
+          <div><dt>Boundary</dt><dd class="claim__bound">${c.boundary}</dd></div>
+        </dl>`;
+      grid.appendChild(li);
+      if (io) io.observe(li); else li.classList.add("is-in");
+    });
+  }
+
+  /* ===================== INTERVIEW DEMO MODE ===================== */
+  const SCORING_EXPLAINER = {
+    note: "Scoring formula — subcategory-weighted maturity",
+    rule: "overall = sum(all assessed subcategory scores) / count(assessed subcategories)",
+    worked: "sum = 36 across 23 subcategories → 36 / 23 = 1.565 → 1.57",
+    contrast: "A simple mean of the six Function averages would be 1.53. The weighting by how many subcategories each Function carries is what makes the number defensible.",
+    scale: "Tiers: <1.5 Partial · 1.5–2.5 Risk Informed · 2.5–3.5 Repeatable · >=3.5 Adaptive",
+  };
+
+  function localFallback(path, method, body) {
+    if (!SCORE) return { _offline: true, error: "Local scoring module unavailable" };
+    const url = new URL(path, "http://x");
+    const p = url.pathname; const q = Object.fromEntries(url.searchParams);
+    if (p === "/api/health") return { ok: true, mode: "static-fallback", note: "API offline — computed from bundled data", timestamp: new Date().toISOString() };
+    if (p === "/api/assessment") return SCORE.assessmentSummary(GRC);
+    if (p === "/api/risks") return { ok: true, ...SCORE.filterRisks(RISKS, q) };
+    if (p === "/api/crosswalk") return { ok: true, ...SCORE.filterCrosswalk(CROSSWALK, q) };
+    if (p === "/api/evidence") return { ok: true, count: EVIDENCE.length, evidence: EVIDENCE };
+    if (p === "/api/score") return { ok: true, source: "bundled sample", ...summarizeScore(SCORE.scoreFromSubscores((body && body.subscores) || SUBSCORES)) };
+    if (p === "/api/vendor-tier") return { ok: true, ...SCORE.vendorTier(body || {}) };
+    return { _offline: true, error: "No local fallback for " + p };
+  }
+  function summarizeScore(r) {
+    return { overallMaturity: r.overall, overallTier: r.overallTier, assessedSubcategories: r.assessedSubcategories, perFunction: r.functions, priorityFunctions: r.priorityFunctions, method: r.method };
+  }
+
+  let apiOnline = null; // null=unknown, true/false after probe
+  function renderOut(label, data, mode) {
+    const out = $("#demoOut"), lbl = $("#demoLabel"), badge = $("#demoMode");
+    if (lbl) lbl.textContent = label;
+    if (badge) { badge.textContent = mode; badge.dataset.mode = mode; }
+    out.textContent = typeof data === "string" ? data : JSON.stringify(data, null, 2);
+  }
+  async function callApi(path, method, body) {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 4000);
+    try {
+      const opts = { method, signal: ctrl.signal, headers: {} };
+      if (body !== undefined) { opts.headers["Content-Type"] = "application/json"; opts.body = JSON.stringify(body); }
+      const res = await fetch(path, opts);
+      clearTimeout(timer);
+      const text = await res.text();
+      let json; try { json = JSON.parse(text); } catch (_) { json = text; }
+      apiOnline = true;
+      return { live: true, json };
+    } catch (_) {
+      clearTimeout(timer);
+      apiOnline = false;
+      return { live: false, json: localFallback(path, method, body) };
+    }
+  }
+  function demoMode() {
+    const probes = $("#demoProbes");
+    if (probes) {
+      probes.addEventListener("click", async (e) => {
+        const btn = e.target.closest(".probe"); if (!btn) return;
+        if (btn.dataset.explain === "scoring") { renderOut("scoring formula", SCORING_EXPLAINER, "explainer"); return; }
+        const getp = btn.dataset.get, postp = btn.dataset.post;
+        const path = getp || postp; const method = getp ? "GET" : "POST";
+        const body = postp ? JSON.parse(btn.dataset.body || "{}") : undefined;
+        renderOut(`${method} ${path}`, "calling " + path + " …", "…");
+        const r = await callApi(path, method, body);
+        renderOut(`${method} ${path}`, r.json, r.live ? "live API" : "static fallback");
+      });
+    }
+    const form = $("#vendorForm");
+    if (form) {
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const dataTypes = [];
+        if ($("#vEphi").checked) dataTypes.push("ePHI");
+        if ($("#vPii").checked) dataTypes.push("PII");
+        const body = {
+          vendorName: $("#vName").value || "Unnamed vendor",
+          dataTypes,
+          productionAccess: $("#vProd").checked,
+          systemAccess: $("#vSys").checked,
+          subprocessors: $("#vSub").checked,
+        };
+        renderOut("POST /api/vendor-tier", "tiering " + body.vendorName + " …", "…");
+        const r = await callApi("/api/vendor-tier", "POST", body);
+        renderOut("POST /api/vendor-tier", r.json, r.live ? "live API" : "static fallback");
+      });
+    }
+  }
+
+  /* ===================== BACKEND STATUS WIDGET ===================== */
+  async function backendStatus() {
+    const el = $("#apistat"); if (!el) return;
+    const dot = el.querySelector(".apistat__dot"), txt = el.querySelector(".apistat__txt");
+    const set = (state, label) => { el.dataset.state = state; if (txt) txt.textContent = label; };
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 4000);
+    try {
+      const res = await fetch("/api/health", { signal: ctrl.signal });
+      clearTimeout(timer);
+      const j = await res.json();
+      if (res.ok && j && j.ok) { set("online", "API online"); apiOnline = true; }
+      else { set("static", "static mode"); apiOnline = false; }
+    } catch (_) {
+      clearTimeout(timer);
+      set("static", "static mode"); apiOnline = false;
+    }
   }
 
   /* ===================== TRIGGERS (section-scoped) ===================== */
@@ -435,6 +655,9 @@
   tprm();
   deliverables();
   counts();
+  claimmap();
+  demoMode();
+  backendStatus();
   setRisk(RISKS[0], null);
 
   watch("#posture", "posture");

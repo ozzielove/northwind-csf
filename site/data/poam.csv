@@ -1,0 +1,11 @@
+id,severity,subcategory,owner,start,due,status,action
+POAM-001,Critical,PR.AA-01,CTO,2026-07-01,2026-07-07,In Progress,"Provision individual IAM users; enforce MFA; secure root with break-glass"
+POAM-002,Critical,PR.AA-05,CTO,2026-07-15,2026-07-31,Open,"Define RBAC roles; scope IAM policies; quarterly access reviews"
+POAM-003,Critical,DE.AE-02,IT Lead,2026-07-10,2026-08-15,Open,"Deploy SIEM; forward CloudTrail + app logs; define alerts; assign triage"
+POAM-004,High,RS.MA-01,IT Lead,2026-08-01,2026-08-31,Open,"Run tabletop exercise; assign IR roles; document lessons learned"
+POAM-005,High,PR.AT-01,HR / IT Lead,2026-08-15,2026-09-15,Open,"Deploy annual training + quarterly phishing simulations"
+POAM-006,High,GV.SC-01,Procurement,2026-08-01,2026-09-30,Open,"Stand up vendor risk program; require BAAs; risk-tier vendors"
+POAM-007,High,RC.RP-01,IT Lead,2026-08-20,2026-09-10,Open,"Perform full restore test; document RTO / RPO"
+POAM-008,High,DE.CM-09,IT Lead,2026-08-25,2026-09-20,Open,"Deploy EDR to all endpoints; centralize alerts"
+POAM-009,Moderate,ID.AM-02,IT Lead,2026-09-01,2026-10-15,Open,"Build software inventory / SBOM; integrate with vuln scanning"
+POAM-010,Moderate,GV.RM-01,CEO,2026-09-15,2026-10-31,Open,"Draft and ratify risk appetite + risk management policy"

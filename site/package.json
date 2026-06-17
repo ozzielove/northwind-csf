@@ -1,0 +1,19 @@
+{
+  "name": "northwind-csf",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Northwind Health Systems — simulated NIST CSF 2.0 GRC assessment portfolio (static frontend + serverless API + Python scoring).",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "vercel dev",
+    "serve": "python3 -m http.server 8777",
+    "test": "node --test",
+    "score": "python3 scripts/score_maturity.py",
+    "validate": "python3 scripts/validate_crosswalk.py",
+    "demo": "bash scripts/run_demo.sh"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT"
+}

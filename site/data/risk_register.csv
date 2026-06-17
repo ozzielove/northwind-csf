@@ -1,0 +1,11 @@
+id,likelihood,impact,score,level,owner,subcategory,description
+R-001,4,5,20,Critical,CTO,PR.AA-01,"Shared AWS admin account without MFA enables full environment compromise"
+R-002,4,4,16,Critical,CTO,PR.AA-05,"Excessive IAM permissions (no least privilege) allow lateral movement to ePHI"
+R-003,4,4,16,Critical,IT Lead,DE.AE-02,"No SIEM or log review means breaches go undetected"
+R-004,3,5,15,High,IT Lead,RS.MA-01,"IR plan never tested; HIPAA breach-notification clock missed"
+R-005,4,3,12,High,IT Lead,DE.CM-09,"No endpoint detection (EDR) on employee laptops"
+R-006,4,3,12,High,HR / IT Lead,PR.AT-01,"No annual security awareness training; phishing-susceptible workforce"
+R-007,3,4,12,High,Procurement,GV.SC-01,"Vendors onboarded with no security review (supply-chain risk)"
+R-008,3,4,12,High,IT Lead,RC.RP-01,"Backups exist but restore never tested; recovery may fail"
+R-009,3,3,9,Moderate,IT Lead,ID.AM-02,"No formal software inventory; unpatched / unknown assets"
+R-010,3,2,6,Moderate,CEO,GV.RM-01,"No risk appetite statement; inconsistent risk decisions"

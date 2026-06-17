@@ -1,0 +1,69 @@
+{
+  "project": "Northwind CSF 2.0 GRC Assessment",
+  "mode": "simulated-portfolio",
+  "disclaimer": "Simulated portfolio engagement. Northwind Health Systems is fictional. Readiness assessment — not a SOC 2 audit, HIPAA attestation, or real client work.",
+  "functions": [
+    {
+      "key": "GV",
+      "name": "Govern",
+      "score": 1.4,
+      "assessed": 5,
+      "tier": "Tier 1 · Partial",
+      "priority": false
+    },
+    {
+      "key": "ID",
+      "name": "Identify",
+      "score": 1.6,
+      "assessed": 5,
+      "tier": "Tier 2 · Risk Informed",
+      "priority": false
+    },
+    {
+      "key": "PR",
+      "name": "Protect",
+      "score": 2.0,
+      "assessed": 5,
+      "tier": "Tier 2 · Risk Informed",
+      "priority": false
+    },
+    {
+      "key": "DE",
+      "name": "Detect",
+      "score": 1.33,
+      "assessed": 3,
+      "tier": "Tier 1 · Partial",
+      "priority": true
+    },
+    {
+      "key": "RS",
+      "name": "Respond",
+      "score": 1.33,
+      "assessed": 3,
+      "tier": "Tier 1 · Partial",
+      "priority": true
+    },
+    {
+      "key": "RC",
+      "name": "Recover",
+      "score": 1.5,
+      "assessed": 2,
+      "tier": "Tier 2 · Risk Informed",
+      "priority": false
+    }
+  ],
+  "overallMaturity": 1.57,
+  "overallTier": "Tier 2 · Risk Informed",
+  "assessedSubcategories": 23,
+  "functionsScored": 6,
+  "priorityFunctions": [
+    "Detect",
+    "Respond"
+  ],
+  "method": "subcategory-weighted (sum of subcategory scores ÷ assessed count)",
+  "kpi": {
+    "totalPoints": 36.0,
+    "subcategoryCount": 23,
+    "simpleMeanOfFunctions": 1.53
+  }
+}

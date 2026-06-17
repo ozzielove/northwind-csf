@@ -1,62 +1,52 @@
-# FRONTEND REVIEW BUNDLE — Northwind CSF 2.0 (employer-facing GRC portfolio site)
+# Northwind CSF 2.0 — Full Source Review Bundle
 
-> PASTE THIS ENTIRE FILE INTO CHATGPT. The review prompt is at the top; all source files follow.
+Single-file concat of the **full-stack** portfolio (frontend + serverless API + Python +
+tests + data + docs) for external review. Generated for ChatGPT audit drag-and-drop.
 
-## What this portfolio IS (context for the reviewer)
-This site is the **live, employer-facing presentation** of a self-directed Governance, Risk &
-Compliance (GRC) portfolio project — it is what a hiring manager opens in an interview, **in place of
-a GitHub repo**. It must stand on its own as proof of work. The underlying project:
+**Integrity:** Northwind is fictional; assessment is simulated; readiness only — not audit/
+compliance/attestation/client/production. Crosswalk = 4 row-level frameworks (800-53, ISO
+27001:2022, SOC 2, HIPAA); no HITRUST row-level mapping is claimed. Overall maturity =
+sum(23 subscores=36)/23 = 1.57 (subcategory-weighted, not the 1.53 simple mean).
 
-- An **end-to-end GRC assessment of a fictional healthcare-software company** (Northwind Health
-  Systems), evaluating controls against all six **NIST Cybersecurity Framework (CSF) 2.0** Functions
-  (Govern, Identify, Protect, Detect, Respond, Recover) and scoring maturity with a Python tool that
-  outputs per-Function scores and a KPI summary.
-- A **multi-framework control crosswalk** mapping NIST CSF 2.0 → NIST SP 800-53 Rev 5 →
-  ISO/IEC 27001:2022 Annex A → SOC 2 Trust Services Criteria → HITRUST CSF v11 → HIPAA Security Rule,
-  with every control identifier verified against authoritative published sources.
-- A complete **artifact set**: scope statement, risk methodology + risk register, control test plan
-  (design vs. operating effectiveness), audit findings report, Plan of Action & Milestones (POA&M),
-  information security policy, and evidence collection log.
-- A **tiered third-party-risk (TPRM) program** with a SIG/CAIQ-style questionnaire and a SOC 2
-  report-review step.
 
-The author is an entry-level GRC candidate (US Army veteran, BS Cybersecurity in progress, Google
-Cybersecurity Certificate). Everything is **simulated / portfolio work on a fictional organization** —
-NOT real client work, NOT production GRC employment, NOT platform administration, and must stay
-labeled that way. Every figure on the site traces to the project's data (see `data.js`).
+## File inventory
+```
+CLAIM_MATRIX.md
+DEMO_SCRIPT.md
+DEPLOY.md
+README.md
+api/assessment.js
+api/crosswalk.js
+api/evidence.js
+api/health.js
+api/risks.js
+api/score.js
+api/vendor-tier.js
+apiutil.js
+app.js
+data.js
+data/control_tests.csv
+data/crosswalk.csv
+data/csf_scores.csv
+data/evidence_log.csv
+data/poam.csv
+data/risk_register.csv
+index.html
+package.json
+scoring.js
+scripts/run_demo.sh
+scripts/score_maturity.py
+scripts/validate_crosswalk.py
+styles.css
+tests/api.test.js
+tests/assessment.test.js
+vercel.json
+```
 
-The site is intentionally **vanilla HTML/CSS/JS** — no framework, no bundler, no dependencies
-(Google Fonts CDN only), deployable to Vercel as static files. Aesthetic: dark "audit instrument"
-console; Fraunces display + IBM Plex Mono/Sans; hand-built SVG/DOM visualizations (maturity radar,
-5x5 risk matrix, POA&M gantt, framework crosswalk), tiered-vendor and deliverables sections.
-
-## Review prompt (use verbatim)
-You are a principal frontend engineer + design director reviewing the site above. It is FRONT-FACING
-TO EMPLOYERS and represents the candidate's competence — treat polish and correctness as career-stakes.
-
-Audit it for EVERY frontend issue across: (1) correctness/bugs, (2) accessibility (WCAG 2.2 AA:
-contrast, focus order, keyboard operability of the interactive risk matrix + crosswalk tabs, ARIA,
-reduced-motion, screen-reader semantics), (3) responsive/layout from 320px to 1920px (overflow,
-clamp() font scaling, the SVG charts, the grid sections), (4) performance (paint, layout thrash,
-font loading / CLS, IntersectionObserver usage, animation cost), (5) cross-browser — Safari + Firefox
-specifically (backdrop-filter, color-mix(), mask-image, transform-box on SVG, :has if any),
-(6) SEO/social (title, meta description, Open Graph / Twitter cards, favicon, lang, headings outline),
-(7) visual design taste and hierarchy, (8) resilience (JS disabled, slow/failed fonts,
-prefers-reduced-motion, no-data edge cases).
-
-OUTPUT FORMAT — return SURGICAL EDITS only. For each issue:
-- `file` + a short `locator` (the exact existing snippet to find)
-- `severity` (blocker / high / medium / nit)
-- `why` (1 sentence)
-- `before` (exact current code) and `after` (exact replacement)
-Group by file, ordered by severity. Do NOT rewrite whole files. Preserve the vanilla / no-build /
-single-folder architecture, the dark "audit instrument" aesthetic, and the simulated/fictional framing.
-Explicitly flag anything an elite reviewer would read as generic or "AI-generated," and anything that
-would undercut the candidate's credibility (broken layout, weak contrast, misleading claim, dead link).
 
 ---
 
-## FILE: site/index.html  (272 lines)
+## `index.html`
 
 ```html
 <!DOCTYPE html>
@@ -65,7 +55,15 @@ would undercut the candidate's credibility (broken layout, weak contrast, mislea
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Northwind Health Systems — NIST CSF 2.0 Assessment</title>
-<meta name="description" content="A simulated NIST Cybersecurity Framework 2.0 governance, risk &amp; compliance assessment — interactive audit instrument. Portfolio work by Ozirus B. Morency." />
+<meta name="description" content="A simulated NIST Cybersecurity Framework 2.0 GRC readiness assessment — interactive readiness instrument. Portfolio work by Ozirus B. Morency." />
+<meta name="theme-color" content="#07090c" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Northwind Health Systems — NIST CSF 2.0 Assessment" />
+<meta property="og:description" content="Simulated employer-facing GRC portfolio: CSF 2.0 maturity scoring, risk register, control testing, POA&amp;M, TPRM, and framework crosswalk." />
+<meta property="og:site_name" content="Northwind CSF 2.0 Portfolio" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Northwind Health Systems — NIST CSF 2.0 Assessment" />
+<meta name="twitter:description" content="Simulated GRC readiness portfolio built as a static assessment instrument." />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2307090c'/%3E%3Cpath d='M16 6l8 10-8 10-8-10z' fill='none' stroke='%236ef2c0' stroke-width='1.6'/%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -73,6 +71,7 @@ would undercut the candidate's credibility (broken layout, weak contrast, mislea
 <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to assessment content</a>
 <div class="grain" aria-hidden="true"></div>
 <div class="scan" aria-hidden="true"></div>
 
@@ -82,17 +81,22 @@ would undercut the candidate's credibility (broken layout, weak contrast, mislea
     <span class="nav__glyph">◇</span>
     <span class="nav__id">NORTHWIND&nbsp;/&nbsp;CSF&nbsp;2.0</span>
   </a>
-  <nav class="nav__links">
+  <nav class="nav__links" aria-label="Primary sections">
     <a href="#posture">Posture</a>
     <a href="#risk">Risk</a>
     <a href="#controls">Controls</a>
     <a href="#crosswalk">Crosswalk</a>
-    <a href="#vendors">Vendors</a>
+    <a href="#claimmap">Proof</a>
+    <a href="#demo">Demo</a>
   </nav>
-  <a class="nav__cta" href="#deliverables">The deliverables ↓</a>
+  <span class="apistat" id="apistat" role="status" aria-live="polite" data-state="checking">
+    <span class="apistat__dot"></span><span class="apistat__txt">checking API…</span>
+  </span>
+  <a class="nav__cta" href="#demo">Live demo ↓</a>
 </header>
 
 <!-- ================= HERO ================= -->
+<main id="main">
 <section class="hero" id="top">
   <div class="hero__grid" aria-hidden="true"></div>
   <div class="hero__inner">
@@ -105,10 +109,10 @@ would undercut the candidate's credibility (broken layout, weak contrast, mislea
       <span class="reveal" data-d="3">measured.</span>
     </h1>
     <p class="hero__lede reveal" data-d="4">
-      A full governance, risk &amp; compliance assessment of <strong>Northwind Health Systems</strong>,
-      a fictional healthcare-SaaS custodian of electronic protected health information — scored against
-      all six Functions of the <em>NIST Cybersecurity Framework&nbsp;2.0</em> and crosswalked to five
-      adjacent frameworks.
+      A full governance, risk &amp; compliance readiness assessment of <strong>Northwind Health Systems</strong>,
+      a fictional healthcare-SaaS scenario involving simulated ePHI-class data — scored against
+      all six Functions of the <em>NIST Cybersecurity Framework&nbsp;2.0</em> and mapped, at the
+      control level, to four adjacent frameworks.
     </p>
 
     <div class="hero__readout reveal" data-d="5">
@@ -127,7 +131,7 @@ would undercut the candidate's credibility (broken layout, weak contrast, mislea
         <li><span class="stat__n" data-count="6">0</span><span class="stat__l">CSF Functions scored</span></li>
         <li><span class="stat__n" data-count="23">0</span><span class="stat__l">Subcategories assessed</span></li>
         <li><span class="stat__n" data-count="10">0</span><span class="stat__l">Risks · 3 critical</span></li>
-        <li><span class="stat__n" data-count="5" data-suffix="">0</span><span class="stat__l">Frameworks crosswalked</span></li>
+        <li><span class="stat__n" data-count="4">0</span><span class="stat__l">Frameworks per control</span></li>
       </ul>
     </div>
 
@@ -152,7 +156,7 @@ would undercut the candidate's credibility (broken layout, weak contrast, mislea
   </div>
 
   <div class="posture">
-    <figure class="radar" aria-label="Radar chart of six CSF Function maturity scores">
+    <figure class="radar" role="img" aria-label="Radar chart of six CSF Function maturity scores">
       <svg viewBox="0 0 480 480" id="radar"></svg>
     </figure>
     <ol class="fnlist" id="fnlist"></ol>
@@ -168,13 +172,13 @@ would undercut the candidate's credibility (broken layout, weak contrast, mislea
     <span class="kicker">02 — Risk Register</span>
     <h2 class="section__title">Where the exposure actually lives.</h2>
     <p class="section__sub">
-      Ten risks plotted by <em>likelihood</em> × <em>impact</em>. The top-right quadrant is the
-      part that keeps a CISO awake — a shared root account with no multi-factor, and no way to see a breach happening.
+      Ten risks plotted by <em>likelihood</em> × <em>impact</em>. The top-right quadrant contains
+      the highest-loss scenarios: shared privileged access without MFA, excessive IAM permissions, and missing detection coverage.
     </p>
   </div>
 
   <div class="risk">
-    <figure class="matrix" aria-label="Five by five risk matrix, likelihood by impact">
+    <figure class="matrix" role="img" aria-label="Five by five risk matrix, likelihood by impact">
       <svg viewBox="0 0 520 520" id="matrix"></svg>
     </figure>
     <aside class="riskcard" id="riskcard" aria-live="polite">
@@ -187,7 +191,7 @@ would undercut the candidate's credibility (broken layout, weak contrast, mislea
         <div><dt>Owner</dt><dd id="rc-o">CTO</dd></div>
         <div><dt>CSF</dt><dd id="rc-s">PR.AA-01</dd></div>
       </dl>
-      <p class="riskcard__hint">Hover or tap a cell to inspect ·<span id="rc-count"> 10 risks mapped</span></p>
+      <p class="riskcard__hint">Hover, tap, or focus a risk dot to inspect ·<span id="rc-count"> 10 risks mapped</span></p>
     </aside>
   </div>
 </section>
@@ -224,11 +228,11 @@ would undercut the candidate's credibility (broken layout, weak contrast, mislea
 <section class="section" id="crosswalk">
   <div class="section__head">
     <span class="kicker">05 — Multi-Framework Crosswalk</span>
-    <h2 class="section__title">Map once. Satisfy five frameworks.</h2>
+    <h2 class="section__title">Map once. Trace four control frameworks.</h2>
     <p class="section__sub">
-      The core efficiency argument of a unified GRC program: one assessed control maps to
-      NIST 800-53, ISO&nbsp;27001:2022, SOC&nbsp;2, HITRUST, and HIPAA simultaneously.
-      Pick a Function to trace the equivalences.
+      The core efficiency argument of a unified GRC program: one assessed control can support
+      multiple framework mappings at once. This interactive sample traces CSF controls to
+      NIST 800-53, ISO&nbsp;27001:2022, SOC&nbsp;2, and HIPAA at the control level.
     </p>
   </div>
 
@@ -244,7 +248,7 @@ would undercut the candidate's credibility (broken layout, weak contrast, mislea
 <section class="section" id="vendors">
   <div class="section__head">
     <span class="kicker">06 — Third-Party Risk</span>
-    <h2 class="section__title">No vendor touches ePHI unscreened.</h2>
+    <h2 class="section__title">No simulated ePHI vendor passes intake unscreened.</h2>
     <p class="section__sub">
       A tiered third-party-risk program: rank a vendor on <em>inherent</em> risk at intake, run a
       SIG / CAIQ-aligned questionnaire, review their SOC&nbsp;2 report, then decide. Higher tier → deeper diligence.
@@ -275,19 +279,140 @@ would undercut the candidate's credibility (broken layout, weak contrast, mislea
 <section class="section" id="deliverables">
   <div class="section__head">
     <span class="kicker">07 — The Deliverables</span>
-    <h2 class="section__title">Twelve artifacts. One coherent engagement.</h2>
+    <h2 class="section__title">Twelve artifacts. One defensible assessment package.</h2>
     <p class="section__sub">
-      Everything visualized above is backed by a complete, audit-grade artifact set — the same
-      documents a real GRC engagement produces, authored end to end.
+      Everything visualized above is backed by a complete readiness artifact set — the same
+      document types a simulated GRC assessment should produce, authored end to end.
     </p>
   </div>
   <ul class="artifacts" id="artifacts"></ul>
 </section>
 
+<!-- ================= TRANSFERABLE EXPERIENCE ================= -->
+<section class="section" id="transferable">
+  <div class="section__head">
+    <span class="kicker">08 — Transferable Audit Experience</span>
+    <h2 class="section__title">Regulated-operations discipline, retooled for GRC.</h2>
+    <p class="section__sub">
+      This project translates prior regulated-operations discipline into cybersecurity GRC artifacts:
+      findings, root cause, corrective action, evidence, ownership, and remediation tracking. The
+      background below is operations and military experience — not prior cybersecurity employment.
+    </p>
+  </div>
+  <ul class="xfer">
+    <li class="xcard">
+      <span class="xcard__from">4+ years client-facing operations in federally audited environments</span>
+      <span class="xcard__arrow" aria-hidden="true">→</span>
+      <span class="xcard__to">Comfort working to written standards, scope, and external review — the operating context of an audit.</span>
+    </li>
+    <li class="xcard">
+      <span class="xcard__from">OSHA / EPA audit support</span>
+      <span class="xcard__arrow" aria-hidden="true">→</span>
+      <span class="xcard__to">Evidence collection and audit readiness under a regulator — the same muscle as a SOC 2 / HIPAA evidence log.</span>
+    </li>
+    <li class="xcard">
+      <span class="xcard__from">50+ Root Cause Analysis investigations</span>
+      <span class="xcard__arrow" aria-hidden="true">→</span>
+      <span class="xcard__to">Maps directly to the GRC loop: <em>finding → root cause → corrective action → POA&amp;M closure</em>.</span>
+    </li>
+    <li class="xcard">
+      <span class="xcard__from">Technical &amp; expository documentation</span>
+      <span class="xcard__arrow" aria-hidden="true">→</span>
+      <span class="xcard__to">The assessment report, policy, and crosswalk in this portfolio are the deliverable form of that writing.</span>
+    </li>
+    <li class="xcard">
+      <span class="xcard__from">Google Cybersecurity Professional Certificate · June 2026</span>
+      <span class="xcard__arrow" aria-hidden="true">→</span>
+      <span class="xcard__to">Foundational SIEM, log-review, and triage concepts — beginner-level coursework, not production SOC work.</span>
+    </li>
+    <li class="xcard">
+      <span class="xcard__from">U.S. Army National Guard veteran</span>
+      <span class="xcard__arrow" aria-hidden="true">→</span>
+      <span class="xcard__to">Mission discipline, chain-of-custody habits, and documentation rigor that carry into evidence handling.</span>
+    </li>
+  </ul>
+</section>
+
+<!-- ================= RESUME CLAIM PROOF MAP ================= -->
+<section class="section" id="claimmap">
+  <div class="section__head">
+    <span class="kicker">09 — Resume Claim Proof Map</span>
+    <h2 class="section__title">Every claim, tied to evidence you can open.</h2>
+    <p class="section__sub">
+      Each card maps a résumé claim to the artifact, endpoint, or script that backs it — with the
+      proof type and the honest boundary. Nothing here is asserted as real client work; coursework and
+      prior operations are labeled as exactly that.
+    </p>
+  </div>
+  <ul class="prooflegend" id="prooflegend" aria-label="Proof-type legend"></ul>
+  <ul class="claimgrid" id="claimgrid"></ul>
+</section>
+
+<!-- ================= INTERVIEW DEMO MODE ================= -->
+<section class="section" id="demo">
+  <div class="section__head">
+    <span class="kicker">10 — Interview Demo Mode</span>
+    <h2 class="section__title">Poke the backend. It answers in real time.</h2>
+    <p class="section__sub">
+      Live serverless endpoints computing over the same repository data. Click a probe and the raw JSON
+      appears below. If the API is offline (static hosting), the page falls back to the bundled data and
+      says so — every figure still resolves.
+    </p>
+  </div>
+
+  <div class="demo">
+    <div class="demo__panel">
+      <span class="demo__h">Endpoint probes</span>
+      <div class="demo__probes" id="demoProbes">
+        <button class="probe" type="button" data-get="/api/health">API health check</button>
+        <button class="probe" type="button" data-get="/api/assessment">Assessment JSON</button>
+        <button class="probe" type="button" data-get="/api/risks?level=Critical">Critical risks</button>
+        <button class="probe" type="button" data-get="/api/crosswalk?sub=PR.AA-01">Crosswalk · PR.AA-01</button>
+        <button class="probe" type="button" data-get="/api/evidence">Evidence log</button>
+        <button class="probe" type="button" data-post="/api/score" data-body="{}">Recalculate maturity → 1.57</button>
+        <button class="probe" type="button" data-explain="scoring">Explain the scoring formula</button>
+      </div>
+    </div>
+
+    <form class="demo__form" id="vendorForm">
+      <span class="demo__h">Vendor tiering demo <span class="muted">· POST /api/vendor-tier</span></span>
+      <label class="demo__field">
+        <span>Vendor name</span>
+        <input type="text" id="vName" name="vendorName" value="MedStream Analytics" autocomplete="off" />
+      </label>
+      <fieldset class="demo__checks">
+        <legend>Data &amp; access</legend>
+        <label><input type="checkbox" id="vEphi" checked /> Handles ePHI</label>
+        <label><input type="checkbox" id="vPii" checked /> Handles PII</label>
+        <label><input type="checkbox" id="vProd" checked /> Production-like access</label>
+        <label><input type="checkbox" id="vSys" /> System access</label>
+        <label><input type="checkbox" id="vSub" checked /> Uses subprocessors</label>
+      </fieldset>
+      <button class="probe probe--solid" type="submit">Run vendor tiering</button>
+    </form>
+
+    <div class="demo__outwrap">
+      <div class="demo__outhead">
+        <span class="demo__label" id="demoLabel">output</span>
+        <span class="demo__badge" id="demoMode"></span>
+      </div>
+      <pre class="demo__out" id="demoOut" tabindex="0" aria-live="polite" aria-label="API response output">Click a probe above to call the backend. Results render here as formatted JSON.</pre>
+    </div>
+
+    <div class="demo__links">
+      <a href="https://github.com/ozzielove" target="_blank" rel="noopener">Open GitHub profile ↗</a>
+      <a href="DEMO_SCRIPT.md" target="_blank" rel="noopener">View the 5-minute demo script ↗</a>
+      <a href="https://northwind-csf.vercel.app" target="_blank" rel="noopener">Open the live site ↗</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
 <!-- ================= FOOTER ================= -->
 <footer class="footer" id="foot">
   <div class="footer__lead">
-    <h2>An audit you can read in five minutes —<br /><span class="serif-em">and defend for an hour.</span></h2>
+    <h2>A readiness assessment you can read in five minutes —<br /><span class="serif-em">and defend for an hour.</span></h2>
     <p>
       Every figure on this page traces to an artifact in the repository: scope statement,
       control checklist, risk register, control test plan, POA&amp;M, evidence log, and a tiered
@@ -300,7 +425,7 @@ would undercut the candidate's credibility (broken layout, weak contrast, mislea
       <span class="footer__h">Frameworks</span>
       <ul>
         <li>NIST CSF 2.0</li><li>NIST SP 800-53 Rev 5</li><li>ISO/IEC 27001:2022</li>
-        <li>SOC 2 Trust Services Criteria</li><li>HITRUST CSF v11</li><li>HIPAA Security Rule</li>
+        <li>SOC 2 Trust Services Criteria</li><li>HIPAA Security Rule</li>
       </ul>
     </div>
     <div>
@@ -326,14 +451,29 @@ would undercut the candidate's credibility (broken layout, weak contrast, mislea
   <p class="footer__sig">◇ Designed &amp; built from raw assessment data · 2026</p>
 </footer>
 
+<noscript>
+  <section class="section noscript">
+    <div class="section__head">
+      <span class="kicker">Static fallback</span>
+      <h2 class="section__title">JavaScript is required for the interactive readiness views.</h2>
+      <p class="section__sub">
+        This simulated portfolio assessment includes NIST CSF 2.0 maturity scoring, a risk register,
+        control testing, POA&amp;M sequencing, third-party-risk workflow, and a multi-framework crosswalk.
+        Enable JavaScript to view the charts and generated artifact sections.
+      </p>
+    </div>
+  </section>
+</noscript>
 <script src="data.js"></script>
+<script src="scoring.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
-
 ```
 
-## FILE: site/styles.css  (377 lines)
+---
+
+## `styles.css`
 
 ```css
 /* ============================================================================
@@ -350,8 +490,8 @@ would undercut the candidate's credibility (broken layout, weak contrast, mislea
   --line-2:    #2a3744;
   --ink:       #e9efe9;
   --ink-soft:  #aeb9b6;
-  --muted:     #6c7a78;
-  --faint:     #44514f;
+  --muted:     #74837f;
+  --faint:     #70807c;
 
   --mint:      #6ef2c0;   /* primary signal — verified / healthy */
   --mint-dim:  #3aa784;
@@ -373,7 +513,16 @@ would undercut the candidate's credibility (broken layout, weak contrast, mislea
 
 *{ box-sizing:border-box; margin:0; padding:0; }
 html{ scroll-behavior:smooth; }
-@media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } *{ animation:none !important; transition:none !important; } }
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  *{ animation:none !important; transition:none !important; }
+  .reveal,
+  .artifact,
+  .gbar{
+    opacity:1 !important;
+    transform:none !important;
+  }
+}
 
 body{
   background:var(--bg);
@@ -389,6 +538,27 @@ body{
 ::selection{ background:var(--mint); color:#04110c; }
 
 a{ color:inherit; text-decoration:none; }
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible{
+  outline:2px solid var(--mint);
+  outline-offset:4px;
+}
+.skip-link{
+  position:fixed;
+  top:.75rem;
+  left:.75rem;
+  z-index:10000;
+  transform:translateY(-140%);
+  background:var(--mint);
+  color:#04110c;
+  border-radius:4px;
+  padding:.55rem .8rem;
+  font-family:var(--f-mono);
+  font-size:.75rem;
+  font-weight:600;
+}
+.skip-link:focus{ transform:none; }
 strong{ font-weight:500; color:var(--ink); }
 em{ font-style:italic; }
 
@@ -440,7 +610,9 @@ body::before{
   position:fixed; top:0; left:0; right:0; z-index:100;
   display:flex; align-items:center; justify-content:space-between;
   padding:1rem clamp(1.25rem,5vw,3rem);
+  background:rgba(7,9,12,.86);
   background:color-mix(in srgb, var(--bg) 72%, transparent);
+  -webkit-backdrop-filter:blur(14px) saturate(1.2);
   backdrop-filter:blur(14px) saturate(1.2);
   border-bottom:1px solid transparent;
   transition:border-color .4s var(--ease), background .4s var(--ease);
@@ -460,7 +632,27 @@ body::before{
   transition:border-color .3s, color .3s, background .3s;
 }
 .nav__cta:hover{ border-color:var(--mint); color:var(--mint); background:color-mix(in srgb,var(--mint) 8%,transparent); }
-@media (max-width:760px){ .nav__links{ display:none; } }
+@media (max-width:760px){
+  .nav{
+    align-items:flex-start;
+    gap:.8rem;
+    flex-wrap:wrap;
+  }
+  .nav__links{
+    order:3;
+    width:100%;
+    display:flex;
+    gap:1rem;
+    overflow-x:auto;
+    padding-bottom:.15rem;
+    scrollbar-width:none;
+  }
+  .nav__links::-webkit-scrollbar{ display:none; }
+  .nav__cta{ margin-left:auto; }
+}
+@media (max-width:420px){
+  .nav__id{ display:none; }
+}
 
 /* ---------- hero ---------- */
 .hero{ position:relative; min-height:100svh; display:flex; align-items:center; overflow:hidden; padding:7rem clamp(1.25rem,5vw,3rem) 4rem; }
@@ -548,7 +740,8 @@ body::before{
 .riskdot{ cursor:pointer; transition:transform .25s var(--ease); transform-box:fill-box; transform-origin:center; }
 .riskdot circle{ stroke:var(--bg); stroke-width:2; transition:r .25s var(--ease); }
 .riskdot text{ font-family:var(--f-mono); font-size:11px; font-weight:500; fill:#06120d; pointer-events:none; }
-.riskdot:hover, .riskdot.is-active{ transform:scale(1.18); }
+.riskdot:hover, .riskdot:focus-visible, .riskdot.is-active{ transform:scale(1.18); }
+.riskdot:focus-visible circle{ stroke:var(--ink); stroke-width:3; }
 .mx-axis{ font-family:var(--f-mono); font-size:11px; fill:var(--muted); letter-spacing:.1em; text-transform:uppercase; }
 .mx-num{ font-family:var(--f-mono); font-size:11px; fill:var(--faint); }
 
@@ -562,7 +755,7 @@ body::before{
 .riskcard__meta{ display:grid; grid-template-columns:1fr 1fr; gap:1rem 1.4rem; border-top:1px solid var(--line); padding-top:1.2rem; }
 .riskcard__meta dt{ font-family:var(--f-mono); font-size:.64rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
 .riskcard__meta dd{ font-family:var(--f-mono); font-size:.95rem; color:var(--ink); margin-top:.2rem; }
-.riskcard__hint{ font-family:var(--f-mono); font-size:.68rem; color:var(--faint); margin-top:1.3rem; }
+.riskcard__hint{ font-family:var(--f-mono); font-size:.68rem; color:var(--muted); margin-top:1.3rem; }
 
 /* ---------- control tests ---------- */
 .tests{ display:grid; gap:.5rem; }
@@ -595,8 +788,26 @@ body::before{
 .gbar[data-sev="High"]{ background:color-mix(in srgb,var(--high) 22%,var(--surface)); border:1px solid color-mix(in srgb,var(--high) 50%,transparent); }
 .gbar[data-sev="Moderate"]{ background:color-mix(in srgb,var(--mint) 20%,var(--surface)); border:1px solid color-mix(in srgb,var(--mint) 45%,transparent); }
 .gbar.is-in{ opacity:1; transform:scaleX(1); }
-.gbar__txt{ font-family:var(--f-mono); font-size:.66rem; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-.gbar__status{ position:absolute; right:.5rem; font-family:var(--f-mono); font-size:.56rem; letter-spacing:.08em; text-transform:uppercase; color:var(--mint); }
+.gbar__txt{
+  font-family:var(--f-mono);
+  font-size:.66rem;
+  color:var(--ink);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  padding-right:2.6rem;
+}
+.gbar__status{
+  position:absolute;
+  right:.5rem;
+  max-width:2.1rem;
+  overflow:hidden;
+  font-family:var(--f-mono);
+  font-size:.56rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--mint);
+}
 .gantt__axis{ display:flex; justify-content:space-between; margin-top:1rem; padding-left:clamp(8rem,17vw,12rem); font-family:var(--f-mono); font-size:.66rem; color:var(--muted); letter-spacing:.08em; }
 @media (max-width:680px){ .grow{ grid-template-columns:1fr; } .grow__meta{ flex-direction:row; gap:.6rem; align-items:baseline; } .gantt__axis{ padding-left:0; } }
 
@@ -616,7 +827,7 @@ body::before{
 .xr > div:first-child{ border-left:none; }
 .xr .xsub{ font-family:var(--f-mono); font-size:.82rem; color:var(--mint); }
 .xr .xobj{ color:var(--ink); }
-.xr .xctrl{ font-family:var(--f-mono); font-size:.8rem; color:var(--ink-soft); }
+.xr .xctrl{ font-family:var(--f-mono); font-size:.8rem; color:var(--ink-soft); overflow-wrap:anywhere; }
 @keyframes xin{ to{ opacity:1; transform:translateY(0); } }
 @media (max-width:860px){
   .xhead{ display:none; }
@@ -677,7 +888,7 @@ body::before{
 @media (max-width:440px){ .tiers{ grid-template-columns:1fr; } }
 
 /* ---------- deliverables / artifacts ---------- */
-.artifacts{ list-style:none; display:grid; grid-template-columns:repeat(auto-fill,minmax(255px,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden; }
+.artifacts{ list-style:none; display:grid; grid-template-columns:repeat(auto-fill,minmax(min(255px,100%),1fr)); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden; }
 .artifact{ background:var(--bg-2); padding:1.5rem 1.4rem; display:flex; flex-direction:column; gap:.5rem; position:relative; transition:background .3s, transform .3s; opacity:0; transform:translateY(14px); }
 .artifact.is-in{ opacity:1; transform:none; }
 .artifact:hover{ background:var(--surface); }
@@ -698,7 +909,7 @@ body::before{
 .footer__cols a:hover{ color:var(--mint); }
 .footer__disclaimer{ font-size:.84rem; color:var(--muted); margin-top:2rem; max-width:70ch; }
 .footer__disclaimer strong{ color:var(--high); }
-.footer__sig{ font-family:var(--f-mono); font-size:.66rem; letter-spacing:.14em; color:var(--faint); margin-top:2.5rem; }
+.footer__sig{ font-family:var(--f-mono); font-size:.66rem; letter-spacing:.14em; color:var(--muted); margin-top:2.5rem; }
 @media (max-width:680px){ .footer__cols{ grid-template-columns:1fr; gap:2rem; } }
 
 /* ---------- reveal system ---------- */
@@ -713,9 +924,90 @@ body::before{
   .hero__readout{ gap:2rem; }
 }
 
+/* ---------- backend status widget (nav) ---------- */
+.apistat{
+  display:inline-flex; align-items:center; gap:.5rem;
+  font-family:var(--f-mono); font-size:.68rem; letter-spacing:.06em;
+  color:var(--muted); border:1px solid var(--line); border-radius:99px;
+  padding:.3rem .7rem; white-space:nowrap;
+}
+.apistat__dot{ width:7px; height:7px; border-radius:50%; background:var(--faint); flex:none; }
+.apistat[data-state="online"]{ color:var(--mint); border-color:color-mix(in srgb,var(--mint) 35%,transparent); }
+.apistat[data-state="online"] .apistat__dot{ background:var(--mint); box-shadow:0 0 7px var(--mint); }
+.apistat[data-state="static"]{ color:var(--high); border-color:color-mix(in srgb,var(--high) 35%,transparent); }
+.apistat[data-state="static"] .apistat__dot{ background:var(--high); }
+.apistat[data-state="checking"] .apistat__dot{ animation:pulse 1.6s var(--ease) infinite; background:var(--muted); }
+@media (max-width:980px){ .apistat{ font-size:.62rem; padding:.25rem .55rem; } }
+
+/* ---------- transferable experience ---------- */
+.xfer{ list-style:none; display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden; }
+.xcard{ background:var(--bg-2); padding:1.5rem 1.4rem; display:grid; grid-template-columns:1fr auto; grid-template-areas:"from arrow" "to to"; gap:.5rem .8rem; align-items:start; transition:background .3s; }
+.xcard:hover{ background:var(--surface); }
+.xcard__from{ grid-area:from; font-family:var(--f-display); font-size:1.05rem; font-weight:400; line-height:1.25; color:var(--ink); }
+.xcard__arrow{ grid-area:arrow; font-family:var(--f-mono); color:var(--mint-dim); font-size:1.1rem; }
+.xcard__to{ grid-area:to; font-size:.84rem; color:var(--ink-soft); line-height:1.5; border-top:1px solid var(--line); padding-top:.7rem; margin-top:.3rem; }
+.xcard__to em{ color:var(--mint); font-style:normal; font-family:var(--f-mono); font-size:.8rem; }
+
+/* ---------- proof map ---------- */
+.prooflegend{ list-style:none; display:flex; flex-wrap:wrap; gap:.6rem; margin-bottom:2.5rem; }
+.pt{ font-family:var(--f-mono); font-size:.62rem; letter-spacing:.06em; text-transform:uppercase;
+  border:1px solid; border-radius:99px; padding:.22em .7em; display:inline-block; white-space:nowrap; }
+.pt-portfolio{ color:var(--mint);     border-color:color-mix(in srgb,var(--mint) 40%,transparent);     background:color-mix(in srgb,var(--mint) 8%,transparent); }
+.pt-backend{   color:var(--cyan);     border-color:color-mix(in srgb,var(--cyan) 40%,transparent);     background:color-mix(in srgb,var(--cyan) 8%,transparent); }
+.pt-script{    color:#c4b5fd;         border-color:color-mix(in srgb,#c4b5fd 40%,transparent);          background:color-mix(in srgb,#c4b5fd 8%,transparent); }
+.pt-docs{      color:var(--ink-soft); border-color:var(--line-2);                                       background:var(--surface); }
+.pt-course{    color:var(--high);     border-color:color-mix(in srgb,var(--high) 40%,transparent);     background:color-mix(in srgb,var(--high) 8%,transparent); }
+.pt-ops{       color:#f0a868;         border-color:color-mix(in srgb,#f0a868 40%,transparent);          background:color-mix(in srgb,#f0a868 8%,transparent); }
+.pt-mil{       color:#9fb0c9;         border-color:color-mix(in srgb,#9fb0c9 40%,transparent);          background:color-mix(in srgb,#9fb0c9 10%,transparent); }
+
+.claimgrid{ list-style:none; display:grid; grid-template-columns:repeat(auto-fill,minmax(min(330px,100%),1fr)); gap:1rem; }
+.claim{ border:1px solid var(--line); border-radius:8px; padding:1.5rem 1.4rem; background:linear-gradient(165deg,var(--surface),var(--bg-2)); display:flex; flex-direction:column; gap:.9rem; transition:border-color .3s, transform .3s; }
+.claim:hover{ border-color:var(--line-2); transform:translateY(-2px); }
+.claim__claim{ font-family:var(--f-display); font-size:1.12rem; font-weight:400; line-height:1.25; color:var(--ink); }
+.claim__badges{ display:flex; flex-wrap:wrap; gap:.4rem; }
+.claim__meta{ display:flex; flex-direction:column; gap:.7rem; border-top:1px solid var(--line); padding-top:.9rem; }
+.claim__meta div{ display:flex; flex-direction:column; gap:.2rem; }
+.claim__meta dt{ font-family:var(--f-mono); font-size:.6rem; letter-spacing:.12em; text-transform:uppercase; color:var(--mint-dim); }
+.claim__meta dd{ font-size:.82rem; color:var(--ink-soft); line-height:1.45; }
+.claim__bound{ color:var(--muted) !important; font-style:italic; }
+
+/* ---------- interview demo mode ---------- */
+.demo{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1.2rem; }
+.demo__panel, .demo__form{ border:1px solid var(--line); border-radius:8px; padding:1.5rem 1.4rem; background:var(--surface); }
+.demo__h{ font-family:var(--f-mono); font-size:.66rem; letter-spacing:.14em; text-transform:uppercase; color:var(--mint-dim); display:block; margin-bottom:1.1rem; }
+.demo__probes{ display:flex; flex-wrap:wrap; gap:.55rem; }
+.probe{ font-family:var(--f-mono); font-size:.74rem; letter-spacing:.02em; color:var(--ink-soft);
+  border:1px solid var(--line-2); background:var(--bg-2); border-radius:5px; padding:.5rem .8rem; cursor:pointer;
+  transition:border-color .25s, color .25s, background .25s, transform .15s; }
+.probe:hover{ border-color:var(--mint); color:var(--mint); background:color-mix(in srgb,var(--mint) 8%,transparent); }
+.probe:active{ transform:translateY(1px); }
+.probe--solid{ color:#04110c; background:var(--mint); border-color:var(--mint); font-weight:600; }
+.probe--solid:hover{ color:#04110c; background:color-mix(in srgb,var(--mint) 86%,white); }
+.demo__field{ display:flex; flex-direction:column; gap:.35rem; margin-bottom:1rem; }
+.demo__field span{ font-family:var(--f-mono); font-size:.66rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+.demo__field input[type="text"]{ font-family:var(--f-mono); font-size:.86rem; color:var(--ink); background:var(--bg-2); border:1px solid var(--line-2); border-radius:5px; padding:.55rem .7rem; }
+.demo__field input:focus-visible{ outline:2px solid var(--mint); outline-offset:2px; }
+.demo__checks{ border:1px solid var(--line); border-radius:6px; padding:1rem; margin-bottom:1.1rem; display:flex; flex-direction:column; gap:.6rem; }
+.demo__checks legend{ font-family:var(--f-mono); font-size:.6rem; letter-spacing:.12em; text-transform:uppercase; color:var(--mint-dim); padding:0 .4rem; }
+.demo__checks label{ display:flex; align-items:center; gap:.6rem; font-size:.86rem; color:var(--ink-soft); cursor:pointer; }
+.demo__checks input[type="checkbox"]{ accent-color:var(--mint); width:15px; height:15px; }
+.demo__outwrap{ grid-column:1/-1; border:1px solid var(--line); border-radius:8px; overflow:hidden; background:var(--bg-2); }
+.demo__outhead{ display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:.7rem 1rem; background:var(--surface-2); border-bottom:1px solid var(--line); }
+.demo__label{ font-family:var(--f-mono); font-size:.72rem; color:var(--ink-soft); letter-spacing:.04em; }
+.demo__badge{ font-family:var(--f-mono); font-size:.6rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); border:1px solid var(--line-2); border-radius:99px; padding:.16em .6em; }
+.demo__badge[data-mode="live API"]{ color:var(--mint); border-color:color-mix(in srgb,var(--mint) 40%,transparent); }
+.demo__badge[data-mode="static fallback"]{ color:var(--high); border-color:color-mix(in srgb,var(--high) 40%,transparent); }
+.demo__out{ margin:0; padding:1.1rem 1.2rem; font-family:var(--f-mono); font-size:.78rem; line-height:1.55; color:var(--ink); max-height:360px; overflow:auto; white-space:pre-wrap; word-break:break-word; }
+.demo__out:focus-visible{ outline:2px solid var(--mint); outline-offset:-2px; }
+.demo__links{ grid-column:1/-1; display:flex; flex-wrap:wrap; gap:1.4rem; padding-top:.4rem; }
+.demo__links a{ font-family:var(--f-mono); font-size:.78rem; color:var(--ink-soft); border-bottom:1px solid var(--line-2); padding-bottom:1px; transition:color .25s, border-color .25s; }
+.demo__links a:hover{ color:var(--mint); border-color:var(--mint); }
+@media (max-width:760px){ .demo{ grid-template-columns:1fr; } }
 ```
 
-## FILE: site/app.js  (443 lines)
+---
+
+## `app.js`
 
 ```javascript
 /* ============================================================================
@@ -724,7 +1016,13 @@ body::before{
    ========================================================================== */
 (function () {
   "use strict";
-  const { ASSESSMENT, FUNCTIONS, SUBSCORES, RISKS, TESTS, POAM, CROSSWALK, FRAMEWORK_COUNTS, TPRM, DELIVERABLES } = window.GRC;
+  const GRC = window.GRC;
+  if (!GRC) {
+    document.documentElement.classList.add("data-error");
+    return;
+  }
+  const { ASSESSMENT, FUNCTIONS, SUBSCORES, RISKS, TESTS, POAM, CROSSWALK, FRAMEWORK_COUNTS, TPRM, DELIVERABLES, EVIDENCE, CLAIMS } = GRC;
+  const SCORE = window.GRCScore || null;
   const SVGNS = "http://www.w3.org/2000/svg";
   const $ = (s, r = document) => r.querySelector(s);
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -741,25 +1039,32 @@ body::before{
   onScroll();
 
   /* ---- reveal + section-scoped triggers ---- */
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((e) => {
-        if (!e.isIntersecting) return;
-        e.target.classList.add("is-in");
-        if (e.target.dataset.fire) fire(e.target.dataset.fire);
-        io.unobserve(e.target);
-      });
-    },
-    { threshold: 0.18, rootMargin: "0px 0px -8% 0px" }
-  );
-  document.querySelectorAll(".reveal").forEach((n) => io.observe(n));
+  const io = "IntersectionObserver" in window
+    ? new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (!e.isIntersecting) return;
+            e.target.classList.add("is-in");
+            if (e.target.dataset.fire) fire(e.target.dataset.fire);
+            io.unobserve(e.target);
+          });
+        },
+        { threshold: 0.18, rootMargin: "0px 0px -8% 0px" }
+      )
+    : null;
+
+  document.querySelectorAll(".reveal").forEach((n) => {
+    if (io) io.observe(n);
+    else n.classList.add("is-in");
+  });
 
   const fired = {};
   function watch(sel, key) {
     const node = $(sel);
     if (!node) return;
     node.dataset.fire = key;
-    io.observe(node);
+    if (io) io.observe(node);
+    else fire(key);
   }
   function fire(key) {
     if (fired[key]) return;
@@ -941,8 +1246,14 @@ body::before{
       const spread = group.length > 1 ? (gi - (group.length - 1) / 2) * 26 : 0;
       const cxp = ox + (r.l - 0.5) * cell + spread;
       const cyp = oy + (5 - r.i + 0.5) * cell;
-      const g = svg("g", { class: "riskdot", "data-id": r.id, tabindex: "0", role: "button",
-        "aria-label": `${r.id}, ${r.level}, ${r.desc}` });
+      const g = svg("g", {
+        class: "riskdot",
+        "data-id": r.id,
+        tabindex: "0",
+        role: "button",
+        "aria-pressed": "false",
+        "aria-label": `${r.id}, ${r.level}, score ${r.score}, likelihood ${r.l} of 5, impact ${r.i} of 5. ${r.desc}`
+      });
       const c = svg("circle", { cx: cxp, cy: cyp, r: 16, fill: sevColor[r.level] });
       const tx = svg("text", { x: cxp, y: cyp + 4, "text-anchor": "middle" });
       tx.textContent = r.id.split("-")[1];
@@ -952,6 +1263,11 @@ body::before{
       g.addEventListener("mouseenter", activate);
       g.addEventListener("focus", activate);
       g.addEventListener("click", activate);
+      g.addEventListener("keydown", (e) => {
+        if (e.key !== "Enter" && e.key !== " ") return;
+        e.preventDefault();
+        activate();
+      });
     });
 
     // entrance: pop dots in
@@ -966,8 +1282,15 @@ body::before{
 
   let activeDot = null;
   function setRisk(r, node) {
-    if (activeDot) activeDot.classList.remove("is-active");
-    if (node) { node.classList.add("is-active"); activeDot = node; }
+    if (activeDot) {
+      activeDot.classList.remove("is-active");
+      activeDot.setAttribute("aria-pressed", "false");
+    }
+    if (node) {
+      node.classList.add("is-active");
+      node.setAttribute("aria-pressed", "true");
+      activeDot = node;
+    }
     const card = $("#riskcard");
     card.querySelector(".riskcard__id").textContent = r.id;
     const lvl = card.querySelector(".riskcard__level");
@@ -992,7 +1315,8 @@ body::before{
         <span class="trow__eff"><span>Design</span><span class="pill" data-r="${t.design}">${t.design}</span></span>
         <span class="trow__eff"><span>Operating</span><span class="pill" data-r="${t.operating}">${t.operating}</span></span>`;
       wrap.appendChild(row);
-      io.observe(row);
+      if (io) io.observe(row);
+      else row.classList.add("is-in");
     });
   }
 
@@ -1022,10 +1346,14 @@ body::before{
         </span>`;
       wrap.appendChild(row);
       const bar = row.querySelector(".gbar");
-      const obs = new IntersectionObserver((es) => {
-        es.forEach((e) => { if (e.isIntersecting) { setTimeout(() => bar.classList.add("is-in"), idx * 90); obs.disconnect(); } });
-      }, { threshold: 0.4 });
-      obs.observe(row);
+      if ("IntersectionObserver" in window) {
+        const obs = new IntersectionObserver((es) => {
+          es.forEach((e) => { if (e.isIntersecting) { setTimeout(() => bar.classList.add("is-in"), idx * 90); obs.disconnect(); } });
+        }, { threshold: 0.4 });
+        obs.observe(row);
+      } else {
+        bar.classList.add("is-in");
+      }
     });
 
     const axis = $("#ganttAxis");
@@ -1037,40 +1365,77 @@ body::before{
   /* ===================== CROSSWALK ===================== */
   function crosswalk() {
     const tabs = $("#xtabs"), table = $("#xtable");
+    tabs.setAttribute("role", "tablist");
+    tabs.setAttribute("aria-label", "Filter crosswalk rows by CSF Function");
+    table.setAttribute("role", "tabpanel");
+    table.id = "xtable";
     const fns = [{ key: "ALL", name: "All" }, ...FUNCTIONS.map((f) => ({ key: f.key, name: f.name }))];
     let active = "ALL";
 
     fns.forEach((f) => {
       const b = document.createElement("button");
       b.className = "xtab" + (f.key === "ALL" ? " is-active" : "");
+      b.type = "button";
+      b.id = `xtab-${f.key}`;
+      b.setAttribute("role", "tab");
+      b.setAttribute("aria-controls", "xtable");
+      b.setAttribute("aria-selected", f.key === "ALL" ? "true" : "false");
+      b.tabIndex = f.key === "ALL" ? 0 : -1;
       b.textContent = f.key === "ALL" ? "All Functions" : `${f.key} · ${f.name}`;
       b.dataset.key = f.key;
-      b.addEventListener("click", () => {
-        active = f.key;
-        tabs.querySelectorAll(".xtab").forEach((t) => t.classList.toggle("is-active", t.dataset.key === active));
-        render();
-      });
+      b.addEventListener("click", () => activateTab(f.key));
+      b.addEventListener("keydown", onTabKeydown);
       tabs.appendChild(b);
     });
+
+    function activateTab(key) {
+      active = key;
+      tabs.querySelectorAll(".xtab").forEach((t) => {
+        const selected = t.dataset.key === active;
+        t.classList.toggle("is-active", selected);
+        t.setAttribute("aria-selected", selected ? "true" : "false");
+        t.tabIndex = selected ? 0 : -1;
+      });
+      table.setAttribute("aria-labelledby", `xtab-${active}`);
+      render();
+    }
+
+    function onTabKeydown(e) {
+      const keys = ["ArrowLeft", "ArrowRight", "Home", "End"];
+      if (!keys.includes(e.key)) return;
+      e.preventDefault();
+      const all = Array.from(tabs.querySelectorAll(".xtab"));
+      const idx = all.indexOf(document.activeElement);
+      const next =
+        e.key === "Home" ? 0 :
+        e.key === "End" ? all.length - 1 :
+        e.key === "ArrowRight" ? (idx + 1) % all.length :
+        (idx - 1 + all.length) % all.length;
+      all[next].focus();
+      activateTab(all[next].dataset.key);
+    }
+
+    table.setAttribute("aria-labelledby", "xtab-ALL");
 
     function render() {
       const rows = CROSSWALK.filter((r) => active === "ALL" || r.fn === active);
       table.innerHTML = `
-        <div class="xhead">
-          <span>CSF 2.0</span><span>Control objective</span><span>NIST 800-53</span>
-          <span>ISO 27001:2022</span><span>SOC 2</span><span>HIPAA</span>
+        <div class="xhead" role="row">
+          <span role="columnheader">CSF 2.0</span><span role="columnheader">Control objective</span><span role="columnheader">NIST 800-53</span>
+          <span role="columnheader">ISO 27001:2022</span><span role="columnheader">SOC 2</span><span role="columnheader">HIPAA</span>
         </div>`;
       rows.forEach((r, i) => {
         const div = document.createElement("div");
         div.className = "xr";
+        div.setAttribute("role", "row");
         div.style.animationDelay = i * 35 + "ms";
         div.innerHTML = `
-          <div class="xsub">${r.sub}</div>
-          <div class="xobj">${r.obj}</div>
-          <div class="xctrl" data-l="NIST 800-53">${r.n8}</div>
-          <div class="xctrl" data-l="ISO 27001:2022">${r.iso}</div>
-          <div class="xctrl" data-l="SOC 2">${r.soc}</div>
-          <div class="xctrl" data-l="HIPAA">${r.hi}</div>`;
+          <div class="xsub" role="cell">${r.sub}</div>
+          <div class="xobj" role="cell">${r.obj}</div>
+          <div class="xctrl" role="cell" data-l="NIST 800-53">${r.n8}</div>
+          <div class="xctrl" role="cell" data-l="ISO 27001:2022">${r.iso}</div>
+          <div class="xctrl" role="cell" data-l="SOC 2">${r.soc}</div>
+          <div class="xctrl" role="cell" data-l="HIPAA">${r.hi}</div>`;
         table.appendChild(div);
       });
     }
@@ -1123,7 +1488,8 @@ body::before{
         <span class="artifact__t">${a.t}</span>
         <span class="artifact__d">${a.d}</span>`;
       ul.appendChild(li);
-      io.observe(li);
+      if (io) io.observe(li);
+      else li.classList.add("is-in");
     });
   }
 
@@ -1134,6 +1500,152 @@ body::before{
       li.innerHTML = `<span class="cn">${c.n}</span><span class="cf">${c.name}</span><span class="cnote">${c.note}</span>`;
       ul.appendChild(li);
     });
+  }
+
+  /* ===================== RESUME CLAIM PROOF MAP ===================== */
+  const PROOF_TYPES = [
+    { key: "Portfolio",        cls: "pt-portfolio",  label: "Portfolio-proven" },
+    { key: "Backend",          cls: "pt-backend",    label: "Backend-demo-proven" },
+    { key: "Script",           cls: "pt-script",     label: "Script-proven" },
+    { key: "Documentation",    cls: "pt-docs",       label: "Documentation-proven" },
+    { key: "Coursework",       cls: "pt-course",     label: "Coursework exposure" },
+    { key: "Prior operations", cls: "pt-ops",        label: "Prior operations" },
+    { key: "Military",         cls: "pt-mil",        label: "Military experience" },
+  ];
+  const proofClass = (t) => (PROOF_TYPES.find((p) => p.key === t) || { cls: "pt-portfolio" }).cls;
+
+  function claimmap() {
+    if (!CLAIMS) return;
+    const legend = $("#prooflegend");
+    if (legend) {
+      PROOF_TYPES.forEach((p) => {
+        const li = document.createElement("li");
+        li.innerHTML = `<span class="pt ${p.cls}">${p.label}</span>`;
+        legend.appendChild(li);
+      });
+    }
+    const grid = $("#claimgrid");
+    CLAIMS.forEach((c, i) => {
+      const li = document.createElement("li");
+      li.className = "claim reveal";
+      li.dataset.d = Math.min(6, (i % 6) + 1);
+      const badges = (c.types || []).map((t) => `<span class="pt ${proofClass(t)}">${t}</span>`).join("");
+      li.innerHTML = `
+        <p class="claim__claim">${c.claim}</p>
+        <div class="claim__badges">${badges}</div>
+        <dl class="claim__meta">
+          <div><dt>Evidence</dt><dd>${c.evidence}</dd></div>
+          <div><dt>Demo path</dt><dd>${c.demo}</dd></div>
+          <div><dt>Boundary</dt><dd class="claim__bound">${c.boundary}</dd></div>
+        </dl>`;
+      grid.appendChild(li);
+      if (io) io.observe(li); else li.classList.add("is-in");
+    });
+  }
+
+  /* ===================== INTERVIEW DEMO MODE ===================== */
+  const SCORING_EXPLAINER = {
+    note: "Scoring formula — subcategory-weighted maturity",
+    rule: "overall = sum(all assessed subcategory scores) / count(assessed subcategories)",
+    worked: "sum = 36 across 23 subcategories → 36 / 23 = 1.565 → 1.57",
+    contrast: "A simple mean of the six Function averages would be 1.53. The weighting by how many subcategories each Function carries is what makes the number defensible.",
+    scale: "Tiers: <1.5 Partial · 1.5–2.5 Risk Informed · 2.5–3.5 Repeatable · >=3.5 Adaptive",
+  };
+
+  function localFallback(path, method, body) {
+    if (!SCORE) return { _offline: true, error: "Local scoring module unavailable" };
+    const url = new URL(path, "http://x");
+    const p = url.pathname; const q = Object.fromEntries(url.searchParams);
+    if (p === "/api/health") return { ok: true, mode: "static-fallback", note: "API offline — computed from bundled data", timestamp: new Date().toISOString() };
+    if (p === "/api/assessment") return SCORE.assessmentSummary(GRC);
+    if (p === "/api/risks") return { ok: true, ...SCORE.filterRisks(RISKS, q) };
+    if (p === "/api/crosswalk") return { ok: true, ...SCORE.filterCrosswalk(CROSSWALK, q) };
+    if (p === "/api/evidence") return { ok: true, count: EVIDENCE.length, evidence: EVIDENCE };
+    if (p === "/api/score") return { ok: true, source: "bundled sample", ...summarizeScore(SCORE.scoreFromSubscores((body && body.subscores) || SUBSCORES)) };
+    if (p === "/api/vendor-tier") return { ok: true, ...SCORE.vendorTier(body || {}) };
+    return { _offline: true, error: "No local fallback for " + p };
+  }
+  function summarizeScore(r) {
+    return { overallMaturity: r.overall, overallTier: r.overallTier, assessedSubcategories: r.assessedSubcategories, perFunction: r.functions, priorityFunctions: r.priorityFunctions, method: r.method };
+  }
+
+  let apiOnline = null; // null=unknown, true/false after probe
+  function renderOut(label, data, mode) {
+    const out = $("#demoOut"), lbl = $("#demoLabel"), badge = $("#demoMode");
+    if (lbl) lbl.textContent = label;
+    if (badge) { badge.textContent = mode; badge.dataset.mode = mode; }
+    out.textContent = typeof data === "string" ? data : JSON.stringify(data, null, 2);
+  }
+  async function callApi(path, method, body) {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 4000);
+    try {
+      const opts = { method, signal: ctrl.signal, headers: {} };
+      if (body !== undefined) { opts.headers["Content-Type"] = "application/json"; opts.body = JSON.stringify(body); }
+      const res = await fetch(path, opts);
+      clearTimeout(timer);
+      const text = await res.text();
+      let json; try { json = JSON.parse(text); } catch (_) { json = text; }
+      apiOnline = true;
+      return { live: true, json };
+    } catch (_) {
+      clearTimeout(timer);
+      apiOnline = false;
+      return { live: false, json: localFallback(path, method, body) };
+    }
+  }
+  function demoMode() {
+    const probes = $("#demoProbes");
+    if (probes) {
+      probes.addEventListener("click", async (e) => {
+        const btn = e.target.closest(".probe"); if (!btn) return;
+        if (btn.dataset.explain === "scoring") { renderOut("scoring formula", SCORING_EXPLAINER, "explainer"); return; }
+        const getp = btn.dataset.get, postp = btn.dataset.post;
+        const path = getp || postp; const method = getp ? "GET" : "POST";
+        const body = postp ? JSON.parse(btn.dataset.body || "{}") : undefined;
+        renderOut(`${method} ${path}`, "calling " + path + " …", "…");
+        const r = await callApi(path, method, body);
+        renderOut(`${method} ${path}`, r.json, r.live ? "live API" : "static fallback");
+      });
+    }
+    const form = $("#vendorForm");
+    if (form) {
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const dataTypes = [];
+        if ($("#vEphi").checked) dataTypes.push("ePHI");
+        if ($("#vPii").checked) dataTypes.push("PII");
+        const body = {
+          vendorName: $("#vName").value || "Unnamed vendor",
+          dataTypes,
+          productionAccess: $("#vProd").checked,
+          systemAccess: $("#vSys").checked,
+          subprocessors: $("#vSub").checked,
+        };
+        renderOut("POST /api/vendor-tier", "tiering " + body.vendorName + " …", "…");
+        const r = await callApi("/api/vendor-tier", "POST", body);
+        renderOut("POST /api/vendor-tier", r.json, r.live ? "live API" : "static fallback");
+      });
+    }
+  }
+
+  /* ===================== BACKEND STATUS WIDGET ===================== */
+  async function backendStatus() {
+    const el = $("#apistat"); if (!el) return;
+    const dot = el.querySelector(".apistat__dot"), txt = el.querySelector(".apistat__txt");
+    const set = (state, label) => { el.dataset.state = state; if (txt) txt.textContent = label; };
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 4000);
+    try {
+      const res = await fetch("/api/health", { signal: ctrl.signal });
+      clearTimeout(timer);
+      const j = await res.json();
+      if (res.ok && j && j.ok) { set("online", "API online"); apiOnline = true; }
+      else { set("static", "static mode"); apiOnline = false; }
+    } catch (_) {
+      clearTimeout(timer);
+      set("static", "static mode"); apiOnline = false;
+    }
   }
 
   /* ===================== TRIGGERS (section-scoped) ===================== */
@@ -1155,27 +1667,31 @@ body::before{
   tprm();
   deliverables();
   counts();
+  claimmap();
+  demoMode();
+  backendStatus();
   setRisk(RISKS[0], null);
 
   watch("#posture", "posture");
   watch("#risk", "risk");
 })();
-
 ```
 
-## FILE: site/data.js  (182 lines)
+---
+
+## `data.js`
 
 ```javascript
 /* ============================================================================
    data.js — Northwind Health Systems · NIST CSF 2.0 GRC Assessment
-   All figures trace 1:1 to the published repo artifacts (csf_scores.csv,
-   risk_register.csv, poam.csv, control_test_plan.csv, crosswalk md).
+   Displayed figures are derived from the published portfolio artifacts
+   (csf_scores.csv, risk_register.csv, poam.csv, control_test_plan.csv, crosswalk md).
    Subject is a FICTIONAL organization — simulated portfolio engagement.
    ========================================================================== */
 
 const ASSESSMENT = {
   org: "Northwind Health Systems",
-  sector: "Healthcare SaaS · custodian of ePHI",
+  sector: "Healthcare SaaS · simulated ePHI scenario",
   framework: "NIST Cybersecurity Framework 2.0",
   overall: 1.57,
   overallTier: "Tier 2 · Risk Informed",
@@ -1268,7 +1784,7 @@ const POAM = [
     action:"Draft and ratify risk appetite + risk management policy" },
 ];
 
-/* Multi-framework crosswalk — one CSF subcategory → 5 frameworks at once. */
+/* Multi-framework crosswalk — one CSF subcategory → 4 row-level framework mappings. */
 const CROSSWALK = [
   { fn:"GV", sub:"GV.RM-01", obj:"Risk management strategy",   n8:"PM-9, RA-1",  iso:"A.5.1, A.5.2", soc:"CC3.1, CC3.2", hi:"§164.308(a)(1)(ii)(A)" },
   { fn:"GV", sub:"GV.PO-01", obj:"Security policy",            n8:"PL-1, PM-1",  iso:"A.5.1",        soc:"CC1.1, CC5.3", hi:"§164.316(a)" },
@@ -1291,21 +1807,21 @@ const CROSSWALK = [
   { fn:"RC", sub:"RC.CO-03", obj:"Recovery communication",     n8:"CP-2, IR-7",  iso:"A.5.26",       soc:"CC7.5",        hi:"§164.308(a)(7)(ii)(C)" },
 ];
 
+/* Crosswalk renders FOUR frameworks at row level: 800-53, ISO, SOC 2, HIPAA. */
 const FRAMEWORK_COUNTS = [
-  { name:"NIST CSF 2.0",          n:"19", note:"assessed subcategories · 6 Functions" },
-  { name:"NIST SP 800-53 Rev 5",  n:"26", note:"controls · AC AT AU CM CP IA IR PL PM RA SC SI SR" },
-  { name:"ISO/IEC 27001:2022",    n:"22", note:"Annex A controls · 2022 numbering" },
-  { name:"SOC 2 TSC",             n:"16", note:"15 Common Criteria + Availability A1.2" },
-  { name:"HITRUST CSF v11",       n:"23", note:"references · 11 control categories" },
-  { name:"HIPAA Security Rule",   n:"16", note:"Admin · Physical · Technical safeguards" },
+  { name:"NIST CSF 2.0",          n:"19", note:"mapped subcategories shown · 6 Functions" },
+  { name:"NIST SP 800-53 Rev 5",  n:"26", note:"row-level controls · AC AT AU CM CP IA IR PL PM RA SC SI SR" },
+  { name:"ISO/IEC 27001:2022",    n:"22", note:"row-level Annex A controls · 2022 numbering" },
+  { name:"SOC 2 TSC",             n:"16", note:"row-level · 15 Common Criteria + Availability A1.2" },
+  { name:"HIPAA Security Rule",   n:"17", note:"unique row-level references · Admin · Physical · Technical safeguards" },
 ];
 
 /* Third-party / vendor risk program (TPRM). */
 const TPRM = {
   tiers: [
-    { t:"T1", label:"Critical", tone:"critical", def:"Production access to ePHI / PII or to production systems — BAA required before data flows." },
+    { t:"T1", label:"Critical", tone:"critical", def:"Simulated ePHI / PII-class data or production-like system access — BAA review required before data flows." },
     { t:"T2", label:"High",     tone:"high",     def:"Access to confidential business data or internal systems." },
-    { t:"T3", label:"Moderate", tone:"mod",      def:"Limited or de-identified data; no production access." },
+    { t:"T3", label:"Moderate", tone:"mod",      def:"Limited or de-identified data; no production-like system access." },
     { t:"T4", label:"Low",      tone:"low",      def:"No sensitive data; informational / marketing only." },
   ],
   lifecycle: [
@@ -1325,7 +1841,7 @@ const TPRM = {
   ],
   example: {
     vendor:"MedStream Analytics", note:"fictional worked example",
-    tier:"T1 · Critical", data:"ePHI (member name, DOB, claim detail)",
+    tier:"T1 · Critical", data:"simulated ePHI-class data (member name, DOB, claim detail)",
     path:"Intake → Tier 1 → BAA → SIG/CAIQ → SOC 2 review → gaps → remediation → approve-with-conditions",
   },
 };
@@ -1334,7 +1850,7 @@ const TPRM = {
 const DELIVERABLES = [
   { n:"01", t:"Assessment scope statement",        d:"Boundary, systems, data types, and exclusions for the engagement." },
   { n:"02", t:"CSF 2.0 controls checklist",        d:"All six Functions assessed across 23 subcategories." },
-  { n:"03", t:"Multi-framework crosswalk",         d:"CSF → 800-53 · ISO 27001:2022 · SOC 2 · HITRUST · HIPAA, IDs verified." },
+  { n:"03", t:"Multi-framework crosswalk",         d:"CSF → 800-53 · ISO 27001:2022 · SOC 2 · HIPAA, IDs verified." },
   { n:"04", t:"Control test plan",                 d:"Design vs. operating effectiveness with evidence references." },
   { n:"05", t:"Risk methodology & register",       d:"Likelihood × impact scoring; 10 risks owned and treated." },
   { n:"06", t:"Audit findings report",             d:"Findings with severity, root cause, and close-the-loop matrix." },
@@ -1346,11 +1862,1120 @@ const DELIVERABLES = [
   { n:"12", t:"Gap analysis & roadmap",            d:"Current vs. target state with a phased path to Tier 3." },
 ];
 
-window.GRC = { ASSESSMENT, FUNCTIONS, SUBSCORES, RISKS, TESTS, POAM, CROSSWALK, FRAMEWORK_COUNTS, TPRM, DELIVERABLES };
+/* Evidence collection log — nine simulated/portfolio evidence items, each mapped to a
+   control and CSF subcategory. All items are portfolio artifacts for a FICTIONAL org. */
+const EVIDENCE = [
+  { id:"E-01", artifact:"IAM configuration export",          map:"PR.AA-01 · IA-2",  type:"Configuration", status:"Simulated", note:"Shared admin account, MFA disabled — substantiates R-001." },
+  { id:"E-02", artifact:"IAM policy JSON review",            map:"PR.AA-05 · AC-6",  type:"Configuration", status:"Simulated", note:"Wildcard permissions; no least-privilege roles." },
+  { id:"E-03", artifact:"Logging architecture diagram",     map:"DE.AE-02 · AU-6",  type:"Diagram",       status:"Simulated", note:"No SIEM; CloudTrail not forwarded or reviewed." },
+  { id:"E-04", artifact:"Incident response plan v1",        map:"RS.MA-01 · IR-8",  type:"Plan",          status:"Portfolio", note:"Authored end to end; tabletop not yet exercised." },
+  { id:"E-05", artifact:"Security awareness training log",  map:"PR.AT-01 · AT-2",  type:"Records",       status:"Simulated", note:"No completion records on file." },
+  { id:"E-06", artifact:"Backup & restore runbook",         map:"RC.RP-01 · CP-10", type:"Procedure",     status:"Portfolio", note:"Backups configured; restore never tested end to end." },
+  { id:"E-07", artifact:"Vendor inventory & BAA tracker",   map:"GV.SC-01 · SR-3",  type:"Register",      status:"Portfolio", note:"Tiered vendor list; BAA status per vendor." },
+  { id:"E-08", artifact:"Encryption-at-rest settings",      map:"PR.DS-01 · SC-28", type:"Configuration", status:"Simulated", note:"AES-256 enabled on data stores — a passing control." },
+  { id:"E-09", artifact:"Software inventory gap memo",      map:"ID.AM-02 · CM-8",  type:"Memo",          status:"Portfolio", note:"No authoritative software/SBOM inventory yet." },
+];
 
+/* Resume-claim → evidence proof map. cat drives the legend grouping. */
+const CLAIMS = [
+  { cat:"portfolio", types:["Portfolio","Script","Backend"],
+    claim:"NIST CSF 2.0 assessment across all six Functions",
+    evidence:"Radar + per-Function scores · csf_scores.csv · score_maturity.py · GET /api/assessment",
+    demo:"Run score_maturity.py and open /api/assessment while the Posture radar is on screen.",
+    boundary:"Simulated, fictional healthcare-SaaS organization." },
+  { cat:"portfolio", types:["Portfolio"],
+    claim:"Multi-framework control crosswalk (NIST 800-53, ISO 27001:2022, SOC 2, HIPAA)",
+    evidence:"Interactive crosswalk · 19 rows × 4 frameworks · GET /api/crosswalk",
+    demo:"Filter to Protect, then call /api/crosswalk?sub=PR.AA-01 to show one control → four mappings.",
+    boundary:"Four frameworks mapped at control level. No HITRUST row-level mapping is claimed." },
+  { cat:"backend", types:["Portfolio","Backend"],
+    claim:"Risk assessment methodology and risk register",
+    evidence:"5×5 likelihood×impact matrix · risk_register.csv · GET /api/risks",
+    demo:"Open /api/risks?level=Critical — returns the three critical risks with summary counts.",
+    boundary:"Simulated risks for a fictional org." },
+  { cat:"portfolio", types:["Portfolio"],
+    claim:"Control testing — design vs. operating effectiveness",
+    evidence:"Five control tests (IA-2, AC-6, AU-6, IR-8, AT-2) · control_tests.csv",
+    demo:"Walk TEST-04: the IR plan is designed (pass) but was never exercised (operating: fail).",
+    boundary:"Readiness testing — not a SOC 2 audit opinion." },
+  { cat:"portfolio", types:["Portfolio"],
+    claim:"POA&M remediation tracking",
+    evidence:"10 sequenced POA&M items with owners and dates · poam.csv",
+    demo:"Show the Gantt; critical access and detection gaps close first, governance polish last.",
+    boundary:"Simulated remediation plan." },
+  { cat:"backend", types:["Portfolio","Backend"],
+    claim:"Third-party risk (TPRM) tiering, SIG/CAIQ, SOC 2 review",
+    evidence:"4-tier inherent-risk model + lifecycle · POST /api/vendor-tier",
+    demo:"Run the vendor-tiering form: simulated ePHI + production-like access → Tier 1 Critical, BAA review required.",
+    boundary:"Simulated TPRM demonstration." },
+  { cat:"script", types:["Script"],
+    claim:"Python, file parsing, regex, JSON, CSV automation",
+    evidence:"score_maturity.py (CSV → KPI JSON) · validate_crosswalk.py (regex ID validation)",
+    demo:"Run python3 scripts/score_maturity.py — prints per-Function scores and overall 1.57.",
+    boundary:"Portfolio tooling over simulated data." },
+  { cat:"script", types:["Script"],
+    claim:"Bash automation",
+    evidence:"scripts/run_demo.sh runs the scorer and validator end to end",
+    demo:"Run bash scripts/run_demo.sh from a clean clone.",
+    boundary:"Light demo script — not a production pipeline." },
+  { cat:"docs", types:["Documentation"],
+    claim:"Technical & executive report writing, policy, SOPs",
+    evidence:"README · CLAIM_MATRIX · DEMO_SCRIPT · 12-artifact deliverable set",
+    demo:"Open the Deliverables section and the repo docs.",
+    boundary:"Portfolio documentation." },
+  { cat:"coursework", types:["Coursework"],
+    claim:"Google Cybersecurity Professional Certificate (June 2026)",
+    evidence:"Candidate background; SIEM/log concepts behind the Detect-function findings",
+    demo:"Explain the log-review and alert-triage concepts behind the Detect gaps.",
+    boundary:"Beginner-level certificate. Not production SOC experience." },
+  { cat:"coursework", types:["Coursework"],
+    claim:"Splunk, Chronicle, Suricata; SIEM queries, log review, alert triage",
+    evidence:"Coursework exposure; Detect findings reference missing SIEM / log review",
+    demo:"Discuss what a SIEM would catch for R-003 / DE.AE-02.",
+    boundary:"Coursework / tool exposure — no production tool administration." },
+  { cat:"operations", types:["Prior operations"],
+    claim:"4+ yrs client-facing ops in federally audited environments; OSHA/EPA audit support; 50+ RCA investigations",
+    evidence:"Transferable-experience section mapping RCA discipline to finding → root cause → corrective action → POA&M",
+    demo:"Explain how RCA discipline maps to the audit findings and POA&M workflow.",
+    boundary:"Regulated-operations experience — not cybersecurity employment." },
+  { cat:"military", types:["Military"],
+    claim:"U.S. Army National Guard veteran",
+    evidence:"Candidate background section",
+    demo:"Connect mission discipline and documentation rigor to GRC evidence handling.",
+    boundary:"Military service — context for work ethic and clearance-readiness." },
+];
+
+const GRC = { ASSESSMENT, FUNCTIONS, SUBSCORES, RISKS, TESTS, POAM, CROSSWALK, FRAMEWORK_COUNTS, TPRM, DELIVERABLES, EVIDENCE, CLAIMS };
+
+/* Dual export: browser (window.GRC) and Node/Vercel API (module.exports). */
+if (typeof window !== "undefined") { window.GRC = GRC; }
+if (typeof module !== "undefined" && module.exports) { module.exports = GRC; }
 ```
 
-## FILE: site/vercel.json  (23 lines)
+---
+
+## `scoring.js`
+
+```javascript
+/* ============================================================================
+   scoring.js — pure GRC compute. No DOM, no I/O. Dual-exported so the browser
+   (window.GRCScore), the Vercel API handlers, the Node test suite, and the
+   Python scorer all agree on one definition of every number.
+
+   Maturity rule (the one that matters): overall is weighted by ASSESSED
+   SUBCATEGORY COUNT, not a simple mean of the six Function means.
+   For the shipped data: sum(23 subscores)=36 → 36/23 = 1.565 → 1.57.
+   ========================================================================== */
+(function (root, factory) {
+  const api = factory();
+  if (typeof window !== "undefined") { window.GRCScore = api; }
+  if (typeof module !== "undefined" && module.exports) { module.exports = api; }
+})(this, function () {
+  "use strict";
+
+  const FN_NAMES = { GV:"Govern", ID:"Identify", PR:"Protect", DE:"Detect", RS:"Respond", RC:"Recover" };
+  const round2 = (n) => Math.round(n * 100) / 100;
+
+  /* Tier interpretation on the 1–4 implementation-tier scale. */
+  function tierFor(score) {
+    if (score == null || Number.isNaN(score)) return "Unscored";
+    if (score < 1.5) return "Tier 1 · Partial";
+    if (score < 2.5) return "Tier 2 · Risk Informed";
+    if (score < 3.5) return "Tier 3 · Repeatable";
+    return "Tier 4 · Adaptive";
+  }
+
+  /* Per-Function averages + subcategory-weighted overall from [fn, sub, score] rows. */
+  function scoreFromSubscores(subscores) {
+    if (!Array.isArray(subscores) || !subscores.length) {
+      throw new Error("scoreFromSubscores: expected a non-empty array of [fn, sub, score] rows");
+    }
+    const buckets = {};
+    let total = 0, count = 0;
+    subscores.forEach((row, idx) => {
+      const fn = row[0], sub = row[1], raw = Number(row[2]);
+      if (!fn || !FN_NAMES[fn]) throw new Error(`row ${idx}: unknown Function "${fn}"`);
+      if (!Number.isFinite(raw) || raw < 1 || raw > 4) throw new Error(`row ${idx} (${sub}): invalid score "${row[2]}"`);
+      (buckets[fn] = buckets[fn] || []).push(raw);
+      total += raw; count += 1;
+    });
+    const order = ["GV","ID","PR","DE","RS","RC"];
+    const functions = order.filter((k) => buckets[k]).map((k) => {
+      const arr = buckets[k];
+      const avg = round2(arr.reduce((a, b) => a + b, 0) / arr.length);
+      return { key:k, name:FN_NAMES[k], score:avg, assessed:arr.length, tier:tierFor(avg), priority:false };
+    });
+    const overall = round2(total / count);
+    const floor = functions.length ? Math.min(...functions.map((f) => f.score)) : null;
+    functions.forEach((f) => { f.priority = floor != null && Math.abs(f.score - floor) < 1e-9; });
+    const priority = functions.filter((f) => f.priority).map((f) => f.name);
+    return {
+      functions,
+      overall,
+      overallTier: tierFor(overall),
+      assessedSubcategories: count,
+      functionsScored: functions.length,
+      priorityFunctions: priority,
+      method: "subcategory-weighted (sum of all subcategory scores ÷ assessed count)",
+      kpi: { total, count, simpleMeanOfFunctions: round2(functions.reduce((a, f) => a + f.score, 0) / functions.length) },
+    };
+  }
+
+  /* Risk register filtering + summary. opts: {level, owner, sub, minScore}. */
+  function filterRisks(risks, opts = {}) {
+    let rows = Array.isArray(risks) ? risks.slice() : [];
+    if (opts.level)  rows = rows.filter((r) => String(r.level).toLowerCase() === String(opts.level).toLowerCase());
+    if (opts.owner)  rows = rows.filter((r) => String(r.owner).toLowerCase().includes(String(opts.owner).toLowerCase()));
+    if (opts.sub)    rows = rows.filter((r) => String(r.sub).toLowerCase() === String(opts.sub).toLowerCase());
+    if (opts.minScore != null && opts.minScore !== "") {
+      const m = Number(opts.minScore);
+      if (!Number.isNaN(m)) rows = rows.filter((r) => Number(r.score) >= m);
+    }
+    const byLevel = rows.reduce((a, r) => { a[r.level] = (a[r.level] || 0) + 1; return a; }, {});
+    return { count: rows.length, byLevel, risks: rows };
+  }
+
+  /* Crosswalk filtering. opts: {fn, sub, framework}. Only 4 row-level frameworks exist. */
+  const FRAMEWORK_FIELDS = { n8:"NIST 800-53", iso:"ISO 27001:2022", soc:"SOC 2", hi:"HIPAA" };
+  const FRAMEWORK_ALIASES = {
+    "n8":"n8", "800-53":"n8", "80053":"n8", "nist":"n8", "nist800-53":"n8", "nist80053":"n8", "sp800-53":"n8", "sp80053":"n8",
+    "iso":"iso", "iso27001":"iso", "27001":"iso",
+    "soc":"soc", "soc2":"soc",
+    "hi":"hi", "hipaa":"hi",
+  };
+  function filterCrosswalk(crosswalk, opts = {}) {
+    let rows = Array.isArray(crosswalk) ? crosswalk.slice() : [];
+    if (opts.fn)  rows = rows.filter((r) => String(r.fn).toLowerCase() === String(opts.fn).toLowerCase());
+    if (opts.sub) rows = rows.filter((r) => String(r.sub).toLowerCase() === String(opts.sub).toLowerCase());
+    let framework = null, frameworkLabel = null;
+    if (opts.framework) {
+      const requested = String(opts.framework);
+      const key = FRAMEWORK_ALIASES[requested.toLowerCase().replace(/[\s/._]/g, "")];
+      if (!key) {
+        return {
+          count: 0,
+          rowLevelFrameworks: Object.values(FRAMEWORK_FIELDS),
+          framework: null,
+          unsupportedFramework: requested,
+          rows: [],
+          note: "Unsupported row-level framework filter. Available row-level filters: nist, iso, soc2, hipaa."
+        };
+      }
+      framework = key;
+      frameworkLabel = FRAMEWORK_FIELDS[key];
+    }
+    const out = rows.map((r) => {
+      if (!framework) return r;
+      return { fn:r.fn, sub:r.sub, obj:r.obj, framework:frameworkLabel, mapping:r[framework] };
+    });
+    return { count: out.length, rowLevelFrameworks: Object.values(FRAMEWORK_FIELDS), framework: frameworkLabel, rows: out };
+  }
+
+  /* TPRM inherent-risk tiering from a mock vendor intake. */
+  function vendorTier(intake = {}) {
+    const dataTypes = (intake.dataTypes || []).map((d) => String(d).toLowerCase());
+    const touchesEphi = dataTypes.includes("ephi") || dataTypes.includes("phi");
+    const touchesPii  = dataTypes.includes("pii");
+    const prod = !!intake.productionAccess;
+    const sys  = !!intake.systemAccess;
+    const subprocessors = !!intake.subprocessors;
+    const why = [];
+
+    let tier, label, tone;
+    if ((touchesEphi || touchesPii) && prod) {
+      tier = "T1"; label = "Critical"; tone = "critical";
+      why.push("Production-like access combined with simulated ePHI/PII-class data — highest inherent loss before controls.");
+    } else if (touchesEphi || prod) {
+      tier = "T2"; label = "High"; tone = "high";
+      why.push(touchesEphi ? "Handles simulated ePHI-class data without production-like access." : "Production-like access without regulated data.");
+    } else if (touchesPii || sys) {
+      tier = "T3"; label = "Moderate"; tone = "mod";
+      why.push("Confidential/internal data or system access; no production-like access or simulated ePHI-class data.");
+    } else {
+      tier = "T4"; label = "Low"; tone = "low";
+      why.push("No sensitive data and no production-like/system access — informational only.");
+    }
+    if (subprocessors) why.push("Subprocessors present — fourth-party flow-down review required.");
+
+    const critical = tier === "T1";
+    const high = tier === "T1" || tier === "T2";
+    const dueDiligence = [];
+    if (high) dueDiligence.push("SOC 2 Type II report review (scope, period, exceptions)");
+    if (high) dueDiligence.push("SIG-Lite / CAIQ security questionnaire");
+    if (critical) dueDiligence.push("Executed BAA before any data flows");
+    if (critical) dueDiligence.push("Encryption, MFA, and least-privilege attestation");
+    if (subprocessors) dueDiligence.push("Subprocessor inventory + security flow-down");
+    if (!high) dueDiligence.push("Lightweight intake questionnaire; periodic re-tier");
+
+    return {
+      vendorName: intake.vendorName || "Unnamed vendor",
+      inherentTier: `${tier} · ${label}`,
+      tier, label, tone,
+      why,
+      requiredDueDiligence: dueDiligence,
+      baaReviewRequired: critical,
+      soc2ReviewRequired: high,
+      questionnaireRequired: high,
+      disclaimer: "Simulated TPRM demonstration — fictional vendor, no real third-party data.",
+    };
+  }
+
+  /* High-level assessment summary from the full data object. */
+  function assessmentSummary(GRC) {
+    const a = GRC.ASSESSMENT || {};
+    const computed = scoreFromSubscores(GRC.SUBSCORES);
+    return {
+      organization: a.org,
+      sector: a.sector,
+      framework: a.framework,
+      asOf: a.asOf,
+      overallMaturity: computed.overall,
+      overallTier: a.overallTier || computed.overallTier,
+      targetTier: a.targetTier,
+      functions: computed.functionsScored,
+      assessedSubcategories: computed.assessedSubcategories,
+      risks: (GRC.RISKS || []).length,
+      criticalRisks: (GRC.RISKS || []).filter((r) => r.level === "Critical").length,
+      controlTests: (GRC.TESTS || []).length,
+      poamItems: (GRC.POAM || []).length,
+      deliverables: (GRC.DELIVERABLES || []).length,
+      crosswalkRows: (GRC.CROSSWALK || []).length,
+      rowLevelFrameworks: 4,
+      analyst: a.analyst,
+      mode: "simulated-portfolio",
+      disclaimer: "Simulated portfolio engagement. Northwind Health Systems is fictional. Readiness assessment — not a SOC 2 audit, HIPAA attestation, or real client work.",
+    };
+  }
+
+  return { tierFor, scoreFromSubscores, filterRisks, filterCrosswalk, vendorTier, assessmentSummary, FRAMEWORK_FIELDS };
+});
+```
+
+---
+
+## `apiutil.js`
+
+```javascript
+/* ============================================================================
+   apiutil.js — tiny request/response helpers shared by the /api functions.
+   Lives at repo root (not /api) so Vercel never treats it as a route.
+   No dependencies. Works under @vercel/node, `vercel dev`, and mock req/res.
+   ========================================================================== */
+"use strict";
+
+function send(res, status, body) {
+  if (status === 204) {
+    if (typeof res.status === "function" && typeof res.end === "function") {
+      res.setHeader("Cache-Control", "no-store");
+      return res.status(status).end();
+    }
+    res.statusCode = status;
+    res.setHeader("Cache-Control", "no-store");
+    return res.end();
+  }
+  const payload = JSON.stringify(body, null, 2);
+  if (typeof res.status === "function" && typeof res.json === "function") {
+    res.setHeader("Cache-Control", "no-store");
+    return res.status(status).json(body);
+  }
+  res.statusCode = status;
+  res.setHeader("Content-Type", "application/json; charset=utf-8");
+  res.setHeader("Cache-Control", "no-store");
+  res.end(payload);
+}
+
+function query(req) {
+  if (req && req.query && typeof req.query === "object") return req.query;
+  try {
+    const u = new URL(req.url, "http://localhost");
+    return Object.fromEntries(u.searchParams.entries());
+  } catch (_) {
+    return {};
+  }
+}
+
+function readBody(req) {
+  return new Promise((resolve) => {
+    if (req.body && typeof req.body === "object") return resolve(req.body);
+    if (typeof req.body === "string") {
+      try { return resolve(JSON.parse(req.body || "{}")); } catch (_) { return resolve({}); }
+    }
+    let raw = "";
+    try {
+      req.on("data", (c) => (raw += c));
+      req.on("end", () => { try { resolve(JSON.parse(raw || "{}")); } catch (_) { resolve({}); } });
+      req.on("error", () => resolve({}));
+    } catch (_) {
+      resolve({});
+    }
+  });
+}
+
+/* Wrap a handler: enforce method, catch errors → 500 JSON. */
+function handler(methods, fn) {
+  const allowed = (Array.isArray(methods) ? methods : [methods]).map((m) => m.toUpperCase());
+  return async (req, res) => {
+    const method = (req.method || "GET").toUpperCase();
+    if (method === "OPTIONS") { res.setHeader("Allow", allowed.join(", ")); return send(res, 204, {}); }
+    if (!allowed.includes(method)) {
+      res.setHeader("Allow", allowed.join(", "));
+      return send(res, 405, { ok: false, error: `Method ${method} not allowed`, allow: allowed });
+    }
+    try {
+      await fn(req, res);
+    } catch (err) {
+      send(res, 500, { ok: false, error: String(err && err.message ? err.message : err) });
+    }
+  };
+}
+
+module.exports = { send, query, readBody, handler };
+```
+
+---
+
+## `api/health.js`
+
+```javascript
+"use strict";
+const { send, handler } = require("../apiutil.js");
+
+module.exports = handler("GET", (req, res) => {
+  send(res, 200, {
+    ok: true,
+    project: "Northwind CSF 2.0 GRC Assessment",
+    mode: "simulated-portfolio",
+    dataSource: "local repository data",
+    timestamp: new Date().toISOString(),
+  });
+});
+```
+
+---
+
+## `api/assessment.js`
+
+```javascript
+"use strict";
+const GRC = require("../data.js");
+const S = require("../scoring.js");
+const { send, handler } = require("../apiutil.js");
+
+module.exports = handler("GET", (req, res) => {
+  send(res, 200, S.assessmentSummary(GRC));
+});
+```
+
+---
+
+## `api/risks.js`
+
+```javascript
+"use strict";
+const GRC = require("../data.js");
+const S = require("../scoring.js");
+const { send, query, handler } = require("../apiutil.js");
+
+module.exports = handler("GET", (req, res) => {
+  const q = query(req);
+  const result = S.filterRisks(GRC.RISKS, {
+    level: q.level, owner: q.owner, sub: q.sub, minScore: q.minScore,
+  });
+  send(res, 200, {
+    ok: true,
+    filters: { level: q.level || null, owner: q.owner || null, sub: q.sub || null, minScore: q.minScore || null },
+    ...result,
+    disclaimer: "Simulated risks for a fictional organization.",
+  });
+});
+```
+
+---
+
+## `api/crosswalk.js`
+
+```javascript
+"use strict";
+const GRC = require("../data.js");
+const S = require("../scoring.js");
+const { send, query, handler } = require("../apiutil.js");
+
+module.exports = handler("GET", (req, res) => {
+  const q = query(req);
+  const result = S.filterCrosswalk(GRC.CROSSWALK, { fn: q.fn, sub: q.sub, framework: q.framework });
+  send(res, 200, {
+    ok: true,
+    filters: { fn: q.fn || null, sub: q.sub || null, framework: q.framework || null },
+    note: "Four frameworks are mapped at row level: NIST 800-53, ISO 27001:2022, SOC 2, and HIPAA. No HITRUST row-level identifiers are exposed by this endpoint.",
+    ...result,
+  });
+});
+```
+
+---
+
+## `api/score.js`
+
+```javascript
+"use strict";
+const GRC = require("../data.js");
+const S = require("../scoring.js");
+const { send, readBody, handler } = require("../apiutil.js");
+
+/* POST body: { subscores: [[fn, sub, score], ...] }.
+   With no body, scores the shipped 23-subcategory data set (overall → 1.57). */
+module.exports = handler(["POST", "GET"], async (req, res) => {
+  const body = req.method === "POST" ? await readBody(req) : {};
+  const subscores = Array.isArray(body.subscores) && body.subscores.length ? body.subscores : GRC.SUBSCORES;
+  const usedSample = subscores === GRC.SUBSCORES;
+  let result;
+  try {
+    result = S.scoreFromSubscores(subscores);
+  } catch (err) {
+    return send(res, 400, {
+      ok: false,
+      error: String(err && err.message ? err.message : err),
+      disclaimer: "Simulated portfolio scoring input rejected; valid subcategory scores are 1 through 4."
+    });
+  }
+  send(res, 200, {
+    ok: true,
+    source: usedSample ? "shipped sample data (23 subcategories)" : "request body",
+    perFunction: result.functions,
+    overallMaturity: result.overall,
+    overallTier: result.overallTier,
+    assessedSubcategories: result.assessedSubcategories,
+    priorityFunctions: result.priorityFunctions,
+    method: result.method,
+    kpi: result.kpi,
+    disclaimer: "Simulated portfolio scoring. Overall is subcategory-weighted, not a simple mean of Function averages.",
+  });
+});
+```
+
+---
+
+## `api/vendor-tier.js`
+
+```javascript
+"use strict";
+const S = require("../scoring.js");
+const { send, readBody, handler } = require("../apiutil.js");
+
+/* POST body: { vendorName, dataTypes:[], productionAccess, systemAccess, subprocessors } */
+module.exports = handler(["POST", "GET"], async (req, res) => {
+  const body = req.method === "POST" ? await readBody(req) : {
+    vendorName: "MedStream Analytics (sample)", dataTypes: ["ePHI", "PII"],
+    productionAccess: true, systemAccess: true, subprocessors: true,
+  };
+  send(res, 200, { ok: true, ...S.vendorTier(body) });
+});
+```
+
+---
+
+## `api/evidence.js`
+
+```javascript
+"use strict";
+const GRC = require("../data.js");
+const { send, query, handler } = require("../apiutil.js");
+
+module.exports = handler("GET", (req, res) => {
+  const q = query(req);
+  let items = (GRC.EVIDENCE || []).slice();
+  if (q.status) items = items.filter((e) => String(e.status).toLowerCase() === String(q.status).toLowerCase());
+  if (q.sub)    items = items.filter((e) => String(e.map).toLowerCase().includes(String(q.sub).toLowerCase()));
+  const byStatus = items.reduce((a, e) => { a[e.status] = (a[e.status] || 0) + 1; return a; }, {});
+  send(res, 200, {
+    ok: true,
+    count: items.length,
+    byStatus,
+    evidence: items.map((e) => ({
+      evidenceId: e.id, artifact: e.artifact, mapping: e.map,
+      type: e.type, portfolioStatus: e.status, notes: e.note,
+    })),
+    disclaimer: "Evidence items are simulated/portfolio artifacts for a fictional organization.",
+  });
+});
+```
+
+---
+
+## `scripts/score_maturity.py`
+
+```python
+#!/usr/bin/env python3
+"""
+score_maturity.py — Northwind CSF 2.0 maturity scorer.
+
+Reads the assessed CSF subcategory scores from data/csf_scores.csv, computes
+per-Function maturity and the subcategory-WEIGHTED overall maturity, identifies
+the priority (lowest) Functions, writes a machine-readable KPI summary to
+outputs/kpi_summary.json, and prints a console summary suitable for a live demo.
+
+Scoring rule: overall = sum(all subcategory scores) / count(subcategories).
+For the shipped data this is 36 / 23 = 1.565 -> 1.57. This is intentionally NOT
+the simple mean of the six Function means (which is 1.53).
+
+Usage:
+    python3 scripts/score_maturity.py
+    python3 scripts/score_maturity.py --csv data/csf_scores.csv --out outputs/kpi_summary.json
+
+Simulated portfolio engagement. Northwind Health Systems is fictional.
+"""
+
+import argparse
+import csv
+import json
+import os
+import sys
+
+PROJECT = "Northwind CSF 2.0 GRC Assessment"
+DISCLAIMER = ("Simulated portfolio engagement. Northwind Health Systems is fictional. "
+              "Readiness assessment — not a SOC 2 audit, HIPAA attestation, or real client work.")
+
+FN_NAMES = {"GV": "Govern", "ID": "Identify", "PR": "Protect",
+            "DE": "Detect", "RS": "Respond", "RC": "Recover"}
+FN_ORDER = ["GV", "ID", "PR", "DE", "RS", "RC"]
+
+
+def tier_for(score):
+    if score is None:
+        return "Unscored"
+    if score < 1.5:
+        return "Tier 1 · Partial"
+    if score < 2.5:
+        return "Tier 2 · Risk Informed"
+    if score < 3.5:
+        return "Tier 3 · Repeatable"
+    return "Tier 4 · Adaptive"
+
+
+def repo_root():
+    return os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+def load_scores(csv_path):
+    """Return list of (function, subcategory, score). Raises on fatal problems."""
+    if not os.path.exists(csv_path):
+        raise FileNotFoundError(f"CSF score file not found: {csv_path}")
+
+    rows = []
+    with open(csv_path, newline="", encoding="utf-8") as fh:
+        reader = csv.DictReader(fh)
+        required = {"function", "subcategory", "score"}
+        if reader.fieldnames is None or not required.issubset({c.strip() for c in reader.fieldnames}):
+            raise ValueError(f"CSV must have columns {sorted(required)}; got {reader.fieldnames}")
+        for ln, raw in enumerate(reader, start=2):
+            fn = (raw.get("function") or "").strip()
+            sub = (raw.get("subcategory") or "").strip()
+            val = (raw.get("score") or "").strip()
+            if not fn and not sub and not val:
+                continue  # skip blank line
+            if fn not in FN_NAMES:
+                print(f"  ! line {ln}: unknown Function '{fn}' — skipped", file=sys.stderr)
+                continue
+            try:
+                score = float(val)
+            except ValueError:
+                print(f"  ! line {ln} ({sub}): non-numeric score '{val}' — skipped", file=sys.stderr)
+                continue
+            if not (1 <= score <= 4):
+                print(f"  ! line {ln} ({sub}): score {score} out of range 1–4 — skipped", file=sys.stderr)
+                continue
+            rows.append((fn, sub, score))
+
+    if not rows:
+        raise ValueError("No valid score rows parsed.")
+    return rows
+
+
+def compute(rows):
+    buckets = {}
+    total = 0.0
+    for fn, sub, score in rows:
+        buckets.setdefault(fn, []).append(score)
+        total += score
+    count = len(rows)
+
+    functions = []
+    for fn in FN_ORDER:
+        if fn not in buckets:
+            continue
+        arr = buckets[fn]
+        avg = round(sum(arr) / len(arr), 2)
+        functions.append({
+            "key": fn, "name": FN_NAMES[fn], "score": avg,
+            "assessed": len(arr), "tier": tier_for(avg), "priority": False,
+        })
+
+    overall = round(total / count, 2)
+    floor = min(f["score"] for f in functions)
+    for f in functions:
+        f["priority"] = abs(f["score"] - floor) < 1e-9
+    priority = [f["name"] for f in functions if f["priority"]]
+    simple_mean = round(sum(f["score"] for f in functions) / len(functions), 2)
+
+    return {
+        "project": PROJECT,
+        "mode": "simulated-portfolio",
+        "disclaimer": DISCLAIMER,
+        "functions": functions,
+        "overallMaturity": overall,
+        "overallTier": tier_for(overall),
+        "assessedSubcategories": count,
+        "functionsScored": len(functions),
+        "priorityFunctions": priority,
+        "method": "subcategory-weighted (sum of subcategory scores ÷ assessed count)",
+        "kpi": {"totalPoints": round(total, 2), "subcategoryCount": count,
+                "simpleMeanOfFunctions": simple_mean},
+    }
+
+
+def bar(score, width=20):
+    filled = int(round((score / 4) * width))
+    return "█" * filled + "·" * (width - filled)
+
+
+def print_summary(result):
+    line = "─" * 60
+    print(line)
+    print(f"  {result['project']}")
+    print(f"  {result['disclaimer']}")
+    print(line)
+    print(f"  Per-Function maturity (1 Partial → 4 Adaptive):\n")
+    for f in result["functions"]:
+        flag = "  ◀ PRIORITY" if f["priority"] else ""
+        print(f"    {f['key']}  {f['name']:<9} {f['score']:.2f}  [{bar(f['score'])}]  "
+              f"{f['tier']}{flag}")
+    print()
+    print(f"  Overall maturity .......... {result['overallMaturity']:.2f} / 4.00  "
+          f"({result['overallTier']})")
+    print(f"  Method .................... {result['method']}")
+    print(f"  Assessed subcategories .... {result['assessedSubcategories']}")
+    print(f"  Functions scored .......... {result['functionsScored']}")
+    print(f"  Priority remediation ...... {', '.join(result['priorityFunctions'])}")
+    print(f"  (Simple mean of Functions . {result['kpi']['simpleMeanOfFunctions']:.2f} — "
+          f"shown only to contrast; not the reported number)")
+    print(line)
+
+
+def main(argv=None):
+    root = repo_root()
+    parser = argparse.ArgumentParser(description="Northwind CSF 2.0 maturity scorer")
+    parser.add_argument("--csv", default=os.path.join(root, "data", "csf_scores.csv"))
+    parser.add_argument("--out", default=os.path.join(root, "outputs", "kpi_summary.json"))
+    args = parser.parse_args(argv)
+
+    try:
+        rows = load_scores(args.csv)
+        result = compute(rows)
+    except (FileNotFoundError, ValueError) as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        return 1
+
+    os.makedirs(os.path.dirname(args.out), exist_ok=True)
+    with open(args.out, "w", encoding="utf-8") as fh:
+        json.dump(result, fh, indent=2, ensure_ascii=False)
+
+    print_summary(result)
+    print(f"  KPI summary written → {os.path.relpath(args.out, root)}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
+```
+
+---
+
+## `scripts/validate_crosswalk.py`
+
+```python
+#!/usr/bin/env python3
+"""
+validate_crosswalk.py — sanity-check control identifiers in the framework crosswalk.
+
+Reads data/crosswalk.csv and validates every control identifier in the four
+ROW-LEVEL frameworks with regular expressions:
+
+    NIST SP 800-53 Rev 5 : two-letter family + number + optional enhancement   e.g. IA-2, SC-28, AC-6
+    ISO/IEC 27001:2022   : A.<clause>[.<sub>]                                   e.g. A.5.1, A.8.24
+    SOC 2 TSC            : Common Criteria CCx.y or Availability A1.z           e.g. CC6.1, A1.2
+    HIPAA Security Rule  : §164.<section> with optional (a)(2)(i)-style suffix  e.g. §164.312(a)(2)(i)
+
+HITRUST is intentionally NOT validated here because this repo exposes no
+HITRUST row-level mapping data.
+
+Exit code 0 if all IDs parse, 1 if any malformed ID is found.
+Usage: python3 scripts/validate_crosswalk.py [--csv data/crosswalk.csv]
+"""
+
+import argparse
+import csv
+import os
+import re
+import sys
+
+PATTERNS = {
+    "nist_800_53": re.compile(r"^[A-Z]{2}-\d+(?:\(\d+\))?$"),
+    "iso_27001":   re.compile(r"^A\.\d+(?:\.\d+)?$"),
+    "soc2":        re.compile(r"^(?:CC\d+\.\d+|A\d+\.\d+|PI\d+\.\d+|C\d+\.\d+|P\d+\.\d+)$"),
+    "hipaa":       re.compile(r"^§164\.\d+(?:\([A-Za-z0-9]+\))*$"),
+}
+LABELS = {
+    "nist_800_53": "NIST 800-53", "iso_27001": "ISO 27001:2022",
+    "soc2": "SOC 2", "hipaa": "HIPAA",
+}
+
+
+def repo_root():
+    return os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+def split_ids(cell):
+    # IDs are comma-separated within a cell, e.g. "PM-9, RA-1"
+    return [tok.strip() for tok in (cell or "").split(",") if tok.strip()]
+
+
+def main(argv=None):
+    root = repo_root()
+    parser = argparse.ArgumentParser(description="Validate crosswalk control IDs")
+    parser.add_argument("--csv", default=os.path.join(root, "data", "crosswalk.csv"))
+    args = parser.parse_args(argv)
+
+    if not os.path.exists(args.csv):
+        print(f"ERROR: crosswalk file not found: {args.csv}", file=sys.stderr)
+        return 1
+
+    totals = {k: 0 for k in PATTERNS}
+    problems = []
+    rows_seen = 0
+
+    with open(args.csv, newline="", encoding="utf-8") as fh:
+        reader = csv.DictReader(fh)
+        for ln, row in enumerate(reader, start=2):
+            rows_seen += 1
+            sub = (row.get("sub") or "").strip()
+            for col, pat in PATTERNS.items():
+                for ident in split_ids(row.get(col)):
+                    totals[col] += 1
+                    if not pat.match(ident):
+                        problems.append((ln, sub, LABELS[col], ident))
+
+    print("─" * 58)
+    print("  Crosswalk control-ID validation — Northwind CSF 2.0")
+    print("  (simulated portfolio; 4 row-level frameworks)")
+    print("─" * 58)
+    print(f"  Rows checked .............. {rows_seen}")
+    for col in PATTERNS:
+        print(f"  {LABELS[col]:<16} IDs ...... {totals[col]:>3}")
+    print(f"  Total IDs validated ....... {sum(totals.values())}")
+    print("─" * 58)
+
+    if problems:
+        print(f"  {len(problems)} malformed identifier(s):")
+        for ln, sub, fw, ident in problems:
+            print(f"    line {ln}  {sub}  [{fw}]  -> '{ident}'")
+        return 1
+
+    print("  All control identifiers well-formed. ✓")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
+```
+
+---
+
+## `scripts/run_demo.sh`
+
+```bash
+#!/usr/bin/env bash
+# run_demo.sh — one-shot interview demo of the offline scoring + validation tools.
+# Runs the Python maturity scorer and the crosswalk validator end to end.
+# Usage:  bash scripts/run_demo.sh
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$ROOT"
+
+echo "=============================================================="
+echo "  Northwind CSF 2.0 — offline demo (simulated portfolio data)"
+echo "=============================================================="
+
+echo
+echo ">> 1/3  Maturity scoring"
+python3 scripts/score_maturity.py
+
+echo
+echo ">> 2/3  Crosswalk ID validation"
+python3 scripts/validate_crosswalk.py
+
+echo
+echo ">> 3/3  KPI summary (machine-readable)"
+if command -v python3 >/dev/null 2>&1; then
+  python3 -c "import json; d=json.load(open('outputs/kpi_summary.json')); print('   overall:', d['overallMaturity'], '| priority:', ', '.join(d['priorityFunctions']))"
+fi
+
+echo
+echo "Done. JSON at outputs/kpi_summary.json"
+```
+
+---
+
+## `tests/assessment.test.js`
+
+```javascript
+"use strict";
+const test = require("node:test");
+const assert = require("node:assert/strict");
+
+const GRC = require("../data.js");
+const S = require("../scoring.js");
+
+test("assessment data exists", () => {
+  assert.ok(GRC && GRC.ASSESSMENT, "ASSESSMENT present");
+  assert.equal(GRC.ASSESSMENT.org, "Northwind Health Systems");
+});
+
+test("six CSF Functions exist", () => {
+  assert.equal(GRC.FUNCTIONS.length, 6);
+  assert.deepEqual(GRC.FUNCTIONS.map((f) => f.key), ["GV", "ID", "PR", "DE", "RS", "RC"]);
+});
+
+test("23 assessed subcategories", () => {
+  assert.equal(GRC.SUBSCORES.length, 23);
+  assert.equal(GRC.ASSESSMENT.subcategories, 23);
+});
+
+test("weighted overall maturity rounds to 1.57", () => {
+  const r = S.scoreFromSubscores(GRC.SUBSCORES);
+  assert.equal(r.overall, 1.57);
+  assert.equal(r.assessedSubcategories, 23);
+  assert.equal(r.overallTier, "Tier 2 · Risk Informed");
+});
+
+test("weighted overall differs from the simple mean of Function means", () => {
+  const r = S.scoreFromSubscores(GRC.SUBSCORES);
+  assert.equal(r.kpi.simpleMeanOfFunctions, 1.53);
+  assert.notEqual(r.overall, r.kpi.simpleMeanOfFunctions);
+});
+
+test("per-Function scores match the published figures", () => {
+  const r = S.scoreFromSubscores(GRC.SUBSCORES);
+  const byKey = Object.fromEntries(r.functions.map((f) => [f.key, f.score]));
+  assert.deepEqual(byKey, { GV: 1.4, ID: 1.6, PR: 2.0, DE: 1.33, RS: 1.33, RC: 1.5 });
+});
+
+test("priority Functions are Detect and Respond (the 1.33 floor)", () => {
+  const r = S.scoreFromSubscores(GRC.SUBSCORES);
+  assert.deepEqual(r.priorityFunctions.sort(), ["Detect", "Respond"]);
+});
+
+test("risk register contains 10 risks with 3 critical", () => {
+  assert.equal(GRC.RISKS.length, 10);
+  const crit = S.filterRisks(GRC.RISKS, { level: "Critical" });
+  assert.equal(crit.count, 3);
+  assert.deepEqual(crit.risks.map((r) => r.id), ["R-001", "R-002", "R-003"]);
+});
+
+test("risk minScore filter works", () => {
+  const r = S.filterRisks(GRC.RISKS, { minScore: 12 });
+  assert.equal(r.count, 8);
+  assert.ok(r.risks.every((x) => x.score >= 12));
+});
+
+test("crosswalk lookup for PR.AA-01 returns expected mappings", () => {
+  const r = S.filterCrosswalk(GRC.CROSSWALK, { sub: "PR.AA-01" });
+  assert.equal(r.count, 1);
+  assert.equal(r.rows[0].n8, "IA-2, IA-5");
+  assert.match(r.rows[0].hi, /164\.312\(a\)\(2\)\(i\)/);
+});
+
+test("crosswalk exposes exactly four row-level frameworks", () => {
+  const r = S.filterCrosswalk(GRC.CROSSWALK, {});
+  assert.equal(r.rowLevelFrameworks.length, 4);
+  assert.deepEqual(r.rowLevelFrameworks, ["NIST 800-53", "ISO 27001:2022", "SOC 2", "HIPAA"]);
+});
+
+test("crosswalk framework filter returns a single mapping column", () => {
+  const r = S.filterCrosswalk(GRC.CROSSWALK, { sub: "PR.AA-01", framework: "hipaa" });
+  assert.equal(r.framework, "HIPAA");
+  assert.equal(r.rows[0].mapping, "§164.312(a)(2)(i)");
+});
+
+test("unsupported HITRUST framework filter returns no row-level mappings", () => {
+  const r = S.filterCrosswalk(GRC.CROSSWALK, { framework: "hitrust" });
+  assert.equal(r.count, 0);
+  assert.equal(r.unsupportedFramework, "hitrust");
+  assert.deepEqual(r.rows, []);
+});
+
+test("vendor tiering: simulated ePHI + production-like access => Tier 1 Critical, BAA review required", () => {
+  const v = S.vendorTier({ vendorName: "X", dataTypes: ["ePHI", "PII"], productionAccess: true, subprocessors: true });
+  assert.equal(v.tier, "T1");
+  assert.equal(v.label, "Critical");
+  assert.equal(v.baaReviewRequired, true);
+  assert.equal(v.soc2ReviewRequired, true);
+  assert.equal(v.questionnaireRequired, true);
+});
+
+test("vendor tiering: no sensitive data, no access => Tier 4 Low", () => {
+  const v = S.vendorTier({ vendorName: "Y", dataTypes: [], productionAccess: false, systemAccess: false });
+  assert.equal(v.tier, "T4");
+  assert.equal(v.baaReviewRequired, false);
+});
+
+test("scoreFromSubscores rejects out-of-range scores", () => {
+  assert.throws(() => S.scoreFromSubscores([["GV", "GV.OC-01", 0]]), /invalid score/);
+  assert.throws(() => S.scoreFromSubscores([["GV", "GV.OC-01", 9]]), /invalid score/);
+});
+
+test("scoreFromSubscores rejects an unknown Function", () => {
+  assert.throws(() => S.scoreFromSubscores([["ZZ", "ZZ.OC-01", 2]]), /unknown Function/);
+});
+
+test("evidence log has nine items", () => {
+  assert.equal(GRC.EVIDENCE.length, 9);
+});
+
+test("claim map covers every proof-type category", () => {
+  const cats = new Set(GRC.CLAIMS.map((c) => c.cat));
+  ["portfolio", "backend", "script", "docs", "coursework", "operations", "military"]
+    .forEach((c) => assert.ok(cats.has(c), `missing category ${c}`));
+});
+```
+
+---
+
+## `tests/api.test.js`
+
+```javascript
+"use strict";
+const test = require("node:test");
+const assert = require("node:assert/strict");
+
+/* Invoke a serverless handler with a mock req/res and capture the JSON response. */
+function invoke(handler, { method = "GET", url = "/", body } = {}) {
+  return new Promise((resolve, reject) => {
+    const res = {
+      statusCode: 200,
+      _headers: {},
+      setHeader(k, v) { this._headers[k] = v; },
+      end(payload) {
+        let json = null;
+        try { json = payload ? JSON.parse(payload) : {}; } catch (e) { return reject(e); }
+        resolve({ status: this.statusCode, headers: this._headers, json });
+      },
+    };
+    Promise.resolve(handler({ method, url, body }, res)).catch(reject);
+  });
+}
+
+test("GET /api/health returns ok + simulated-portfolio mode", async () => {
+  const { status, json } = await invoke(require("../api/health.js"));
+  assert.equal(status, 200);
+  assert.equal(json.ok, true);
+  assert.equal(json.mode, "simulated-portfolio");
+  assert.ok(json.timestamp);
+});
+
+test("GET /api/assessment returns the weighted overall 1.57", async () => {
+  const { status, json } = await invoke(require("../api/assessment.js"));
+  assert.equal(status, 200);
+  assert.equal(json.overallMaturity, 1.57);
+  assert.equal(json.functions, 6);
+  assert.equal(json.assessedSubcategories, 23);
+  assert.equal(json.risks, 10);
+  assert.equal(json.rowLevelFrameworks, 4);
+});
+
+test("GET /api/risks?level=Critical returns three risks", async () => {
+  const { json } = await invoke(require("../api/risks.js"), { url: "/api/risks?level=Critical" });
+  assert.equal(json.count, 3);
+  assert.equal(json.byLevel.Critical, 3);
+});
+
+test("GET /api/crosswalk?sub=PR.AA-01 returns one row, four frameworks", async () => {
+  const { json } = await invoke(require("../api/crosswalk.js"), { url: "/api/crosswalk?sub=PR.AA-01" });
+  assert.equal(json.count, 1);
+  assert.equal(json.rows[0].n8, "IA-2, IA-5");
+  assert.equal(json.rowLevelFrameworks.length, 4);
+});
+
+test("GET /api/crosswalk?framework=hitrust returns no row-level mappings", async () => {
+  const { json } = await invoke(require("../api/crosswalk.js"), { url: "/api/crosswalk?framework=hitrust" });
+  assert.equal(json.count, 0);
+  assert.equal(json.unsupportedFramework, "hitrust");
+  assert.deepEqual(json.rows, []);
+});
+
+test("POST /api/score with no body scores the shipped data to 1.57", async () => {
+  const { json } = await invoke(require("../api/score.js"), { method: "POST", body: {} });
+  assert.equal(json.overallMaturity, 1.57);
+  assert.equal(json.assessedSubcategories, 23);
+  assert.ok(Array.isArray(json.perFunction));
+});
+
+test("POST /api/score with custom subscores recomputes", async () => {
+  const body = { subscores: [["GV", "GV.OC-01", 4], ["PR", "PR.AA-01", 2]] };
+  const { json } = await invoke(require("../api/score.js"), { method: "POST", body });
+  assert.equal(json.overallMaturity, 3); // (4+2)/2
+  assert.equal(json.source, "request body");
+});
+
+test("POST /api/vendor-tier: simulated ePHI + production-like access => Tier 1 Critical", async () => {
+  const body = { vendorName: "MedStream", dataTypes: ["ePHI"], productionAccess: true };
+  const { json } = await invoke(require("../api/vendor-tier.js"), { method: "POST", body });
+  assert.equal(json.tier, "T1");
+  assert.equal(json.baaReviewRequired, true);
+});
+
+test("GET /api/evidence returns nine items", async () => {
+  const { json } = await invoke(require("../api/evidence.js"));
+  assert.equal(json.count, 9);
+  assert.equal(json.evidence[0].evidenceId, "E-01");
+});
+
+test("disallowed method returns 405 with Allow header", async () => {
+  const { status, headers } = await invoke(require("../api/health.js"), { method: "POST" });
+  assert.equal(status, 405);
+  assert.ok(headers.Allow.includes("GET"));
+});
+```
+
+---
+
+## `package.json`
+
+```json
+{
+  "name": "northwind-csf",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Northwind Health Systems — simulated NIST CSF 2.0 GRC assessment portfolio (static frontend + serverless API + Python scoring).",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "vercel dev",
+    "serve": "python3 -m http.server 8777",
+    "test": "node --test",
+    "score": "python3 scripts/score_maturity.py",
+    "validate": "python3 scripts/validate_crosswalk.py",
+    "demo": "bash scripts/run_demo.sh"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT"
+}
+```
+
+---
+
+## `vercel.json`
 
 ```json
 {
@@ -1368,12 +2993,450 @@ window.GRC = { ASSESSMENT, FUNCTIONS, SUBSCORES, RISKS, TESTS, POAM, CROSSWALK, 
       ]
     },
     {
-      "source": "/(.*).(css|js)",
+      "source": "/(.*)\\.(css|js)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
       ]
     }
   ]
 }
+```
+
+---
+
+## `data/csf_scores.csv`
+
+```csv
+function,function_name,subcategory,score
+GV,Govern,GV.OC-01,2
+GV,Govern,GV.RM-01,1
+GV,Govern,GV.RR-02,2
+GV,Govern,GV.PO-01,1
+GV,Govern,GV.SC-01,1
+ID,Identify,ID.AM-01,2
+ID,Identify,ID.AM-02,1
+ID,Identify,ID.AM-05,2
+ID,Identify,ID.RA-01,2
+ID,Identify,ID.RA-05,1
+PR,Protect,PR.AA-01,2
+PR,Protect,PR.AA-05,1
+PR,Protect,PR.DS-01,3
+PR,Protect,PR.DS-02,3
+PR,Protect,PR.AT-01,1
+DE,Detect,DE.CM-01,2
+DE,Detect,DE.CM-09,1
+DE,Detect,DE.AE-02,1
+RS,Respond,RS.MA-01,1
+RS,Respond,RS.CO-02,2
+RS,Respond,RS.AN-03,1
+RC,Recover,RC.RP-01,2
+RC,Recover,RC.CO-03,1
+```
+
+---
+
+## `data/risk_register.csv`
+
+```csv
+id,likelihood,impact,score,level,owner,subcategory,description
+R-001,4,5,20,Critical,CTO,PR.AA-01,"Shared AWS admin account without MFA enables full environment compromise"
+R-002,4,4,16,Critical,CTO,PR.AA-05,"Excessive IAM permissions (no least privilege) allow lateral movement to ePHI"
+R-003,4,4,16,Critical,IT Lead,DE.AE-02,"No SIEM or log review means breaches go undetected"
+R-004,3,5,15,High,IT Lead,RS.MA-01,"IR plan never tested; HIPAA breach-notification clock missed"
+R-005,4,3,12,High,IT Lead,DE.CM-09,"No endpoint detection (EDR) on employee laptops"
+R-006,4,3,12,High,HR / IT Lead,PR.AT-01,"No annual security awareness training; phishing-susceptible workforce"
+R-007,3,4,12,High,Procurement,GV.SC-01,"Vendors onboarded with no security review (supply-chain risk)"
+R-008,3,4,12,High,IT Lead,RC.RP-01,"Backups exist but restore never tested; recovery may fail"
+R-009,3,3,9,Moderate,IT Lead,ID.AM-02,"No formal software inventory; unpatched / unknown assets"
+R-010,3,2,6,Moderate,CEO,GV.RM-01,"No risk appetite statement; inconsistent risk decisions"
+```
+
+---
+
+## `data/poam.csv`
+
+```csv
+id,severity,subcategory,owner,start,due,status,action
+POAM-001,Critical,PR.AA-01,CTO,2026-07-01,2026-07-07,In Progress,"Provision individual IAM users; enforce MFA; secure root with break-glass"
+POAM-002,Critical,PR.AA-05,CTO,2026-07-15,2026-07-31,Open,"Define RBAC roles; scope IAM policies; quarterly access reviews"
+POAM-003,Critical,DE.AE-02,IT Lead,2026-07-10,2026-08-15,Open,"Deploy SIEM; forward CloudTrail + app logs; define alerts; assign triage"
+POAM-004,High,RS.MA-01,IT Lead,2026-08-01,2026-08-31,Open,"Run tabletop exercise; assign IR roles; document lessons learned"
+POAM-005,High,PR.AT-01,HR / IT Lead,2026-08-15,2026-09-15,Open,"Deploy annual training + quarterly phishing simulations"
+POAM-006,High,GV.SC-01,Procurement,2026-08-01,2026-09-30,Open,"Stand up vendor risk program; require BAAs; risk-tier vendors"
+POAM-007,High,RC.RP-01,IT Lead,2026-08-20,2026-09-10,Open,"Perform full restore test; document RTO / RPO"
+POAM-008,High,DE.CM-09,IT Lead,2026-08-25,2026-09-20,Open,"Deploy EDR to all endpoints; centralize alerts"
+POAM-009,Moderate,ID.AM-02,IT Lead,2026-09-01,2026-10-15,Open,"Build software inventory / SBOM; integrate with vuln scanning"
+POAM-010,Moderate,GV.RM-01,CEO,2026-09-15,2026-10-31,Open,"Draft and ratify risk appetite + risk management policy"
+```
+
+---
+
+## `data/control_tests.csv`
+
+```csv
+id,control,subcategory,objective,design,operating
+TEST-01,IA-2,PR.AA-01,MFA on privileged accounts,Fail,Fail
+TEST-02,AC-6,PR.AA-05,Least privilege / RBAC,Fail,Fail
+TEST-03,AU-6,DE.AE-02,Log review & detection,Partial,Fail
+TEST-04,IR-8,RS.MA-01,Incident response execution,Pass,Fail
+TEST-05,AT-2,PR.AT-01,Security awareness training,Fail,Fail
+```
+
+---
+
+## `data/evidence_log.csv`
+
+```csv
+id,artifact,mapping,type,status,note
+E-01,IAM configuration export,PR.AA-01 · IA-2,Configuration,Simulated,"Shared admin account, MFA disabled — substantiates R-001"
+E-02,IAM policy JSON review,PR.AA-05 · AC-6,Configuration,Simulated,"Wildcard permissions; no least-privilege roles"
+E-03,Logging architecture diagram,DE.AE-02 · AU-6,Diagram,Simulated,"No SIEM; CloudTrail not forwarded or reviewed"
+E-04,Incident response plan v1,RS.MA-01 · IR-8,Plan,Portfolio,"Authored end to end; tabletop not yet exercised"
+E-05,Security awareness training log,PR.AT-01 · AT-2,Records,Simulated,"No completion records on file"
+E-06,Backup & restore runbook,RC.RP-01 · CP-10,Procedure,Portfolio,"Backups configured; restore never tested end to end"
+E-07,Vendor inventory & BAA tracker,GV.SC-01 · SR-3,Register,Portfolio,"Tiered vendor list; BAA status per vendor"
+E-08,Encryption-at-rest settings,PR.DS-01 · SC-28,Configuration,Simulated,"AES-256 enabled on data stores — a passing control"
+E-09,Software inventory gap memo,ID.AM-02 · CM-8,Memo,Portfolio,"No authoritative software/SBOM inventory yet"
+```
+
+---
+
+## `data/crosswalk.csv`
+
+```csv
+fn,sub,objective,nist_800_53,iso_27001,soc2,hipaa
+GV,GV.RM-01,"Risk management strategy","PM-9, RA-1","A.5.1, A.5.2","CC3.1, CC3.2","§164.308(a)(1)(ii)(A)"
+GV,GV.PO-01,"Security policy","PL-1, PM-1","A.5.1","CC1.1, CC5.3","§164.316(a)"
+GV,GV.SC-01,"Supply-chain risk mgmt","SR-1, SR-3","A.5.19, A.5.21","CC9.2","§164.308(b)"
+ID,ID.AM-01,"Hardware inventory","CM-8","A.5.9","CC6.1","§164.310(d)(1)"
+ID,ID.AM-02,"Software inventory","CM-8, CM-10","A.5.9, A.8.8","CC6.1","§164.308(a)(1)"
+ID,ID.RA-01,"Vulnerability identification","RA-5","A.8.8","CC7.1","§164.308(a)(1)(ii)(A)"
+ID,ID.RA-05,"Risk prioritization","RA-3, RA-7","A.5.7, A.8.2","CC3.2","§164.308(a)(1)(ii)(B)"
+PR,PR.AA-01,"Identity & credential mgmt","IA-2, IA-5","A.5.16, A.5.17","CC6.1, CC6.2","§164.312(a)(2)(i)"
+PR,PR.AA-05,"Least privilege","AC-6","A.8.2, A.8.3","CC6.3","§164.312(a)(1)"
+PR,PR.DS-01,"Data at rest encryption","SC-28","A.8.24","CC6.1","§164.312(a)(2)(iv)"
+PR,PR.DS-02,"Data in transit encryption","SC-8","A.8.24","CC6.7","§164.312(e)(1)"
+PR,PR.AT-01,"Security awareness training","AT-2","A.6.3","CC1.4","§164.308(a)(5)"
+DE,DE.CM-01,"Network / system monitoring","SI-4, AU-6","A.8.16","CC7.2","§164.312(b)"
+DE,DE.CM-09,"Endpoint monitoring","SI-4, SI-3","A.8.7","CC7.2","§164.308(a)(1)(ii)(D)"
+DE,DE.AE-02,"Event analysis","AU-6, IR-4","A.8.15, A.8.16","CC7.3","§164.308(a)(1)(ii)(D)"
+RS,RS.MA-01,"Incident response execution","IR-4, IR-8","A.5.24, A.5.26","CC7.4","§164.308(a)(6)"
+RS,RS.CO-02,"Incident reporting","IR-6","A.5.25, A.6.8","CC7.4","§164.408"
+RC,RC.RP-01,"Recovery plan","CP-10, IR-4","A.5.29, A.5.30","A1.2, CC7.5","§164.308(a)(7)"
+RC,RC.CO-03,"Recovery communication","CP-2, IR-7","A.5.26","CC7.5","§164.308(a)(7)(ii)(C)"
+```
+
+---
+
+## `README.md`
+
+````markdown
+# Northwind Health Systems — NIST CSF 2.0 GRC Assessment (Portfolio)
+
+A **simulated** Governance, Risk & Compliance assessment of a **fictional** healthcare-SaaS
+organization, built as an interactive readiness instrument with a live backend, a Python scoring
+workflow, and a test suite. Built by **Ozirus B. Morency** as an entry-level GRC / Compliance &
+Risk Analyst portfolio.
+
+> **Simulated portfolio engagement.** Northwind Health Systems is fictional. This is a *readiness
+> self-assessment for demonstration* — **not** a SOC 2 audit, a HIPAA attestation, real client
+> work, or production GRC employment. No real ePHI is involved.
+
+**Live:** https://northwind-csf.vercel.app
+
+---
+
+## What this repo proves (and the honest boundary)
+
+| Resume claim | Proof in this repo | Proof type | Boundary |
+|---|---|---|---|
+| NIST CSF 2.0 assessment across 6 Functions | Radar, `data/csf_scores.csv`, `scripts/score_maturity.py`, `GET /api/assessment` | Portfolio + Script + Backend | Simulated, fictional org |
+| Multi-framework crosswalk (800-53, ISO 27001:2022, SOC 2, HIPAA) | Interactive crosswalk (19 rows × **4** frameworks), `GET /api/crosswalk` | Portfolio | 4 frameworks at control level; no HITRUST row-level mapping claimed |
+| Risk assessment & register | 5×5 matrix, `data/risk_register.csv`, `GET /api/risks` | Portfolio + Backend | Simulated risks |
+| Control testing (design vs operating) | 5 tests, `data/control_tests.csv` | Portfolio | Readiness testing, not an audit opinion |
+| POA&M remediation tracking | 10 items, `data/poam.csv` | Portfolio | Simulated plan |
+| TPRM tiering / SIG-CAIQ / SOC 2 review | 4-tier model, `POST /api/vendor-tier` | Portfolio + Backend | Simulated TPRM demo |
+| Python / regex / JSON / CSV / Bash | `scripts/*.py`, `scripts/run_demo.sh` | Script | Portfolio tooling |
+| Google Cybersecurity Cert (June 2026) | Background section | Coursework | Beginner-level; not production SOC |
+| Splunk / Chronicle / Suricata / SIEM | Background + Detect findings | Coursework exposure | Coursework, not production tooling |
+| 4+ yrs federally-audited ops, OSHA/EPA, 50+ RCA | Transferable-experience section | Prior operations | Not cybersecurity employment |
+| Army National Guard veteran | Background section | Military | Context, not technical claim |
+
+Full mapping: [`CLAIM_MATRIX.md`](CLAIM_MATRIX.md).
+
+---
+
+## Architecture
+
+Vanilla, no build step. Static frontend + Vercel serverless functions + Python tooling.
 
 ```
+index.html · styles.css · app.js     Frontend (hand-built SVG/DOM, no framework)
+data.js                              Single source of truth (dual-exported: browser + Node)
+scoring.js                           Pure compute, shared by frontend / API / tests
+apiutil.js                           Tiny request/response helpers for the API
+/api/*.js                            Serverless endpoints (health, assessment, risks,
+                                       crosswalk, score, vendor-tier, evidence)
+/scripts/*.py + run_demo.sh          Python maturity scorer + crosswalk validator
+/data/*.csv                          CSV mirrors of the assessment data
+/tests/*.test.js                     node --test suite (27 tests)
+/outputs/kpi_summary.json            Generated by the scorer
+```
+
+### The number that matters
+Overall maturity is **weighted by assessed subcategory count**, not a simple mean of the six
+Function averages:
+
+```
+overall = sum(all 23 subcategory scores) / 23 = 36 / 23 = 1.565 → 1.57
+```
+
+(The simple mean of the six Function averages is 1.53 — shown only for contrast.)
+
+---
+
+## Quickstart
+
+```bash
+git clone https://github.com/ozzielove/<repo>.git
+cd <repo>            # the site lives in Projects/grc-nist-csf-assessment/site
+
+# 1) Static preview (no API)
+python3 -m http.server 8777      # → http://localhost:8777
+
+# 2) Full local stack with live API (needs Vercel CLI)
+npm install -g vercel            # one-time, only if you don't have it
+npm run dev                      # vercel dev → http://localhost:3000 with /api/* live
+```
+
+> The site works **with or without** the API. If `/api/*` is unreachable it falls back to the
+> bundled data and the nav badge shows **static mode**.
+
+### Test
+```bash
+npm test                         # node --test → 27 passing
+```
+
+### Run the Python scoring workflow
+```bash
+python3 scripts/score_maturity.py        # prints per-Function + overall 1.57; writes outputs/kpi_summary.json
+python3 scripts/validate_crosswalk.py    # regex-validates 102 control IDs across 4 frameworks
+bash    scripts/run_demo.sh              # both, end to end
+```
+
+---
+
+## API endpoints
+
+| Endpoint | Method | Example |
+|---|---|---|
+| `/api/health` | GET | service status + mode |
+| `/api/assessment` | GET | summary (overall 1.57, counts, disclaimer) |
+| `/api/risks` | GET | `?level=Critical` · `?owner=CTO` · `?minScore=12` · `?sub=PR.AA-01` |
+| `/api/crosswalk` | GET | `?fn=PR` · `?sub=PR.AA-01` · `?framework=hipaa` |
+| `/api/score` | POST | `{ "subscores": [["GV","GV.OC-01",2], ...] }` (empty body → ships 1.57) |
+| `/api/vendor-tier` | POST | `{ "dataTypes":["ePHI"], "productionAccess":true }` → Tier 1 Critical for simulated ePHI + production-like access |
+| `/api/evidence` | GET | evidence log (9 items) · `?status=Portfolio` |
+
+---
+
+## Deployment
+See [`DEPLOY.md`](DEPLOY.md). Deploys to Vercel with zero secrets; the `/api` folder becomes
+serverless functions automatically.
+
+## Integrity boundaries
+- Fictional org; simulated assessment; readiness — never compliance/attestation/audit authority.
+- Four frameworks crosswalked at control level; no HITRUST row-level mapping is claimed.
+- Splunk/Chronicle/Suricata/SQL/PCI DSS/OWASP/RMF/SAP = coursework or prior-ops exposure, not
+  production work, unless an artifact in this repo proves otherwise.
+````
+
+---
+
+## `DEMO_SCRIPT.md`
+
+````markdown
+# 5-Minute Interview Demo Script — Northwind CSF 2.0
+
+Say it out loud. Times are approximate. Keep the honesty framing in every section.
+
+---
+
+### 0:00 — Open & frame (30s)
+> "This is a **simulated** GRC assessment I built for a **fictional** healthcare-SaaS company,
+> Northwind Health Systems. It's a readiness assessment and portfolio piece — not real client work,
+> not a SOC 2 audit. Everything you see traces to an artifact in the repo, and there's a live API
+> behind it you can poke."
+
+Open **https://northwind-csf.vercel.app**. Point to the nav badge: *"API online."*
+
+### 0:30 — CSF maturity scoring (45s)
+Scroll to **Posture**. 
+> "Six NIST CSF 2.0 Functions, scored on the 1–4 tier scale. Overall is **1.57 — Tier 2**. That
+> number is **weighted by how many subcategories each Function carries**, not a flat average — a flat
+> average would be 1.53. Detect and Respond are the floor, so they sequence first."
+
+### 1:15 — Risk register (40s)
+Scroll to **Risk**. Click the top-right dot (**R-001**).
+> "Ten risks scored likelihood × impact. The critical cluster is shared admin access without MFA,
+> over-permissioned IAM, and no detection coverage."
+
+### 1:55 — Control testing (30s)
+Scroll to **Controls**. Point to **TEST-04**.
+> "Design vs. operating effectiveness. The IR plan is *designed* — it passes on paper — but it was
+> never exercised, so it **fails in operation**. Testing both is the whole point."
+
+### 2:25 — POA&M (25s)
+Scroll to **Plan of Action & Milestones**.
+> "Ten remediation items with owners and dates. Critical access and detection close first; governance
+> polish lands last."
+
+### 2:50 — Crosswalk (35s)
+Scroll to **Crosswalk**. Filter to **Protect**.
+> "One assessed control maps to **four** frameworks at once — 800-53, ISO 27001:2022, SOC 2, and
+> HIPAA. That's the efficiency argument for a unified program. I do not claim HITRUST row-level
+> mapping here because the repo only exposes four row-level framework mappings."
+
+### 3:25 — TPRM (25s)
+Scroll to **Third-Party Risk**.
+> "A four-tier vendor model. A simulated vendor touching ePHI-class data with production-like access
+> is Tier 1 — BAA review before data flows, SOC 2 review, SIG/CAIQ questionnaire."
+
+### 3:50 — Live backend (45s)
+Scroll to **Interview Demo Mode**.
+- Click **API health check** → *"Live serverless endpoint."*
+- Click **Recalculate maturity → 1.57** → *"The backend recomputes from the same data and returns 1.57."*
+- In the **vendor tiering** form, leave simulated ePHI + production-like access checked, click **Run vendor tiering** →
+  *"Tier 1, Critical, BAA required — computed server-side."*
+
+> "And if the API is ever down, the page falls back to the bundled data and tells you so."
+
+Optionally, in a terminal:
+```bash
+python3 scripts/score_maturity.py
+```
+> "Same scoring, offline, in Python — prints per-Function scores and overall 1.57."
+
+### 4:35 — Resume claim proof map (25s)
+Scroll to **Resume Claim Proof Map**.
+> "Every résumé claim is tied to the artifact, endpoint, or script that backs it, with the proof type
+> and the honest boundary — what's portfolio work, what's coursework, what's prior operations."
+
+### 5:00 — Close (honesty)
+> "To be precise about boundaries: the assessment is simulated on a fictional org. My SIEM and tooling
+> exposure — Splunk, Chronicle, Suricata — is **coursework**, not production. The audit discipline —
+> OSHA/EPA support, 50-plus root-cause investigations — is **prior operations**, not cybersecurity
+> employment. This portfolio is how I translate that discipline into GRC artifacts: findings, root
+> cause, corrective action, evidence, ownership, remediation."
+````
+
+---
+
+## `CLAIM_MATRIX.md`
+
+```markdown
+# Claim Matrix — résumé claim → evidence
+
+Proof types: **Portfolio-proven** · **Backend-demo-proven** · **Script-proven** ·
+**Documentation-proven** · **Coursework exposure** · **Prior operations** · **Military** ·
+**Not yet evidenced**.
+
+Integrity: Northwind is fictional; the assessment is simulated; this is a readiness assessment,
+not compliance, attestation, audit authority, client work, or production employment.
+
+| # | Résumé claim | Repo / site evidence | API / script evidence | Proof type | Interview talking point | Integrity boundary |
+|---|---|---|---|---|---|---|
+| 1 | NIST CSF 2.0 assessment, 6 Functions | Posture radar; `data/csf_scores.csv` | `GET /api/assessment`; `score_maturity.py` | Portfolio + Backend + Script | "Six Functions, overall 1.57, subcategory-weighted" | Simulated, fictional org |
+| 2 | NIST SP 800-53 Rev 5 mapping | Crosswalk col 1; `data/crosswalk.csv` | `GET /api/crosswalk?framework=nist` | Portfolio | "Each control maps to an 800-53 family" | Row-level; readiness not audit |
+| 3 | ISO/IEC 27001:2022 Annex A mapping | Crosswalk col 2 | `GET /api/crosswalk?framework=iso` | Portfolio | "2022 Annex A numbering" | Row-level mapping |
+| 4 | SOC 2 Trust Services Criteria mapping | Crosswalk col 3 | `GET /api/crosswalk?framework=soc` | Portfolio | "CC + Availability criteria" | Mapping, not a SOC 2 report |
+| 5 | HIPAA Security Rule mapping | Crosswalk col 4 | `GET /api/crosswalk?framework=hipaa` | Portfolio | "Admin/Physical/Technical safeguard cites" | No real ePHI; readiness |
+| 6 | Multi-framework crosswalk | Crosswalk (19 rows × 4) | `validate_crosswalk.py` (102 IDs) | Portfolio + Script | "Map once, trace four control frameworks" | **4** frameworks; no HITRUST row-level mapping claimed |
+| 7 | Control crosswalk / gap analysis | Posture blurbs; deliverable #12 | — | Portfolio | "Current vs target, phased to Tier 3" | Simulated |
+| 8 | Risk assessment methodology | Risk matrix; `risk_register.csv` | `GET /api/risks` | Portfolio + Backend | "Likelihood × impact, owned + treated" | Simulated risks |
+| 9 | Risk register | 10 risks | `GET /api/risks?minScore=12` | Portfolio + Backend | "Top-right quadrant = highest loss" | Simulated |
+| 10 | Control testing (design vs operating) | 5 tests; `control_tests.csv` | — | Portfolio | "IR plan passes design, fails operation" | Readiness testing |
+| 11 | Audit findings / readiness / evidence | Findings report (#06); evidence log (#09) | `GET /api/evidence` | Portfolio + Backend | "9 evidence items mapped to controls" | Simulated artifacts |
+| 12 | POA&M remediation tracking | Gantt; `poam.csv` | — | Portfolio | "10 items, owners, dates, sequencing" | Simulated plan |
+| 13 | TPRM / tiered vendor / SIG / CAIQ / SOC 2 review | Vendors section | `POST /api/vendor-tier` | Portfolio + Backend | "simulated ePHI + production-like access → Tier 1, BAA review required" | Simulated TPRM demo |
+| 14 | NIST IR lifecycle | TEST-04 (IR-8); POAM-004 tabletop | — | Portfolio (light) | "IR plan → test → lessons learned" | Simulated; not a real incident |
+| 15 | Python, file parsing, regex, JSON, CSV | `score_maturity.py`, `validate_crosswalk.py` | `npm test` (27) | Script | "CSV → KPI JSON; regex ID validation" | Portfolio tooling |
+| 16 | Bash | `scripts/run_demo.sh` | — | Script | "One-shot offline demo" | Light script |
+| 17 | Git version control | repo history | — | Documentation | "Versioned, branchable" | — |
+| 18 | Technical & executive report writing, policy, SOPs | README, CLAIM_MATRIX, DEMO_SCRIPT, deliverables #06/#08 | — | Documentation | "The deliverable form of expository writing" | Portfolio docs |
+| 19 | Google Cybersecurity Cert (June 2026) | Transferable section | — | Coursework | "Foundational SIEM/log/triage" | Beginner-level; not production SOC |
+| 20 | Splunk / Chronicle / Suricata; SIEM, log review, triage | Transferable section; Detect findings | — | Coursework exposure | "What a SIEM would catch for DE.AE-02" | Coursework, **not** production tooling |
+| 21 | 4+ yrs federally-audited ops; OSHA/EPA support; 50+ RCA | Transferable section | — | Prior operations | "RCA → finding → root cause → corrective action → POA&M" | Not cybersecurity employment |
+| 22 | SAP S/4HANA | (not in this repo) | — | Prior operations | "ERP/tool exposure from prior ops" | Prior ops only; not used here |
+| 23 | Army National Guard veteran | Transferable section | — | Military | "Mission discipline, documentation rigor" | Context, not a technical claim |
+| 24 | PCI DSS | — | — | **Not yet evidenced** | Name only; would add a cardholder-data scope artifact | No artifact in repo |
+| 25 | OWASP Top 10 | — | — | **Not yet evidenced** | Name only; would add an app-sec finding set | No artifact in repo |
+| 26 | NIST RMF | — | — | **Not yet evidenced** (adjacent to the CSF work) | Would add a categorize→authorize artifact | No standalone RMF artifact |
+| 27 | SQL filters and joins | — | — | **Not yet evidenced** | Would add a `.sql` query over the register | No SQL artifact (CSV/JSON only) |
+
+## Not-yet-evidenced summary (be upfront in interviews)
+PCI DSS, OWASP Top 10, NIST RMF (standalone), and SQL are listed on the résumé as skills but have
+**no artifact in this repo**. Present them as coursework/skill exposure, or add a small artifact
+before claiming them as demonstrated. ISO / SOC 2 / HIPAA appear only as a **readiness
+crosswalk** — never as a compliance attestation. HITRUST is not evidenced in this repo as a row-level mapping.
+```
+
+---
+
+## `DEPLOY.md`
+
+````markdown
+# Deploy — Northwind CSF 2.0 site
+
+Vanilla frontend + Vercel serverless functions (`/api`). No secrets, no database.
+The `/api/*.js` files become serverless functions automatically; everything else is static.
+
+## Local development
+
+```bash
+cd /Users/ozirusmorency/Downloads/Pal/Projects/grc-nist-csf-assessment/site
+
+# Static only (no API) — fastest:
+python3 -m http.server 8777        # → http://localhost:8777  (nav shows "static mode")
+
+# Full stack with live /api/* :
+vercel dev                         # → http://localhost:3000  (nav shows "API online")
+```
+
+## One-time auth
+```bash
+vercel login        # interactive (browser) — run yourself in Terminal
+```
+> In this session, prefix with `!` so output lands here:
+> `! cd /Users/ozirusmorency/Downloads/Pal/Projects/grc-nist-csf-assessment/site && vercel login`
+
+## Deploy
+```bash
+cd /Users/ozirusmorency/Downloads/Pal/Projects/grc-nist-csf-assessment/site
+vercel --prod --yes
+```
+The project is already linked (`.vercel/project.json` → **northwind-csf**), so this publishes to
+**https://northwind-csf.vercel.app**. If you ever relink under a different name, update the one
+résumé line in `GRC_Portfolio_Block/Ozirus_Morency_Resume_GRC.tex` (search `northwind-csf.vercel.app`)
+and re-run its `build.sh`.
+
+## What ships
+- Static: `index.html`, `styles.css`, `app.js`, `data.js`, `scoring.js`, `vercel.json`
+- Functions: `/api/health`, `/api/assessment`, `/api/risks`, `/api/crosswalk`, `/api/score`,
+  `/api/vendor-tier`, `/api/evidence` (+ shared `apiutil.js` at root)
+- Not deployed but in-repo: `/scripts` (Python), `/tests` (node --test), `/data` (CSV mirrors)
+
+## Static fallback expectations
+The site never hard-depends on the API. If `/api/*` is unreachable, `app.js` recomputes from the
+bundled `data.js` via `scoring.js` and the demo panel labels each result **"static fallback."**
+So even pure static hosting (e.g. `python3 -m http.server`) renders every figure.
+
+## Environment variables
+None. No secrets required.
+
+## Troubleshooting
+- **Functions 404 locally** → use `vercel dev`, not `http.server` (the latter is static-only).
+- **Nav badge stuck on "static mode" in prod** → check the Functions tab in the Vercel dashboard;
+  confirm `/api/health` returns 200. CommonJS `require("../data.js")` must resolve (no `"type":"module"`).
+- **Stale data after a deploy** → `data.js`/`scoring.js` carry a long cache header; hard-refresh.
+````

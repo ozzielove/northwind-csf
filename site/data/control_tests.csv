@@ -1,0 +1,6 @@
+id,control,subcategory,objective,design,operating
+TEST-01,IA-2,PR.AA-01,MFA on privileged accounts,Fail,Fail
+TEST-02,AC-6,PR.AA-05,Least privilege / RBAC,Fail,Fail
+TEST-03,AU-6,DE.AE-02,Log review & detection,Partial,Fail
+TEST-04,IR-8,RS.MA-01,Incident response execution,Pass,Fail
+TEST-05,AT-2,PR.AT-01,Security awareness training,Fail,Fail

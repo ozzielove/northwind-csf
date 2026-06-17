@@ -4,7 +4,15 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Northwind Health Systems — NIST CSF 2.0 Assessment</title>
-<meta name="description" content="A simulated NIST Cybersecurity Framework 2.0 governance, risk &amp; compliance assessment — interactive audit instrument. Portfolio work by Ozirus B. Morency." />
+<meta name="description" content="A simulated NIST Cybersecurity Framework 2.0 GRC readiness assessment — interactive readiness instrument. Portfolio work by Ozirus B. Morency." />
+<meta name="theme-color" content="#07090c" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Northwind Health Systems — NIST CSF 2.0 Assessment" />
+<meta property="og:description" content="Simulated employer-facing GRC portfolio: CSF 2.0 maturity scoring, risk register, control testing, POA&amp;M, TPRM, and framework crosswalk." />
+<meta property="og:site_name" content="Northwind CSF 2.0 Portfolio" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Northwind Health Systems — NIST CSF 2.0 Assessment" />
+<meta name="twitter:description" content="Simulated GRC readiness portfolio built as a static assessment instrument." />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2307090c'/%3E%3Cpath d='M16 6l8 10-8 10-8-10z' fill='none' stroke='%236ef2c0' stroke-width='1.6'/%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -12,6 +20,7 @@
 <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to assessment content</a>
 <div class="grain" aria-hidden="true"></div>
 <div class="scan" aria-hidden="true"></div>
 
@@ -21,17 +30,22 @@
     <span class="nav__glyph">◇</span>
     <span class="nav__id">NORTHWIND&nbsp;/&nbsp;CSF&nbsp;2.0</span>
   </a>
-  <nav class="nav__links">
+  <nav class="nav__links" aria-label="Primary sections">
     <a href="#posture">Posture</a>
     <a href="#risk">Risk</a>
     <a href="#controls">Controls</a>
     <a href="#crosswalk">Crosswalk</a>
-    <a href="#vendors">Vendors</a>
+    <a href="#claimmap">Proof</a>
+    <a href="#demo">Demo</a>
   </nav>
-  <a class="nav__cta" href="#deliverables">The deliverables ↓</a>
+  <span class="apistat" id="apistat" role="status" aria-live="polite" data-state="checking">
+    <span class="apistat__dot"></span><span class="apistat__txt">checking API…</span>
+  </span>
+  <a class="nav__cta" href="#demo">Live demo ↓</a>
 </header>
 
 <!-- ================= HERO ================= -->
+<main id="main">
 <section class="hero" id="top">
   <div class="hero__grid" aria-hidden="true"></div>
   <div class="hero__inner">
@@ -44,10 +58,10 @@
       <span class="reveal" data-d="3">measured.</span>
     </h1>
     <p class="hero__lede reveal" data-d="4">
-      A full governance, risk &amp; compliance assessment of <strong>Northwind Health Systems</strong>,
-      a fictional healthcare-SaaS custodian of electronic protected health information — scored against
-      all six Functions of the <em>NIST Cybersecurity Framework&nbsp;2.0</em> and crosswalked to five
-      adjacent frameworks.
+      A full governance, risk &amp; compliance readiness assessment of <strong>Northwind Health Systems</strong>,
+      a fictional healthcare-SaaS scenario involving simulated ePHI-class data — scored against
+      all six Functions of the <em>NIST Cybersecurity Framework&nbsp;2.0</em> and mapped, at the
+      control level, to four adjacent frameworks.
     </p>
 
     <div class="hero__readout reveal" data-d="5">
@@ -66,7 +80,7 @@
         <li><span class="stat__n" data-count="6">0</span><span class="stat__l">CSF Functions scored</span></li>
         <li><span class="stat__n" data-count="23">0</span><span class="stat__l">Subcategories assessed</span></li>
         <li><span class="stat__n" data-count="10">0</span><span class="stat__l">Risks · 3 critical</span></li>
-        <li><span class="stat__n" data-count="5" data-suffix="">0</span><span class="stat__l">Frameworks crosswalked</span></li>
+        <li><span class="stat__n" data-count="4">0</span><span class="stat__l">Frameworks per control</span></li>
       </ul>
     </div>
 
@@ -91,7 +105,7 @@
   </div>
 
   <div class="posture">
-    <figure class="radar" aria-label="Radar chart of six CSF Function maturity scores">
+    <figure class="radar" role="img" aria-label="Radar chart of six CSF Function maturity scores">
       <svg viewBox="0 0 480 480" id="radar"></svg>
     </figure>
     <ol class="fnlist" id="fnlist"></ol>
@@ -107,13 +121,13 @@
     <span class="kicker">02 — Risk Register</span>
     <h2 class="section__title">Where the exposure actually lives.</h2>
     <p class="section__sub">
-      Ten risks plotted by <em>likelihood</em> × <em>impact</em>. The top-right quadrant is the
-      part that keeps a CISO awake — a shared root account with no multi-factor, and no way to see a breach happening.
+      Ten risks plotted by <em>likelihood</em> × <em>impact</em>. The top-right quadrant contains
+      the highest-loss scenarios: shared privileged access without MFA, excessive IAM permissions, and missing detection coverage.
     </p>
   </div>
 
   <div class="risk">
-    <figure class="matrix" aria-label="Five by five risk matrix, likelihood by impact">
+    <figure class="matrix" role="img" aria-label="Five by five risk matrix, likelihood by impact">
       <svg viewBox="0 0 520 520" id="matrix"></svg>
     </figure>
     <aside class="riskcard" id="riskcard" aria-live="polite">
@@ -126,7 +140,7 @@
         <div><dt>Owner</dt><dd id="rc-o">CTO</dd></div>
         <div><dt>CSF</dt><dd id="rc-s">PR.AA-01</dd></div>
       </dl>
-      <p class="riskcard__hint">Hover or tap a cell to inspect ·<span id="rc-count"> 10 risks mapped</span></p>
+      <p class="riskcard__hint">Hover, tap, or focus a risk dot to inspect ·<span id="rc-count"> 10 risks mapped</span></p>
     </aside>
   </div>
 </section>
@@ -163,11 +177,11 @@
 <section class="section" id="crosswalk">
   <div class="section__head">
     <span class="kicker">05 — Multi-Framework Crosswalk</span>
-    <h2 class="section__title">Map once. Satisfy five frameworks.</h2>
+    <h2 class="section__title">Map once. Trace four control frameworks.</h2>
     <p class="section__sub">
-      The core efficiency argument of a unified GRC program: one assessed control maps to
-      NIST 800-53, ISO&nbsp;27001:2022, SOC&nbsp;2, HITRUST, and HIPAA simultaneously.
-      Pick a Function to trace the equivalences.
+      The core efficiency argument of a unified GRC program: one assessed control can support
+      multiple framework mappings at once. This interactive sample traces CSF controls to
+      NIST 800-53, ISO&nbsp;27001:2022, SOC&nbsp;2, and HIPAA at the control level.
     </p>
   </div>
 
@@ -183,7 +197,7 @@
 <section class="section" id="vendors">
   <div class="section__head">
     <span class="kicker">06 — Third-Party Risk</span>
-    <h2 class="section__title">No vendor touches ePHI unscreened.</h2>
+    <h2 class="section__title">No simulated ePHI vendor passes intake unscreened.</h2>
     <p class="section__sub">
       A tiered third-party-risk program: rank a vendor on <em>inherent</em> risk at intake, run a
       SIG / CAIQ-aligned questionnaire, review their SOC&nbsp;2 report, then decide. Higher tier → deeper diligence.
@@ -214,19 +228,140 @@
 <section class="section" id="deliverables">
   <div class="section__head">
     <span class="kicker">07 — The Deliverables</span>
-    <h2 class="section__title">Twelve artifacts. One coherent engagement.</h2>
+    <h2 class="section__title">Twelve artifacts. One defensible assessment package.</h2>
     <p class="section__sub">
-      Everything visualized above is backed by a complete, audit-grade artifact set — the same
-      documents a real GRC engagement produces, authored end to end.
+      Everything visualized above is backed by a complete readiness artifact set — the same
+      document types a simulated GRC assessment should produce, authored end to end.
     </p>
   </div>
   <ul class="artifacts" id="artifacts"></ul>
 </section>
 
+<!-- ================= TRANSFERABLE EXPERIENCE ================= -->
+<section class="section" id="transferable">
+  <div class="section__head">
+    <span class="kicker">08 — Transferable Audit Experience</span>
+    <h2 class="section__title">Regulated-operations discipline, retooled for GRC.</h2>
+    <p class="section__sub">
+      This project translates prior regulated-operations discipline into cybersecurity GRC artifacts:
+      findings, root cause, corrective action, evidence, ownership, and remediation tracking. The
+      background below is operations and military experience — not prior cybersecurity employment.
+    </p>
+  </div>
+  <ul class="xfer">
+    <li class="xcard">
+      <span class="xcard__from">4+ years client-facing operations in federally audited environments</span>
+      <span class="xcard__arrow" aria-hidden="true">→</span>
+      <span class="xcard__to">Comfort working to written standards, scope, and external review — the operating context of an audit.</span>
+    </li>
+    <li class="xcard">
+      <span class="xcard__from">OSHA / EPA audit support</span>
+      <span class="xcard__arrow" aria-hidden="true">→</span>
+      <span class="xcard__to">Evidence collection and audit readiness under a regulator — the same muscle as a SOC 2 / HIPAA evidence log.</span>
+    </li>
+    <li class="xcard">
+      <span class="xcard__from">50+ Root Cause Analysis investigations</span>
+      <span class="xcard__arrow" aria-hidden="true">→</span>
+      <span class="xcard__to">Maps directly to the GRC loop: <em>finding → root cause → corrective action → POA&amp;M closure</em>.</span>
+    </li>
+    <li class="xcard">
+      <span class="xcard__from">Technical &amp; expository documentation</span>
+      <span class="xcard__arrow" aria-hidden="true">→</span>
+      <span class="xcard__to">The assessment report, policy, and crosswalk in this portfolio are the deliverable form of that writing.</span>
+    </li>
+    <li class="xcard">
+      <span class="xcard__from">Google Cybersecurity Professional Certificate · June 2026</span>
+      <span class="xcard__arrow" aria-hidden="true">→</span>
+      <span class="xcard__to">Foundational SIEM, log-review, and triage concepts — beginner-level coursework, not production SOC work.</span>
+    </li>
+    <li class="xcard">
+      <span class="xcard__from">U.S. Army National Guard veteran</span>
+      <span class="xcard__arrow" aria-hidden="true">→</span>
+      <span class="xcard__to">Mission discipline, chain-of-custody habits, and documentation rigor that carry into evidence handling.</span>
+    </li>
+  </ul>
+</section>
+
+<!-- ================= RESUME CLAIM PROOF MAP ================= -->
+<section class="section" id="claimmap">
+  <div class="section__head">
+    <span class="kicker">09 — Resume Claim Proof Map</span>
+    <h2 class="section__title">Every claim, tied to evidence you can open.</h2>
+    <p class="section__sub">
+      Each card maps a résumé claim to the artifact, endpoint, or script that backs it — with the
+      proof type and the honest boundary. Nothing here is asserted as real client work; coursework and
+      prior operations are labeled as exactly that.
+    </p>
+  </div>
+  <ul class="prooflegend" id="prooflegend" aria-label="Proof-type legend"></ul>
+  <ul class="claimgrid" id="claimgrid"></ul>
+</section>
+
+<!-- ================= INTERVIEW DEMO MODE ================= -->
+<section class="section" id="demo">
+  <div class="section__head">
+    <span class="kicker">10 — Interview Demo Mode</span>
+    <h2 class="section__title">Poke the backend. It answers in real time.</h2>
+    <p class="section__sub">
+      Live serverless endpoints computing over the same repository data. Click a probe and the raw JSON
+      appears below. If the API is offline (static hosting), the page falls back to the bundled data and
+      says so — every figure still resolves.
+    </p>
+  </div>
+
+  <div class="demo">
+    <div class="demo__panel">
+      <span class="demo__h">Endpoint probes</span>
+      <div class="demo__probes" id="demoProbes">
+        <button class="probe" type="button" data-get="/api/health">API health check</button>
+        <button class="probe" type="button" data-get="/api/assessment">Assessment JSON</button>
+        <button class="probe" type="button" data-get="/api/risks?level=Critical">Critical risks</button>
+        <button class="probe" type="button" data-get="/api/crosswalk?sub=PR.AA-01">Crosswalk · PR.AA-01</button>
+        <button class="probe" type="button" data-get="/api/evidence">Evidence log</button>
+        <button class="probe" type="button" data-post="/api/score" data-body="{}">Recalculate maturity → 1.57</button>
+        <button class="probe" type="button" data-explain="scoring">Explain the scoring formula</button>
+      </div>
+    </div>
+
+    <form class="demo__form" id="vendorForm">
+      <span class="demo__h">Vendor tiering demo <span class="muted">· POST /api/vendor-tier</span></span>
+      <label class="demo__field">
+        <span>Vendor name</span>
+        <input type="text" id="vName" name="vendorName" value="MedStream Analytics" autocomplete="off" />
+      </label>
+      <fieldset class="demo__checks">
+        <legend>Data &amp; access</legend>
+        <label><input type="checkbox" id="vEphi" checked /> Handles ePHI</label>
+        <label><input type="checkbox" id="vPii" checked /> Handles PII</label>
+        <label><input type="checkbox" id="vProd" checked /> Production-like access</label>
+        <label><input type="checkbox" id="vSys" /> System access</label>
+        <label><input type="checkbox" id="vSub" checked /> Uses subprocessors</label>
+      </fieldset>
+      <button class="probe probe--solid" type="submit">Run vendor tiering</button>
+    </form>
+
+    <div class="demo__outwrap">
+      <div class="demo__outhead">
+        <span class="demo__label" id="demoLabel">output</span>
+        <span class="demo__badge" id="demoMode"></span>
+      </div>
+      <pre class="demo__out" id="demoOut" tabindex="0" aria-live="polite" aria-label="API response output">Click a probe above to call the backend. Results render here as formatted JSON.</pre>
+    </div>
+
+    <div class="demo__links">
+      <a href="https://github.com/ozzielove" target="_blank" rel="noopener">Open GitHub profile ↗</a>
+      <a href="DEMO_SCRIPT.md" target="_blank" rel="noopener">View the 5-minute demo script ↗</a>
+      <a href="https://northwind-csf.vercel.app" target="_blank" rel="noopener">Open the live site ↗</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
 <!-- ================= FOOTER ================= -->
 <footer class="footer" id="foot">
   <div class="footer__lead">
-    <h2>An audit you can read in five minutes —<br /><span class="serif-em">and defend for an hour.</span></h2>
+    <h2>A readiness assessment you can read in five minutes —<br /><span class="serif-em">and defend for an hour.</span></h2>
     <p>
       Every figure on this page traces to an artifact in the repository: scope statement,
       control checklist, risk register, control test plan, POA&amp;M, evidence log, and a tiered
@@ -239,7 +374,7 @@
       <span class="footer__h">Frameworks</span>
       <ul>
         <li>NIST CSF 2.0</li><li>NIST SP 800-53 Rev 5</li><li>ISO/IEC 27001:2022</li>
-        <li>SOC 2 Trust Services Criteria</li><li>HITRUST CSF v11</li><li>HIPAA Security Rule</li>
+        <li>SOC 2 Trust Services Criteria</li><li>HIPAA Security Rule</li>
       </ul>
     </div>
     <div>
@@ -265,7 +400,21 @@
   <p class="footer__sig">◇ Designed &amp; built from raw assessment data · 2026</p>
 </footer>
 
+<noscript>
+  <section class="section noscript">
+    <div class="section__head">
+      <span class="kicker">Static fallback</span>
+      <h2 class="section__title">JavaScript is required for the interactive readiness views.</h2>
+      <p class="section__sub">
+        This simulated portfolio assessment includes NIST CSF 2.0 maturity scoring, a risk register,
+        control testing, POA&amp;M sequencing, third-party-risk workflow, and a multi-framework crosswalk.
+        Enable JavaScript to view the charts and generated artifact sections.
+      </p>
+    </div>
+  </section>
+</noscript>
 <script src="data.js"></script>
+<script src="scoring.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

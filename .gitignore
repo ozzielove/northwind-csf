@@ -23,3 +23,6 @@ env/
 # --- Secrets ---
 .env
 *.env
+
+# internal review scaffold (not published)
+site/ChatGPT_Review_Flat/

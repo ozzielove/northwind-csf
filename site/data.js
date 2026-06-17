@@ -1,13 +1,13 @@
 /* ============================================================================
    data.js — Northwind Health Systems · NIST CSF 2.0 GRC Assessment
-   All figures trace 1:1 to the published repo artifacts (csf_scores.csv,
-   risk_register.csv, poam.csv, control_test_plan.csv, crosswalk md).
+   Displayed figures are derived from the published portfolio artifacts
+   (csf_scores.csv, risk_register.csv, poam.csv, control_test_plan.csv, crosswalk md).
    Subject is a FICTIONAL organization — simulated portfolio engagement.
    ========================================================================== */
 
 const ASSESSMENT = {
   org: "Northwind Health Systems",
-  sector: "Healthcare SaaS · custodian of ePHI",
+  sector: "Healthcare SaaS · simulated ePHI scenario",
   framework: "NIST Cybersecurity Framework 2.0",
   overall: 1.57,
   overallTier: "Tier 2 · Risk Informed",
@@ -100,7 +100,7 @@ const POAM = [
     action:"Draft and ratify risk appetite + risk management policy" },
 ];
 
-/* Multi-framework crosswalk — one CSF subcategory → 5 frameworks at once. */
+/* Multi-framework crosswalk — one CSF subcategory → 4 row-level framework mappings. */
 const CROSSWALK = [
   { fn:"GV", sub:"GV.RM-01", obj:"Risk management strategy",   n8:"PM-9, RA-1",  iso:"A.5.1, A.5.2", soc:"CC3.1, CC3.2", hi:"§164.308(a)(1)(ii)(A)" },
   { fn:"GV", sub:"GV.PO-01", obj:"Security policy",            n8:"PL-1, PM-1",  iso:"A.5.1",        soc:"CC1.1, CC5.3", hi:"§164.316(a)" },
@@ -123,21 +123,21 @@ const CROSSWALK = [
   { fn:"RC", sub:"RC.CO-03", obj:"Recovery communication",     n8:"CP-2, IR-7",  iso:"A.5.26",       soc:"CC7.5",        hi:"§164.308(a)(7)(ii)(C)" },
 ];
 
+/* Crosswalk renders FOUR frameworks at row level: 800-53, ISO, SOC 2, HIPAA. */
 const FRAMEWORK_COUNTS = [
-  { name:"NIST CSF 2.0",          n:"19", note:"assessed subcategories · 6 Functions" },
-  { name:"NIST SP 800-53 Rev 5",  n:"26", note:"controls · AC AT AU CM CP IA IR PL PM RA SC SI SR" },
-  { name:"ISO/IEC 27001:2022",    n:"22", note:"Annex A controls · 2022 numbering" },
-  { name:"SOC 2 TSC",             n:"16", note:"15 Common Criteria + Availability A1.2" },
-  { name:"HITRUST CSF v11",       n:"23", note:"references · 11 control categories" },
-  { name:"HIPAA Security Rule",   n:"16", note:"Admin · Physical · Technical safeguards" },
+  { name:"NIST CSF 2.0",          n:"19", note:"mapped subcategories shown · 6 Functions" },
+  { name:"NIST SP 800-53 Rev 5",  n:"26", note:"row-level controls · AC AT AU CM CP IA IR PL PM RA SC SI SR" },
+  { name:"ISO/IEC 27001:2022",    n:"22", note:"row-level Annex A controls · 2022 numbering" },
+  { name:"SOC 2 TSC",             n:"16", note:"row-level · 15 Common Criteria + Availability A1.2" },
+  { name:"HIPAA Security Rule",   n:"17", note:"unique row-level references · Admin · Physical · Technical safeguards" },
 ];
 
 /* Third-party / vendor risk program (TPRM). */
 const TPRM = {
   tiers: [
-    { t:"T1", label:"Critical", tone:"critical", def:"Production access to ePHI / PII or to production systems — BAA required before data flows." },
+    { t:"T1", label:"Critical", tone:"critical", def:"Simulated ePHI / PII-class data or production-like system access — BAA review required before data flows." },
     { t:"T2", label:"High",     tone:"high",     def:"Access to confidential business data or internal systems." },
-    { t:"T3", label:"Moderate", tone:"mod",      def:"Limited or de-identified data; no production access." },
+    { t:"T3", label:"Moderate", tone:"mod",      def:"Limited or de-identified data; no production-like system access." },
     { t:"T4", label:"Low",      tone:"low",      def:"No sensitive data; informational / marketing only." },
   ],
   lifecycle: [
@@ -157,7 +157,7 @@ const TPRM = {
   ],
   example: {
     vendor:"MedStream Analytics", note:"fictional worked example",
-    tier:"T1 · Critical", data:"ePHI (member name, DOB, claim detail)",
+    tier:"T1 · Critical", data:"simulated ePHI-class data (member name, DOB, claim detail)",
     path:"Intake → Tier 1 → BAA → SIG/CAIQ → SOC 2 review → gaps → remediation → approve-with-conditions",
   },
 };
@@ -166,7 +166,7 @@ const TPRM = {
 const DELIVERABLES = [
   { n:"01", t:"Assessment scope statement",        d:"Boundary, systems, data types, and exclusions for the engagement." },
   { n:"02", t:"CSF 2.0 controls checklist",        d:"All six Functions assessed across 23 subcategories." },
-  { n:"03", t:"Multi-framework crosswalk",         d:"CSF → 800-53 · ISO 27001:2022 · SOC 2 · HITRUST · HIPAA, IDs verified." },
+  { n:"03", t:"Multi-framework crosswalk",         d:"CSF → 800-53 · ISO 27001:2022 · SOC 2 · HIPAA, IDs verified." },
   { n:"04", t:"Control test plan",                 d:"Design vs. operating effectiveness with evidence references." },
   { n:"05", t:"Risk methodology & register",       d:"Likelihood × impact scoring; 10 risks owned and treated." },
   { n:"06", t:"Audit findings report",             d:"Findings with severity, root cause, and close-the-loop matrix." },
@@ -178,4 +178,91 @@ const DELIVERABLES = [
   { n:"12", t:"Gap analysis & roadmap",            d:"Current vs. target state with a phased path to Tier 3." },
 ];
 
-window.GRC = { ASSESSMENT, FUNCTIONS, SUBSCORES, RISKS, TESTS, POAM, CROSSWALK, FRAMEWORK_COUNTS, TPRM, DELIVERABLES };
+/* Evidence collection log — nine simulated/portfolio evidence items, each mapped to a
+   control and CSF subcategory. All items are portfolio artifacts for a FICTIONAL org. */
+const EVIDENCE = [
+  { id:"E-01", artifact:"IAM configuration export",          map:"PR.AA-01 · IA-2",  type:"Configuration", status:"Simulated", note:"Shared admin account, MFA disabled — substantiates R-001." },
+  { id:"E-02", artifact:"IAM policy JSON review",            map:"PR.AA-05 · AC-6",  type:"Configuration", status:"Simulated", note:"Wildcard permissions; no least-privilege roles." },
+  { id:"E-03", artifact:"Logging architecture diagram",     map:"DE.AE-02 · AU-6",  type:"Diagram",       status:"Simulated", note:"No SIEM; CloudTrail not forwarded or reviewed." },
+  { id:"E-04", artifact:"Incident response plan v1",        map:"RS.MA-01 · IR-8",  type:"Plan",          status:"Portfolio", note:"Authored end to end; tabletop not yet exercised." },
+  { id:"E-05", artifact:"Security awareness training log",  map:"PR.AT-01 · AT-2",  type:"Records",       status:"Simulated", note:"No completion records on file." },
+  { id:"E-06", artifact:"Backup & restore runbook",         map:"RC.RP-01 · CP-10", type:"Procedure",     status:"Portfolio", note:"Backups configured; restore never tested end to end." },
+  { id:"E-07", artifact:"Vendor inventory & BAA tracker",   map:"GV.SC-01 · SR-3",  type:"Register",      status:"Portfolio", note:"Tiered vendor list; BAA status per vendor." },
+  { id:"E-08", artifact:"Encryption-at-rest settings",      map:"PR.DS-01 · SC-28", type:"Configuration", status:"Simulated", note:"AES-256 enabled on data stores — a passing control." },
+  { id:"E-09", artifact:"Software inventory gap memo",      map:"ID.AM-02 · CM-8",  type:"Memo",          status:"Portfolio", note:"No authoritative software/SBOM inventory yet." },
+];
+
+/* Resume-claim → evidence proof map. cat drives the legend grouping. */
+const CLAIMS = [
+  { cat:"portfolio", types:["Portfolio","Script","Backend"],
+    claim:"NIST CSF 2.0 assessment across all six Functions",
+    evidence:"Radar + per-Function scores · csf_scores.csv · score_maturity.py · GET /api/assessment",
+    demo:"Run score_maturity.py and open /api/assessment while the Posture radar is on screen.",
+    boundary:"Simulated, fictional healthcare-SaaS organization." },
+  { cat:"portfolio", types:["Portfolio"],
+    claim:"Multi-framework control crosswalk (NIST 800-53, ISO 27001:2022, SOC 2, HIPAA)",
+    evidence:"Interactive crosswalk · 19 rows × 4 frameworks · GET /api/crosswalk",
+    demo:"Filter to Protect, then call /api/crosswalk?sub=PR.AA-01 to show one control → four mappings.",
+    boundary:"Four frameworks mapped at control level. No HITRUST row-level mapping is claimed." },
+  { cat:"backend", types:["Portfolio","Backend"],
+    claim:"Risk assessment methodology and risk register",
+    evidence:"5×5 likelihood×impact matrix · risk_register.csv · GET /api/risks",
+    demo:"Open /api/risks?level=Critical — returns the three critical risks with summary counts.",
+    boundary:"Simulated risks for a fictional org." },
+  { cat:"portfolio", types:["Portfolio"],
+    claim:"Control testing — design vs. operating effectiveness",
+    evidence:"Five control tests (IA-2, AC-6, AU-6, IR-8, AT-2) · control_tests.csv",
+    demo:"Walk TEST-04: the IR plan is designed (pass) but was never exercised (operating: fail).",
+    boundary:"Readiness testing — not a SOC 2 audit opinion." },
+  { cat:"portfolio", types:["Portfolio"],
+    claim:"POA&M remediation tracking",
+    evidence:"10 sequenced POA&M items with owners and dates · poam.csv",
+    demo:"Show the Gantt; critical access and detection gaps close first, governance polish last.",
+    boundary:"Simulated remediation plan." },
+  { cat:"backend", types:["Portfolio","Backend"],
+    claim:"Third-party risk (TPRM) tiering, SIG/CAIQ, SOC 2 review",
+    evidence:"4-tier inherent-risk model + lifecycle · POST /api/vendor-tier",
+    demo:"Run the vendor-tiering form: simulated ePHI + production-like access → Tier 1 Critical, BAA review required.",
+    boundary:"Simulated TPRM demonstration." },
+  { cat:"script", types:["Script"],
+    claim:"Python, file parsing, regex, JSON, CSV automation",
+    evidence:"score_maturity.py (CSV → KPI JSON) · validate_crosswalk.py (regex ID validation)",
+    demo:"Run python3 scripts/score_maturity.py — prints per-Function scores and overall 1.57.",
+    boundary:"Portfolio tooling over simulated data." },
+  { cat:"script", types:["Script"],
+    claim:"Bash automation",
+    evidence:"scripts/run_demo.sh runs the scorer and validator end to end",
+    demo:"Run bash scripts/run_demo.sh from a clean clone.",
+    boundary:"Light demo script — not a production pipeline." },
+  { cat:"docs", types:["Documentation"],
+    claim:"Technical & executive report writing, policy, SOPs",
+    evidence:"README · CLAIM_MATRIX · DEMO_SCRIPT · 12-artifact deliverable set",
+    demo:"Open the Deliverables section and the repo docs.",
+    boundary:"Portfolio documentation." },
+  { cat:"coursework", types:["Coursework"],
+    claim:"Google Cybersecurity Professional Certificate (June 2026)",
+    evidence:"Candidate background; SIEM/log concepts behind the Detect-function findings",
+    demo:"Explain the log-review and alert-triage concepts behind the Detect gaps.",
+    boundary:"Beginner-level certificate. Not production SOC experience." },
+  { cat:"coursework", types:["Coursework"],
+    claim:"Splunk, Chronicle, Suricata; SIEM queries, log review, alert triage",
+    evidence:"Coursework exposure; Detect findings reference missing SIEM / log review",
+    demo:"Discuss what a SIEM would catch for R-003 / DE.AE-02.",
+    boundary:"Coursework / tool exposure — no production tool administration." },
+  { cat:"operations", types:["Prior operations"],
+    claim:"4+ yrs client-facing ops in federally audited environments; OSHA/EPA audit support; 50+ RCA investigations",
+    evidence:"Transferable-experience section mapping RCA discipline to finding → root cause → corrective action → POA&M",
+    demo:"Explain how RCA discipline maps to the audit findings and POA&M workflow.",
+    boundary:"Regulated-operations experience — not cybersecurity employment." },
+  { cat:"military", types:["Military"],
+    claim:"U.S. Army National Guard veteran",
+    evidence:"Candidate background section",
+    demo:"Connect mission discipline and documentation rigor to GRC evidence handling.",
+    boundary:"Military service — context for work ethic and clearance-readiness." },
+];
+
+const GRC = { ASSESSMENT, FUNCTIONS, SUBSCORES, RISKS, TESTS, POAM, CROSSWALK, FRAMEWORK_COUNTS, TPRM, DELIVERABLES, EVIDENCE, CLAIMS };
+
+/* Dual export: browser (window.GRC) and Node/Vercel API (module.exports). */
+if (typeof window !== "undefined") { window.GRC = GRC; }
+if (typeof module !== "undefined" && module.exports) { module.exports = GRC; }

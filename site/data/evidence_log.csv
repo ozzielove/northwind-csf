@@ -1,0 +1,10 @@
+id,artifact,mapping,type,status,note
+E-01,IAM configuration export,PR.AA-01 · IA-2,Configuration,Simulated,"Shared admin account, MFA disabled — substantiates R-001"
+E-02,IAM policy JSON review,PR.AA-05 · AC-6,Configuration,Simulated,"Wildcard permissions; no least-privilege roles"
+E-03,Logging architecture diagram,DE.AE-02 · AU-6,Diagram,Simulated,"No SIEM; CloudTrail not forwarded or reviewed"
+E-04,Incident response plan v1,RS.MA-01 · IR-8,Plan,Portfolio,"Authored end to end; tabletop not yet exercised"
+E-05,Security awareness training log,PR.AT-01 · AT-2,Records,Simulated,"No completion records on file"
+E-06,Backup & restore runbook,RC.RP-01 · CP-10,Procedure,Portfolio,"Backups configured; restore never tested end to end"
+E-07,Vendor inventory & BAA tracker,GV.SC-01 · SR-3,Register,Portfolio,"Tiered vendor list; BAA status per vendor"
+E-08,Encryption-at-rest settings,PR.DS-01 · SC-28,Configuration,Simulated,"AES-256 enabled on data stores — a passing control"
+E-09,Software inventory gap memo,ID.AM-02 · CM-8,Memo,Portfolio,"No authoritative software/SBOM inventory yet"
