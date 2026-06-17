@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Northwind Health Systems — NIST CSF 2.0 Assessment</title>
+<meta name="description" content="A simulated NIST Cybersecurity Framework 2.0 governance, risk &amp; compliance assessment — interactive audit instrument. Portfolio work by Ozirus B. Morency." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2307090c'/%3E%3Cpath d='M16 6l8 10-8 10-8-10z' fill='none' stroke='%236ef2c0' stroke-width='1.6'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,400&family=IBM+Plex+Mono:wght@300;400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<div class="scan" aria-hidden="true"></div>
+
+<!-- ================= NAV ================= -->
+<header class="nav" id="nav">
+  <a class="nav__mark" href="#top">
+    <span class="nav__glyph">◇</span>
+    <span class="nav__id">NORTHWIND&nbsp;/&nbsp;CSF&nbsp;2.0</span>
+  </a>
+  <nav class="nav__links">
+    <a href="#posture">Posture</a>
+    <a href="#risk">Risk</a>
+    <a href="#controls">Controls</a>
+    <a href="#remediation">POA&amp;M</a>
+    <a href="#crosswalk">Crosswalk</a>
+  </nav>
+  <a class="nav__cta" href="https://github.com/ozzielove" target="_blank" rel="noopener">Repository ↗</a>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <div class="hero__grid" aria-hidden="true"></div>
+  <div class="hero__inner">
+    <p class="eyebrow reveal">
+      <span class="eyebrow__dot"></span> Simulated portfolio engagement · fictional organization
+    </p>
+    <h1 class="hero__title">
+      <span class="reveal" data-d="1">The state of a</span>
+      <span class="reveal serif-em" data-d="2">security program,</span>
+      <span class="reveal" data-d="3">measured.</span>
+    </h1>
+    <p class="hero__lede reveal" data-d="4">
+      A full governance, risk &amp; compliance assessment of <strong>Northwind Health Systems</strong>,
+      a fictional healthcare-SaaS custodian of electronic protected health information — scored against
+      all six Functions of the <em>NIST Cybersecurity Framework&nbsp;2.0</em> and crosswalked to five
+      adjacent frameworks.
+    </p>
+
+    <div class="hero__readout reveal" data-d="5">
+      <div class="dial" id="dial" role="img" aria-label="Overall maturity 1.57 of 4, Tier 2 Risk Informed">
+        <svg viewBox="0 0 220 220" class="dial__svg">
+          <circle class="dial__track" cx="110" cy="110" r="92" />
+          <circle class="dial__value" id="dialArc" cx="110" cy="110" r="92" />
+        </svg>
+        <div class="dial__center">
+          <span class="dial__num" id="dialNum">0.00</span>
+          <span class="dial__scale">/ 4.00</span>
+          <span class="dial__tier">Tier 2 · Risk Informed</span>
+        </div>
+      </div>
+      <ul class="hero__stats">
+        <li><span class="stat__n" data-count="6">0</span><span class="stat__l">CSF Functions scored</span></li>
+        <li><span class="stat__n" data-count="23">0</span><span class="stat__l">Subcategories assessed</span></li>
+        <li><span class="stat__n" data-count="10">0</span><span class="stat__l">Risks · 3 critical</span></li>
+        <li><span class="stat__n" data-count="5" data-suffix="">0</span><span class="stat__l">Frameworks crosswalked</span></li>
+      </ul>
+    </div>
+
+    <p class="hero__by reveal" data-d="6">
+      Assessment, tooling &amp; report — <strong>Ozirus&nbsp;B.&nbsp;Morency</strong> ·
+      <span class="muted">Q2 2026</span>
+    </p>
+  </div>
+  <div class="hero__scrollcue" aria-hidden="true"><span>scroll</span><i></i></div>
+</section>
+
+<!-- ================= POSTURE / RADAR ================= -->
+<section class="section" id="posture">
+  <div class="section__head">
+    <span class="kicker">01 — Posture</span>
+    <h2 class="section__title">Six Functions, one honest verdict.</h2>
+    <p class="section__sub">
+      Maturity on the CSF implementation-tier scale (1 Partial → 4 Adaptive). The program sits at
+      <strong>1.57 — Tier 2</strong>. <span class="flag">Detect</span> and <span class="flag">Respond</span>
+      are the floor, and they sequence first in remediation.
+    </p>
+  </div>
+
+  <div class="posture">
+    <figure class="radar" aria-label="Radar chart of six CSF Function maturity scores">
+      <svg viewBox="0 0 480 480" id="radar"></svg>
+    </figure>
+    <ol class="fnlist" id="fnlist"></ol>
+  </div>
+
+  <div class="density" id="density" aria-hidden="true"></div>
+  <p class="density__cap">23 assessed subcategories · cell brightness = subcategory score (1–3)</p>
+</section>
+
+<!-- ================= RISK HEATMAP ================= -->
+<section class="section" id="risk">
+  <div class="section__head">
+    <span class="kicker">02 — Risk Register</span>
+    <h2 class="section__title">Where the exposure actually lives.</h2>
+    <p class="section__sub">
+      Ten risks plotted by <em>likelihood</em> × <em>impact</em>. The top-right quadrant is the
+      part that keeps a CISO awake — a shared root account with no multi-factor, and no way to see a breach happening.
+    </p>
+  </div>
+
+  <div class="risk">
+    <figure class="matrix" aria-label="Five by five risk matrix, likelihood by impact">
+      <svg viewBox="0 0 520 520" id="matrix"></svg>
+    </figure>
+    <aside class="riskcard" id="riskcard" aria-live="polite">
+      <span class="riskcard__id">R-001</span>
+      <span class="riskcard__level" data-level="Critical">Critical · 20</span>
+      <p class="riskcard__desc">Shared AWS admin account without MFA enables full environment compromise.</p>
+      <dl class="riskcard__meta">
+        <div><dt>Likelihood</dt><dd id="rc-l">4 / 5</dd></div>
+        <div><dt>Impact</dt><dd id="rc-i">5 / 5</dd></div>
+        <div><dt>Owner</dt><dd id="rc-o">CTO</dd></div>
+        <div><dt>CSF</dt><dd id="rc-s">PR.AA-01</dd></div>
+      </dl>
+      <p class="riskcard__hint">Hover or tap a cell to inspect ·<span id="rc-count"> 10 risks mapped</span></p>
+    </aside>
+  </div>
+</section>
+
+<!-- ================= CONTROL TESTING ================= -->
+<section class="section" id="controls">
+  <div class="section__head">
+    <span class="kicker">03 — Control Testing</span>
+    <h2 class="section__title">Design vs. operating effectiveness.</h2>
+    <p class="section__sub">
+      A control can be perfectly <em>designed</em> on paper and still fail in <em>operation</em>.
+      The incident-response plan exists (design: pass) — but was never exercised (operating: fail).
+      That gap is the whole point of testing both.
+    </p>
+  </div>
+  <div class="tests" id="tests"></div>
+</section>
+
+<!-- ================= REMEDIATION TIMELINE ================= -->
+<section class="section" id="remediation">
+  <div class="section__head">
+    <span class="kicker">04 — Plan of Action &amp; Milestones</span>
+    <h2 class="section__title">A sequenced path to Tier 3.</h2>
+    <p class="section__sub">
+      Ten remediation items, ordered by severity and dependency across Q3 2026 — critical
+      access &amp; detection gaps close first, governance polish lands last.
+    </p>
+  </div>
+  <div class="gantt" id="gantt"></div>
+  <div class="gantt__axis" id="ganttAxis"></div>
+</section>
+
+<!-- ================= CROSSWALK ================= -->
+<section class="section" id="crosswalk">
+  <div class="section__head">
+    <span class="kicker">05 — Multi-Framework Crosswalk</span>
+    <h2 class="section__title">Map once. Satisfy five frameworks.</h2>
+    <p class="section__sub">
+      The core efficiency argument of a unified GRC program: one assessed control maps to
+      NIST 800-53, ISO&nbsp;27001:2022, SOC&nbsp;2, HITRUST, and HIPAA simultaneously.
+      Pick a Function to trace the equivalences.
+    </p>
+  </div>
+
+  <div class="xwalk">
+    <div class="xwalk__tabs" id="xtabs"></div>
+    <div class="xwalk__table" id="xtable"></div>
+  </div>
+
+  <ul class="counts" id="counts"></ul>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer" id="foot">
+  <div class="footer__lead">
+    <h2>An audit you can read in five minutes —<br /><span class="serif-em">and defend for an hour.</span></h2>
+    <p>
+      Every figure on this page traces to an artifact in the repository: scope statement,
+      control checklist, risk register, control test plan, POA&amp;M, evidence log, and a tiered
+      third-party-risk program. Scored by a Python maturity tool; every control identifier
+      verified against authoritative published sources.
+    </p>
+  </div>
+  <div class="footer__cols">
+    <div>
+      <span class="footer__h">Frameworks</span>
+      <ul>
+        <li>NIST CSF 2.0</li><li>NIST SP 800-53 Rev 5</li><li>ISO/IEC 27001:2022</li>
+        <li>SOC 2 Trust Services Criteria</li><li>HITRUST CSF v11</li><li>HIPAA Security Rule</li>
+      </ul>
+    </div>
+    <div>
+      <span class="footer__h">Artifacts</span>
+      <ul>
+        <li>Scope statement</li><li>Risk register &amp; methodology</li><li>Control test plan</li>
+        <li>Audit findings report</li><li>POA&amp;M</li><li>Vendor-risk program</li>
+      </ul>
+    </div>
+    <div>
+      <span class="footer__h">Author</span>
+      <ul>
+        <li>Ozirus B. Morency</li>
+        <li><a href="https://github.com/ozzielove" target="_blank" rel="noopener">github.com/ozzielove ↗</a></li>
+        <li><a href="https://linkedin.com/in/ozirusmorency" target="_blank" rel="noopener">linkedin.com/in/ozirusmorency ↗</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="footer__disclaimer">
+    <strong>Simulated portfolio engagement.</strong> Northwind Health Systems is a fictional organization.
+    This is a readiness self-assessment for demonstration — not a SOC 2 audit, HIPAA attestation, or real client work.
+  </p>
+  <p class="footer__sig">◇ Designed &amp; built from raw assessment data · 2026</p>
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
