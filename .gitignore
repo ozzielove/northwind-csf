@@ -1,0 +1,25 @@
+# --- Internal / non-public (do not publish) ---
+# local agent state
+.letta/
+# internal task planning
+.planning/
+# internal research notes, not part of the portfolio
+RESEARCH_gap_analysis.md
+
+# --- OS / editor noise ---
+.DS_Store
+Thumbs.db
+*~
+.idea/
+.vscode/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# --- Secrets ---
+.env
+*.env

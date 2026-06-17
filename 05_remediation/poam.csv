@@ -1,0 +1,11 @@
+poam_id,source_type,source_id,weakness,csf_subcategory,severity,remediation_action,resources_required,control_owner,milestone_date,status,scheduled_completion
+POAM-001,Finding,F1,Shared AWS admin account without MFA,PR.AA-01,Critical,Provision individual IAM users; enforce MFA; secure root with break-glass,IAM config; 8 hrs eng time,CTO,2026-07-01,In Progress,2026-07-07
+POAM-002,Finding,F2,No least-privilege access model,PR.AA-05,Critical,Define RBAC roles; scope IAM policies; quarterly access reviews,IAM redesign; 24 hrs,CTO,2026-07-15,Open,2026-07-31
+POAM-003,Finding,F3,No SIEM / log review,DE.AE-02,Critical,Deploy SIEM; forward CloudTrail+app logs; define alerts; assign triage,SIEM tool; 40 hrs setup,IT Lead,2026-07-10,Open,2026-08-15
+POAM-004,Finding,F4,IR plan never tested,RS.MA-01,High,Run tabletop exercise; assign IR roles; document lessons learned,Facilitated session; 8 hrs,IT Lead,2026-08-01,Open,2026-08-31
+POAM-005,Finding,F5,No security awareness training,PR.AT-01,High,Deploy annual training + quarterly phishing simulations,Training platform; 4 hrs/qtr,HR / IT Lead,2026-08-15,Open,2026-09-15
+POAM-006,Finding,F6,Vendors onboarded without security review,GV.SC-01,High,Stand up vendor risk program; require BAAs; risk-tier vendors,Questionnaire process; 16 hrs,Procurement,2026-08-01,Open,2026-09-30
+POAM-007,Risk,R-008,Backup restore never tested,RC.RP-01,High,Perform full restore test; document RTO/RPO,4 hrs; test environment,IT Lead,2026-08-20,Open,2026-09-10
+POAM-008,Risk,R-005,No endpoint detection (EDR),DE.CM-09,High,Deploy EDR to all endpoints; centralize alerts,EDR licenses; 16 hrs,IT Lead,2026-08-25,Open,2026-09-20
+POAM-009,Risk,R-009,No software inventory,ID.AM-02,Moderate,Build software inventory/SBOM; integrate with vuln scanning,Asset tool; 12 hrs,IT Lead,2026-09-01,Open,2026-10-15
+POAM-010,Risk,R-010,No risk appetite statement,GV.RM-01,Moderate,Draft and ratify risk appetite + risk management policy,Exec workshop; 6 hrs,CEO,2026-09-15,Open,2026-10-31

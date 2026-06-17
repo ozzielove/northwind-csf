@@ -1,0 +1,10 @@
+test_id,control_id,csf_subcategory,control_objective,test_procedure,design_effectiveness,operating_effectiveness,evidence_ref,result,linked_finding,poam_id
+TEST-01,IA-2,PR.AA-01,Identity & credential mgmt / MFA on privileged accounts,Inspect IAM user list and MFA status export; confirm no shared accounts and MFA enforced on all privileged users,Fail,Fail,EV-001,Deficient,F1,POAM-001
+TEST-02,AC-6,PR.AA-05,Least privilege / RBAC,Review IAM policies for wildcard (*) grants; sample 5 users against job role; confirm quarterly access-review evidence,Fail,Fail,EV-002,Deficient,F2,POAM-002
+TEST-03,AU-6,DE.AE-02,Log review & detection,Confirm CloudTrail enabled (design) and inspect evidence of daily log review / alert triage over the period (operating),Partial,Fail,EV-004,Deficient,F3,POAM-003
+TEST-04,IR-8,RS.MA-01,Incident response execution,Inspect IR plan document (design) and request tabletop / after-action records for the period (operating),Pass,Fail,EV-006,Deficient,F4,POAM-004
+TEST-05,AT-2,PR.AT-01,Security awareness training,Inspect training program (design) and sample completion records + phishing-simulation results (operating),Fail,Fail,EV-005,Deficient,F5,POAM-005
+TEST-06,SR-3,GV.SC-01,Third-party / vendor risk,Inspect vendor risk procedure (design) and sample onboarded vendors for questionnaire + BAA on file (operating),Fail,Fail,EV-008,Deficient,F6,POAM-006
+TEST-07,CP-10,RC.RP-01,Backup & recovery,Inspect backup configuration (design) and request most recent successful restore-test record (operating),Pass,Fail,EV-009,Deficient,R-008,POAM-007
+TEST-08,SC-28,PR.DS-01,Data-at-rest encryption,Inspect RDS and S3 encryption settings and key-management configuration,Pass,Pass,EV-003,Effective,,
+TEST-09,PL-1,GV.PO-01,Security policy,Inspect approved information security policy and confirm review / approval dates,Pass,Pass,EV-007,Effective,,

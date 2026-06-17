@@ -1,0 +1,11 @@
+risk_id,risk_description,csf_subcategory,threat_source,likelihood,impact,risk_score,risk_level,treatment,risk_owner,status
+R-001,Shared AWS admin account without MFA enables full environment compromise,PR.AA-01,External attacker / credential theft,4,5,20,Critical,Mitigate,CTO,Open
+R-002,Excessive IAM permissions (no least privilege) allow lateral movement to ePHI,PR.AA-05,Insider / compromised account,4,4,16,Critical,Mitigate,CTO,Open
+R-003,No SIEM or log review means breaches go undetected,DE.AE-02,Any threat actor,4,4,16,Critical,Mitigate,IT Lead,Open
+R-004,IR plan never tested; HIPAA breach-notification clock missed,RS.MA-01,Operational failure during incident,3,5,15,High,Mitigate,IT Lead,Open
+R-005,No endpoint detection (EDR) on employee laptops,DE.CM-09,Malware / phishing,4,3,12,High,Mitigate,IT Lead,Open
+R-006,No annual security awareness training; phishing-susceptible workforce,PR.AT-01,Phishing / social engineering,4,3,12,High,Mitigate,HR / IT Lead,Open
+R-007,Vendors onboarded with no security review (supply chain risk),GV.SC-01,Third-party breach,3,4,12,High,Mitigate,Procurement,Open
+R-008,Backups exist but restore never tested; recovery may fail,RC.RP-01,Ransomware / data loss,3,4,12,High,Mitigate,IT Lead,Open
+R-009,No formal software inventory; unpatched/unknown assets,ID.AM-02,Vulnerability exploitation,3,3,9,Moderate,Mitigate,IT Lead,Open
+R-010,No risk appetite statement; inconsistent risk decisions,GV.RM-01,Governance gap,3,2,6,Moderate,Mitigate,CEO,Open
