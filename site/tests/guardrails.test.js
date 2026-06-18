@@ -12,7 +12,7 @@ const DASH = /[\u2013\u2014]/;
 
 // Runtime-shipped files only (not docs/tests, which are excluded from the deploy).
 const RUNTIME_FILES = [
-  "index.html", "app.js", "data.js", "scoring.js", "apiutil.js", "styles.css", "tour.js",
+  "index.html", "app.js", "data.js", "scoring.js", "apiutil.js", "styles.css", "tour.js", "present.js",
   ...fs.readdirSync(path.join(SITE, "api")).filter((f) => f.endsWith(".js")).map((f) => "api/" + f),
 ];
 
