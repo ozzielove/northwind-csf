@@ -131,6 +131,8 @@ body::before{
 .nav{
   position:fixed; top:0; left:0; right:0; z-index:100;
   display:flex; align-items:center; justify-content:space-between;
+  gap:1.5rem; /* NAV-01: min separation between brand <-> links <-> apistat; without it the
+                 margin-left:auto on .themeswitch absorbs all slack and left-packs them flush. */
   padding:1rem clamp(1.25rem,5vw,3rem);
   background:rgba(7,9,12,.86);
   background:color-mix(in srgb, var(--bg) 72%, transparent);
@@ -143,7 +145,7 @@ body::before{
 .nav__mark{ display:flex; align-items:center; gap:.6rem; font-family:var(--f-mono); font-size:.78rem; letter-spacing:.12em; }
 .nav__glyph{ color:var(--mint); animation:spin 14s linear infinite; }
 @keyframes spin{ to{ transform:rotate(360deg); } }
-.nav__links{ display:flex; gap:1.6rem; font-family:var(--f-mono); font-size:.78rem; letter-spacing:.06em; }
+.nav__links{ display:flex; gap:1.2rem; font-family:var(--f-mono); font-size:.78rem; letter-spacing:.06em; }
 .nav__links a{ color:var(--muted); position:relative; transition:color .3s; padding-block:.55rem; }
 .nav__links a:hover{ color:var(--ink); }
 .nav__links a::after{ content:""; position:absolute; left:0; bottom:.4rem; width:0; height:1px; background:var(--mint); transition:width .3s var(--ease); }
@@ -155,10 +157,12 @@ body::before{
   transition:border-color .3s, color .3s, background .3s;
 }
 .nav__cta:hover{ border-color:var(--mint); color:var(--mint); background:color-mix(in srgb,var(--mint) 8%,transparent); }
-/* Wrap the nav below ~925px: mark+links+apistat+CTA need ~924px in one row, so a single
-   nowrap row overflows on tablets once the live API pill populates. Wrapping keeps all items
-   on-screen (audit finding #4). */
-@media (max-width:925px){
+/* NAV-01: the single row holds mark + links + apistat pill + theme switch + CTA (~1031px of
+   content). With the base .nav gap (1.5rem) the row needs ~1234px before the margin-left:auto on
+   .themeswitch leaves any slack; below that the row overflows (CTA spills past the right edge).
+   The old 925px breakpoint left a broken 926-1233px dead-zone (1024 laptops crammed + overflowing).
+   Wrap at 1240px so links drop to their own full-width row before the row can overflow. */
+@media (max-width:1240px){
   .nav{
     align-items:flex-start;
     gap:.8rem;
