@@ -327,11 +327,11 @@
           <span class="grow__owner">${p.owner}</span>
         </span>
         <span class="grow__track">
-          <span class="gbar" data-sev="${p.sev}" style="left:${left}%; width:${width}%">
-            <span class="gbar__txt">${p.action}</span>
+          <span class="gbar" data-sev="${p.sev}" title="${p.action}" style="left:${left}%; width:${width}%">
             ${p.status === "In Progress" ? '<span class="gbar__status">● live</span>' : ""}
           </span>
-        </span>`;
+        </span>
+        <span class="grow__desc">${p.action}</span>`;
       wrap.appendChild(row);
       const bar = row.querySelector(".gbar");
       if ("IntersectionObserver" in window) {

@@ -144,17 +144,21 @@ body::before{
 .nav__glyph{ color:var(--mint); animation:spin 14s linear infinite; }
 @keyframes spin{ to{ transform:rotate(360deg); } }
 .nav__links{ display:flex; gap:1.6rem; font-family:var(--f-mono); font-size:.78rem; letter-spacing:.06em; }
-.nav__links a{ color:var(--muted); position:relative; transition:color .3s; }
+.nav__links a{ color:var(--muted); position:relative; transition:color .3s; padding-block:.55rem; }
 .nav__links a:hover{ color:var(--ink); }
-.nav__links a::after{ content:""; position:absolute; left:0; bottom:-5px; width:0; height:1px; background:var(--mint); transition:width .3s var(--ease); }
+.nav__links a::after{ content:""; position:absolute; left:0; bottom:.4rem; width:0; height:1px; background:var(--mint); transition:width .3s var(--ease); }
 .nav__links a:hover::after{ width:100%; }
 .nav__cta{
   font-family:var(--f-mono); font-size:.76rem; letter-spacing:.05em;
-  border:1px solid var(--line-2); border-radius:4px; padding:.45rem .8rem; color:var(--ink-soft);
+  border:1px solid var(--line-2); border-radius:4px; padding:.45rem .75rem; color:var(--ink-soft);
+  flex-shrink:0;
   transition:border-color .3s, color .3s, background .3s;
 }
 .nav__cta:hover{ border-color:var(--mint); color:var(--mint); background:color-mix(in srgb,var(--mint) 8%,transparent); }
-@media (max-width:760px){
+/* Wrap the nav below ~925px: mark+links+apistat+CTA need ~924px in one row, so a single
+   nowrap row overflows on tablets once the live API pill populates. Wrapping keeps all items
+   on-screen (audit finding #4). */
+@media (max-width:925px){
   .nav{
     align-items:flex-start;
     gap:.8rem;
@@ -164,12 +168,10 @@ body::before{
     order:3;
     width:100%;
     display:flex;
+    flex-wrap:wrap;
     gap:1rem;
-    overflow-x:auto;
-    padding-bottom:.15rem;
-    scrollbar-width:none;
+    row-gap:.4rem;
   }
-  .nav__links::-webkit-scrollbar{ display:none; }
   .nav__cta{ margin-left:auto; }
 }
 @media (max-width:420px){
@@ -310,28 +312,19 @@ body::before{
 .gbar[data-sev="High"]{ background:color-mix(in srgb,var(--high) 22%,var(--surface)); border:1px solid color-mix(in srgb,var(--high) 50%,transparent); }
 .gbar[data-sev="Moderate"]{ background:color-mix(in srgb,var(--mint) 20%,var(--surface)); border:1px solid color-mix(in srgb,var(--mint) 45%,transparent); }
 .gbar.is-in{ opacity:1; transform:scaleX(1); }
-.gbar__txt{
-  font-family:var(--f-mono);
-  font-size:.66rem;
-  color:var(--ink);
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  padding-right:2.6rem;
-}
+.grow__desc{ grid-column:1/-1; font-family:var(--f-mono); font-size:.72rem; color:var(--ink-soft); line-height:1.45; padding-top:.1rem; }
 .gbar__status{
   position:absolute;
   right:.5rem;
-  max-width:2.1rem;
-  overflow:hidden;
   font-family:var(--f-mono);
   font-size:.56rem;
   letter-spacing:.08em;
   text-transform:uppercase;
+  white-space:nowrap;
   color:var(--mint);
 }
 .gantt__axis{ display:flex; justify-content:space-between; margin-top:1rem; padding-left:clamp(8rem,17vw,12rem); font-family:var(--f-mono); font-size:.66rem; color:var(--muted); letter-spacing:.08em; }
-@media (max-width:680px){ .grow{ grid-template-columns:1fr; } .grow__meta{ flex-direction:row; gap:.6rem; align-items:baseline; } .gantt__axis{ padding-left:0; } }
+@media (max-width:680px){ .grow{ grid-template-columns:1fr; row-gap:.35rem; } .grow__meta{ flex-direction:row; gap:.6rem; align-items:baseline; } .grow__desc{ padding-top:0; } .gantt__axis{ padding-left:0; } }
 
 /* ---------- crosswalk ---------- */
 .xwalk__tabs{ display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:1.5rem; }
@@ -511,8 +504,8 @@ body::before{
 .demo__field input:focus-visible{ outline:2px solid var(--mint); outline-offset:2px; }
 .demo__checks{ border:1px solid var(--line); border-radius:6px; padding:1rem; margin-bottom:1.1rem; display:flex; flex-direction:column; gap:.6rem; }
 .demo__checks legend{ font-family:var(--f-mono); font-size:.6rem; letter-spacing:.12em; text-transform:uppercase; color:var(--mint-dim); padding:0 .4rem; }
-.demo__checks label{ display:flex; align-items:center; gap:.6rem; font-size:.86rem; color:var(--ink-soft); cursor:pointer; }
-.demo__checks input[type="checkbox"]{ accent-color:var(--mint); width:15px; height:15px; }
+.demo__checks label{ display:flex; align-items:center; gap:.6rem; min-height:44px; font-size:.86rem; color:var(--ink-soft); cursor:pointer; }
+.demo__checks input[type="checkbox"]{ accent-color:var(--mint); width:18px; height:18px; }
 .demo__outwrap{ grid-column:1/-1; border:1px solid var(--line); border-radius:8px; overflow:hidden; background:var(--bg-2); }
 .demo__outhead{ display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:.7rem 1rem; background:var(--surface-2); border-bottom:1px solid var(--line); }
 .demo__label{ font-family:var(--f-mono); font-size:.72rem; color:var(--ink-soft); letter-spacing:.04em; }
