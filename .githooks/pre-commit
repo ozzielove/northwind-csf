@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+# Pre-commit gate: block any commit that introduces em-dashes (U+2014) or
+# en-dashes (U+2013) under site/. The project guardrail is ASCII hyphen only.
+#
+# Install (per clone, one time):  git config core.hooksPath .githooks
+# Bypass once (not recommended):  git commit --no-verify
+set -euo pipefail
+
+ROOT="$(git rev-parse --show-toplevel)"
+SCRUB="$ROOT/site/scripts/scrub_em_dashes.js"
+
+# No scrubber in this tree (e.g. older branch) -> nothing to enforce.
+[ -f "$SCRUB" ] || exit 0
+
+# No node -> warn but don't brick the commit; npm test / CI still enforce it.
+if ! command -v node >/dev/null 2>&1; then
+  echo "pre-commit: node not found; skipping em/en-dash scrub (CI still enforces it)." >&2
+  exit 0
+fi
+
+OUT="$(node "$SCRUB" --static 2>&1)" && STATUS=0 || STATUS=$?
+
+if [ "$STATUS" -ne 0 ]; then
+  echo "" >&2
+  echo "COMMIT BLOCKED: em/en dash(es) found under site/ (ASCII hyphen only)." >&2
+  echo "$OUT" | grep -E ':[0-9]+:[0-9]+' | sed 's/^/  /' >&2 || true
+  echo "" >&2
+  echo "  Fix:  npm --prefix site run scrub:dashes:fix" >&2
+  echo "  then re-stage the files and commit again." >&2
+  echo "" >&2
+  exit 1
+fi
+
+exit 0
