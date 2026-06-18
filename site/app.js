@@ -9,7 +9,7 @@
     document.documentElement.classList.add("data-error");
     return;
   }
-  const { ASSESSMENT, FUNCTIONS, SUBSCORES, RISKS, TESTS, POAM, CROSSWALK, FRAMEWORK_COUNTS, TPRM, DELIVERABLES, EVIDENCE, CLAIMS } = GRC;
+  const { ASSESSMENT, FUNCTIONS, SUBSCORES, RISKS, TESTS, POAM, CROSSWALK, FRAMEWORK_COUNTS, TPRM, DELIVERABLES, EVIDENCE, CLAIMS, CMMC } = GRC;
   const SCORE = window.GRCScore || null;
   const SVGNS = "http://www.w3.org/2000/svg";
   const $ = (s, r = document) => r.querySelector(s);
@@ -492,6 +492,101 @@
     });
   }
 
+  /* ===================== CMMC / 800-171 COMPLIANCE AS CODE ===================== */
+  function cmmc() {
+    if (!CMMC) return;
+
+    /* --- summary rollup --- */
+    const sum = $("#cmmcSummary");
+    if (sum) {
+      const cells = [
+        { n: String(CMMC.controls.length), l: "Requirements modeled" },
+        { n: "8", l: "Control families" },
+        { n: CMMC.meta.profile, l: "Baseline profile", wide: true },
+        { n: CMMC.meta.oscal, l: "Authored as", wide: true },
+      ];
+      cells.forEach((c) => {
+        const li = document.createElement("li");
+        li.className = "cmmc__stat" + (c.wide ? " cmmc__stat--wide" : "");
+        li.innerHTML = `<span class="cmmc__statn">${c.n}</span><span class="cmmc__statl">${c.l}</span>`;
+        sum.appendChild(li);
+      });
+      const li = document.createElement("li");
+      li.className = "cmmc__stat cmmc__stat--status";
+      li.innerHTML = `<span class="cmmc__statl">Implementation status</span>
+        <span class="cmmc__pills">` +
+        CMMC.status.map((s) => `<span class="cpill" data-tone="${s.tone}">${s.n} ${s.label}</span>`).join("") +
+        `</span>`;
+      sum.appendChild(li);
+    }
+
+    /* --- control implementations, grouped by family --- */
+    const ctl = $("#cmmcCtrls");
+    if (ctl) {
+      const fams = [];
+      CMMC.controls.forEach((c) => {
+        let g = fams.find((f) => f.fam === c.fam);
+        if (!g) { g = { fam: c.fam, famName: c.famName, items: [] }; fams.push(g); }
+        g.items.push(c);
+      });
+      fams.forEach((g, gi) => {
+        const block = document.createElement("div");
+        block.className = "cfam";
+        block.style.transitionDelay = (gi * 50) + "ms";
+        block.innerHTML = `<span class="cfam__tag">${g.fam}</span><span class="cfam__name">${g.famName}</span>`;
+        g.items.forEach((c) => {
+          const row = document.createElement("div");
+          row.className = "cctl";
+          row.innerHTML = `
+            <span class="cctl__id">${c.id}</span>
+            <span class="cctl__status" data-status="${c.status}">${c.status}</span>
+            <span class="cctl__stmt">${c.stmt}</span>`;
+          block.appendChild(row);
+        });
+        ctl.appendChild(block);
+        if (io) io.observe(block); else block.classList.add("is-in");
+      });
+    }
+
+    /* --- OSCAL source excerpt (textContent: never inject as markup) --- */
+    const pre = $("#cmmcCode");
+    if (pre) pre.textContent = CMMC.code;
+
+    /* --- POA&M milestones on a shared Aug 2026 - Feb 2027 rail --- */
+    const poam = $("#cmmcPoam");
+    if (poam) {
+      const T0 = Date.parse("2026-08-01"), T1 = Date.parse("2027-03-01");
+      const pct = (d) => Math.max(2, Math.min(98, ((Date.parse(d) - T0) / (T1 - T0)) * 100));
+      CMMC.poam.forEach((p, i) => {
+        const li = document.createElement("li");
+        li.className = "cpitem";
+        li.style.transitionDelay = (i * 60) + "ms";
+        const dots = p.milestones.map((m) => {
+          const pos = pct(m.d);
+          // Anchor labels inward at the rail ends so the fixed-width label never
+          // overruns the rail/section (center-anchored ends overflow; see LAY-01).
+          const edge = pos <= 15 ? " cmile--start" : pos >= 85 ? " cmile--end" : "";
+          return `<span class="cmile${edge}" style="left:${pos}%">
+             <span class="cmile__dot"></span>
+             <span class="cmile__lbl"><b>${m.d}</b> ${m.s}</span>
+           </span>`;
+        }).join("");
+        li.innerHTML = `
+          <div class="cpitem__head">
+            <span class="cpitem__id">${p.id}</span>
+            <span class="cpitem__ctrl">${p.controls}</span>
+            <span class="cpitem__action">${p.action}</span>
+          </div>
+          <div class="cpitem__risk">Risk: ${p.risk}</div>
+          <div class="cpitem__rail" role="img" aria-label="${p.milestones.map((m) => m.s + ' by ' + m.d).join('; ')}">
+            <span class="cpitem__line"></span>${dots}
+          </div>`;
+        poam.appendChild(li);
+        if (io) io.observe(li); else li.classList.add("is-in");
+      });
+    }
+  }
+
   /* ===================== RESUME CLAIM PROOF MAP ===================== */
   const PROOF_TYPES = [
     { key: "Portfolio",        cls: "pt-portfolio",  label: "Portfolio-proven" },
@@ -575,7 +670,14 @@
       const res = await fetch(path, opts);
       clearTimeout(timer);
       const text = await res.text();
-      let json; try { json = JSON.parse(text); } catch (_) { json = text; }
+      let json = null; try { json = JSON.parse(text); } catch (_) { json = null; }
+      // A 404/500 (e.g. static hosting with no backend) does NOT reject fetch, and an
+      // error page is not JSON. Treat any non-OK status or non-JSON body as offline and
+      // serve the bundled fallback instead of dumping raw error HTML labeled "live API".
+      if (!res.ok || json === null) {
+        apiOnline = false;
+        return { live: false, json: localFallback(path, method, body) };
+      }
       apiOnline = true;
       return { live: true, json };
     } catch (_) {
@@ -657,6 +759,7 @@
   tprm();
   deliverables();
   counts();
+  cmmc();
   claimmap();
   demoMode();
   backendStatus();

@@ -1,0 +1,265 @@
+{
+  "//": "SIMULATED / PORTFOLIO -- fictional system, not a real assessment. CUI handling is hypothetical. No real DoD contract, no C3PAO assessment, no CMMC certification.",
+  "plan-of-action-and-milestones": {
+    "uuid": "99999999-aaaa-4bbb-8ccc-000000000001",
+    "metadata": {
+      "title": "SIMULATED / PORTFOLIO -- Plan of Action and Milestones (POA&M): Aegis Defense Logistics Platform (NIST SP 800-171 Rev 2 / CMMC Level 2)",
+      "last-modified": "2026-06-18T00:00:00Z",
+      "version": "0.1.0-portfolio",
+      "oscal-version": "1.1.2",
+      "roles": [
+        {
+          "id": "remediation-owner",
+          "title": "Remediation Owner (Simulated)"
+        },
+        {
+          "id": "author",
+          "title": "Portfolio Author / Engineer-Analyst"
+        }
+      ],
+      "parties": [
+        {
+          "uuid": "22222222-aaaa-4bbb-8ccc-000000000001",
+          "type": "organization",
+          "name": "Ironwood Defense Systems LLC (FICTIONAL)",
+          "remarks": "Fictional defense subcontractor invented for this portfolio exercise."
+        },
+        {
+          "uuid": "22222222-aaaa-4bbb-8ccc-000000000002",
+          "type": "person",
+          "name": "Ozirus B. Morency",
+          "remarks": "Portfolio author. SIMULATED artifact. No active clearance, no CMMC/CISSP/CISA certification, no production ISSO authority."
+        }
+      ],
+      "responsible-parties": [
+        {
+          "role-id": "remediation-owner",
+          "party-uuids": ["22222222-aaaa-4bbb-8ccc-000000000001"]
+        },
+        {
+          "role-id": "author",
+          "party-uuids": ["22222222-aaaa-4bbb-8ccc-000000000002"]
+        }
+      ]
+    },
+    "import-ssp": {
+      "href": "./ssp.json",
+      "remarks": "References the SIMULATED System Security Plan for the Aegis Defense Logistics Platform."
+    },
+    "system-id": {
+      "identifier-type": "https://ironwood-defense.example/ns/system",
+      "id": "aegis-defense-logistics-platform-SIM-0001"
+    },
+    "observations": [
+      {
+        "uuid": "aaaaaaaa-aaaa-4bbb-8ccc-000000000001",
+        "title": "Legacy admin console permits single-factor login and shared elevated role",
+        "description": "SIMULATED observation. The legacy administrative console allows password-only break-glass login and uses a shared elevated role, conflicting with least privilege (3.1.5) and MFA (3.5.3).",
+        "methods": ["EXAMINE"],
+        "collected": "2026-06-18T00:00:00Z"
+      },
+      {
+        "uuid": "aaaaaaaa-aaaa-4bbb-8ccc-000000000002",
+        "title": "Audit logs not centralized for database and batch worker tiers",
+        "description": "SIMULATED observation. The database and batch worker tiers do not forward audit records to the centralized logging service, creating gaps in audit coverage (3.3.1).",
+        "methods": ["EXAMINE"],
+        "collected": "2026-06-18T00:00:00Z"
+      },
+      {
+        "uuid": "aaaaaaaa-aaaa-4bbb-8ccc-000000000003",
+        "title": "Cryptographic modules not yet FIPS-validated",
+        "description": "SIMULATED observation. Industry-standard TLS is in use, but not all cryptographic modules protecting simulated CUI are FIPS 140-validated (3.13.11).",
+        "methods": ["EXAMINE"],
+        "collected": "2026-06-18T00:00:00Z"
+      },
+      {
+        "uuid": "aaaaaaaa-aaaa-4bbb-8ccc-000000000004",
+        "title": "No formal recurring security awareness training cadence",
+        "description": "SIMULATED observation. Security awareness training is delivered ad hoc with no recurring annual cadence or completion tracking (3.2.1).",
+        "methods": ["INTERVIEW"],
+        "collected": "2026-06-18T00:00:00Z"
+      },
+      {
+        "uuid": "aaaaaaaa-aaaa-4bbb-8ccc-000000000005",
+        "title": "Vulnerability scanning runs quarterly instead of monthly",
+        "description": "SIMULATED observation. Vulnerability scanning is performed quarterly, below the targeted monthly cadence, reducing risk-assessment freshness (3.11.1).",
+        "methods": ["TEST"],
+        "collected": "2026-06-18T00:00:00Z"
+      }
+    ],
+    "risks": [
+      {
+        "uuid": "bbbbbbbb-aaaa-4bbb-8ccc-000000000001",
+        "title": "Unauthorized administrative access via legacy console",
+        "description": "SIMULATED risk. Single-factor, shared-role admin access could allow unauthorized privilege use.",
+        "status": "open"
+      },
+      {
+        "uuid": "bbbbbbbb-aaaa-4bbb-8ccc-000000000002",
+        "title": "Incomplete audit trail impedes investigation",
+        "description": "SIMULATED risk. Missing centralized logs could prevent after-the-fact investigation of incidents.",
+        "status": "open"
+      },
+      {
+        "uuid": "bbbbbbbb-aaaa-4bbb-8ccc-000000000003",
+        "title": "Non-FIPS crypto weakens CUI confidentiality assurance",
+        "description": "SIMULATED risk. Use of non-validated cryptographic modules may not meet CMMC L2 expectations for protecting CUI.",
+        "status": "open"
+      },
+      {
+        "uuid": "bbbbbbbb-aaaa-4bbb-8ccc-000000000004",
+        "title": "Untrained workforce increases human-factor risk",
+        "description": "SIMULATED risk. Lack of recurring awareness training raises susceptibility to phishing and policy violations.",
+        "status": "open"
+      },
+      {
+        "uuid": "bbbbbbbb-aaaa-4bbb-8ccc-000000000005",
+        "title": "Stale vulnerability posture",
+        "description": "SIMULATED risk. Quarterly scanning may leave exploitable vulnerabilities undetected for extended periods.",
+        "status": "open"
+      }
+    ],
+    "poam-items": [
+      {
+        "uuid": "cccccccc-aaaa-4bbb-8ccc-000000000001",
+        "title": "POAM-0001: Enforce MFA and individual least-privilege accounts on legacy admin console",
+        "description": "SIMULATED. Remediate single-factor break-glass login and shared elevated role on the legacy administrative console by enforcing MFA and migrating to individually scoped administrator accounts. Addresses 3.1.5 and 3.5.3.",
+        "props": [
+          {"name": "remediation-owner", "value": "Remediation Owner (Simulated)"},
+          {"name": "related-control", "value": "3.1.5, 3.5.3"}
+        ],
+        "related-observations": [
+          {"observation-uuid": "aaaaaaaa-aaaa-4bbb-8ccc-000000000001"}
+        ],
+        "related-risks": [
+          {"risk-uuid": "bbbbbbbb-aaaa-4bbb-8ccc-000000000001"}
+        ],
+        "remarks": "Closure evidence (simulated): IdP policy export showing MFA required for all admin sessions; access-review report confirming removal of the shared role.",
+        "milestones": [
+          {
+            "uuid": "dddddddd-aaaa-4bbb-8ccc-000000000001",
+            "description": "Onboard legacy console to the Aegis Identity Provider and require MFA for all admin logins.",
+            "remarks": "Target: 2026-09-30"
+          },
+          {
+            "uuid": "dddddddd-aaaa-4bbb-8ccc-000000000002",
+            "description": "Decommission shared elevated role and provision individual least-privilege admin accounts.",
+            "remarks": "Target: 2026-11-30"
+          }
+        ]
+      },
+      {
+        "uuid": "cccccccc-aaaa-4bbb-8ccc-000000000002",
+        "title": "POAM-0002: Centralize audit logging across all tiers",
+        "description": "SIMULATED. Forward audit records from the database and batch worker tiers to the centralized logging service to close audit-coverage gaps. Addresses 3.3.1.",
+        "props": [
+          {"name": "remediation-owner", "value": "Remediation Owner (Simulated)"},
+          {"name": "related-control", "value": "3.3.1"}
+        ],
+        "related-observations": [
+          {"observation-uuid": "aaaaaaaa-aaaa-4bbb-8ccc-000000000002"}
+        ],
+        "related-risks": [
+          {"risk-uuid": "bbbbbbbb-aaaa-4bbb-8ccc-000000000002"}
+        ],
+        "remarks": "Closure evidence (simulated): logging dashboard showing ingestion from all in-boundary components; retention policy configuration.",
+        "milestones": [
+          {
+            "uuid": "dddddddd-aaaa-4bbb-8ccc-000000000003",
+            "description": "Configure database audit log shipping to the centralized logging service.",
+            "remarks": "Target: 2026-10-31"
+          },
+          {
+            "uuid": "dddddddd-aaaa-4bbb-8ccc-000000000004",
+            "description": "Configure batch worker tier log forwarding and validate end-to-end coverage.",
+            "remarks": "Target: 2026-12-15"
+          }
+        ]
+      },
+      {
+        "uuid": "cccccccc-aaaa-4bbb-8ccc-000000000003",
+        "title": "POAM-0003: Roll out FIPS 140-validated cryptographic modules",
+        "description": "SIMULATED. Migrate cryptographic operations protecting simulated CUI to FIPS 140-validated modules. Addresses 3.13.11.",
+        "props": [
+          {"name": "remediation-owner", "value": "Remediation Owner (Simulated)"},
+          {"name": "related-control", "value": "3.13.11"}
+        ],
+        "related-observations": [
+          {"observation-uuid": "aaaaaaaa-aaaa-4bbb-8ccc-000000000003"}
+        ],
+        "related-risks": [
+          {"risk-uuid": "bbbbbbbb-aaaa-4bbb-8ccc-000000000003"}
+        ],
+        "remarks": "Closure evidence (simulated): module CMVP certificate references; configuration showing FIPS mode enabled at gateway and data-at-rest layers.",
+        "milestones": [
+          {
+            "uuid": "dddddddd-aaaa-4bbb-8ccc-000000000005",
+            "description": "Inventory all cryptographic modules and identify non-validated components.",
+            "remarks": "Target: 2026-08-31"
+          },
+          {
+            "uuid": "dddddddd-aaaa-4bbb-8ccc-000000000006",
+            "description": "Enable FIPS mode and replace non-validated modules in production-equivalent environment.",
+            "remarks": "Target: 2027-02-28"
+          }
+        ]
+      },
+      {
+        "uuid": "cccccccc-aaaa-4bbb-8ccc-000000000004",
+        "title": "POAM-0004: Establish recurring annual security awareness training",
+        "description": "SIMULATED. Implement a formal recurring annual security awareness training program with completion tracking for managers, administrators, and users. Addresses 3.2.1.",
+        "props": [
+          {"name": "remediation-owner", "value": "Remediation Owner (Simulated)"},
+          {"name": "related-control", "value": "3.2.1"}
+        ],
+        "related-observations": [
+          {"observation-uuid": "aaaaaaaa-aaaa-4bbb-8ccc-000000000004"}
+        ],
+        "related-risks": [
+          {"risk-uuid": "bbbbbbbb-aaaa-4bbb-8ccc-000000000004"}
+        ],
+        "remarks": "Closure evidence (simulated): LMS completion report; training policy document with annual cadence.",
+        "milestones": [
+          {
+            "uuid": "dddddddd-aaaa-4bbb-8ccc-000000000007",
+            "description": "Select training content and define annual cadence and role-based requirements.",
+            "remarks": "Target: 2026-09-15"
+          },
+          {
+            "uuid": "dddddddd-aaaa-4bbb-8ccc-000000000008",
+            "description": "Deliver first cycle and achieve 100 percent completion tracking.",
+            "remarks": "Target: 2026-12-31"
+          }
+        ]
+      },
+      {
+        "uuid": "cccccccc-aaaa-4bbb-8ccc-000000000005",
+        "title": "POAM-0005: Increase vulnerability scan frequency to monthly",
+        "description": "SIMULATED. Increase authenticated vulnerability scanning from quarterly to monthly and integrate findings into the risk-assessment process. Addresses 3.11.1.",
+        "props": [
+          {"name": "remediation-owner", "value": "Remediation Owner (Simulated)"},
+          {"name": "related-control", "value": "3.11.1"}
+        ],
+        "related-observations": [
+          {"observation-uuid": "aaaaaaaa-aaaa-4bbb-8ccc-000000000005"}
+        ],
+        "related-risks": [
+          {"risk-uuid": "bbbbbbbb-aaaa-4bbb-8ccc-000000000005"}
+        ],
+        "remarks": "Closure evidence (simulated): scan scheduler configuration showing monthly cadence; three consecutive monthly scan reports.",
+        "milestones": [
+          {
+            "uuid": "dddddddd-aaaa-4bbb-8ccc-000000000009",
+            "description": "Reconfigure the Aegis Vulnerability Scanning Service for monthly authenticated scans.",
+            "remarks": "Target: 2026-08-15"
+          },
+          {
+            "uuid": "dddddddd-aaaa-4bbb-8ccc-000000000010",
+            "description": "Validate three consecutive monthly cycles and integrate into risk register.",
+            "remarks": "Target: 2026-11-15"
+          }
+        ]
+      }
+    ]
+  }
+}

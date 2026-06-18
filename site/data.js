@@ -258,10 +258,88 @@ const CLAIMS = [
     claim:"U.S. Army National Guard veteran",
     evidence:"Candidate background section",
     demo:"Connect mission discipline and documentation rigor to GRC evidence handling.",
-    boundary:"Military service - context for work ethic and clearance-readiness." },
+    boundary:"Military service - context for work ethic, documentation rigor, and US-person status." },
 ];
 
-const GRC = { ASSESSMENT, FUNCTIONS, SUBSCORES, RISKS, TESTS, POAM, CROSSWALK, FRAMEWORK_COUNTS, TPRM, DELIVERABLES, EVIDENCE, CLAIMS };
+/* ============================================================================
+   CMMC / NIST SP 800-171 "compliance as code" artifact.
+   Rendered live from the machine-readable OSCAL source the project authored:
+   cmmc-800-171-ssp/oscal/ssp.json  +  cmmc-800-171-ssp/oscal/poam.json.
+   SIMULATED / PORTFOLIO - fictional system (Aegis Defense Logistics Platform,
+   Ironwood Defense Systems LLC). No real CUI, no DoD contract, no C3PAO
+   assessment, no CMMC certification. CMMC/ITAR here means US-person handling,
+   NOT a personnel security clearance.
+   ========================================================================== */
+const CMMC = {
+  meta: {
+    system: "Aegis Defense Logistics Platform",
+    org: "Ironwood Defense Systems LLC (fictional)",
+    profile: "NIST SP 800-171 Rev 2 · CMMC Level 2",
+    oscal: "OSCAL 1.1.2 · SSP + POA&M (JSON)",
+    source: "cmmc-800-171-ssp/oscal/ssp.json + poam.json",
+    impact: "FIPS-199 Moderate confidentiality / Moderate integrity / Low availability",
+  },
+  /* Status rollup across the 12 modeled requirements. */
+  status: [
+    { key: "implemented", label: "Implemented", n: 6, tone: "pass" },
+    { key: "partial",     label: "Partial",     n: 4, tone: "partial" },
+    { key: "planned",     label: "Planned",     n: 2, tone: "open" },
+  ],
+  /* 12 representative 800-171 requirements, native control numbering, 8 families. */
+  controls: [
+    { id:"3.1.1",  fam:"AC", famName:"Access Control",                 status:"implemented",
+      stmt:"Account provisioning is centralized in the identity provider; only named, approved users, processes, and devices get access, with documented approval and deprovisioning on role change or separation." },
+    { id:"3.1.2",  fam:"AC", famName:"Access Control",                 status:"implemented",
+      stmt:"Access is limited to the transactions and functions authorized users may execute, enforced via role-based access mapped to least privilege." },
+    { id:"3.1.5",  fam:"AC", famName:"Access Control",                 status:"partial",
+      stmt:"Least privilege and separation of duties hold in the primary application; a legacy admin console retains a shared elevated role pending migration. Tracked in POAM-0001." },
+    { id:"3.3.1",  fam:"AU", famName:"Audit and Accountability",       status:"partial",
+      stmt:"Application and identity tiers emit audit records; the database and a batch worker tier do not yet ship logs to the central service, leaving an audit-coverage gap. Tracked in POAM-0002." },
+    { id:"3.5.1",  fam:"IA", famName:"Identification and Authentication", status:"implemented",
+      stmt:"Every user and device is uniquely identified through the identity provider before access is granted; shared accounts are prohibited in the primary application." },
+    { id:"3.5.3",  fam:"IA", famName:"Identification and Authentication", status:"partial",
+      stmt:"MFA is enforced for standard users and for admin access to the primary application; a legacy console still permits single-factor break-glass login. Tracked in POAM-0001." },
+    { id:"3.13.1", fam:"SC", famName:"System and Communications Protection", status:"implemented",
+      stmt:"Communications at external and key internal boundaries are monitored, controlled, and protected; TLS terminates at a managed gateway and east-west traffic is segmented by security group." },
+    { id:"3.13.11",fam:"SC", famName:"System and Communications Protection", status:"planned",
+      stmt:"Industry-standard TLS is in use, but not all cryptographic modules are FIPS-validated; a rollout to FIPS 140-validated modules is planned. Tracked in POAM-0003." },
+    { id:"3.14.1", fam:"SI", famName:"System and Information Integrity", status:"implemented",
+      stmt:"System flaws are identified, reported, and corrected; OS and dependency patches apply on a monthly cadence with emergency patching for critical advisories." },
+    { id:"3.4.1",  fam:"CM", famName:"Configuration Management",       status:"implemented",
+      stmt:"Baseline configurations and inventories are maintained as infrastructure-as-code in version control, with peer-reviewed change management across the lifecycle." },
+    { id:"3.11.1", fam:"RA", famName:"Risk Assessment",                status:"partial",
+      stmt:"Risk to operations and assets is periodically assessed; vulnerability scanning runs quarterly rather than the targeted monthly cadence, reducing freshness. Tracked in POAM-0005." },
+    { id:"3.2.1",  fam:"AT", famName:"Awareness and Training",         status:"planned",
+      stmt:"Security awareness for managers, admins, and users exists ad hoc; a formal recurring annual cadence with completion tracking is planned. Tracked in POAM-0004." },
+  ],
+  /* 5 POA&M items with dated milestones (Aug 2026 - Feb 2027). */
+  poam: [
+    { id:"POAM-0001", controls:"3.1.5 · 3.5.3", risk:"Unauthorized admin access via legacy console",
+      action:"Enforce MFA and individual least-privilege accounts on the legacy admin console",
+      milestones:[ {d:"2026-09-30", s:"Onboard console to IdP; require MFA for all admin logins"},
+                   {d:"2026-11-30", s:"Decommission shared role; provision individual admin accounts"} ] },
+    { id:"POAM-0002", controls:"3.3.1", risk:"Incomplete audit trail impedes investigation",
+      action:"Centralize audit logging across all in-boundary tiers",
+      milestones:[ {d:"2026-10-31", s:"Ship database audit logs to the central logging service"},
+                   {d:"2026-12-15", s:"Forward batch-worker logs; validate end-to-end coverage"} ] },
+    { id:"POAM-0003", controls:"3.13.11", risk:"Non-FIPS crypto weakens CUI confidentiality assurance",
+      action:"Roll out FIPS 140-validated cryptographic modules",
+      milestones:[ {d:"2026-08-31", s:"Inventory modules; identify non-validated components"},
+                   {d:"2027-02-28", s:"Enable FIPS mode; replace non-validated modules"} ] },
+    { id:"POAM-0004", controls:"3.2.1", risk:"Untrained workforce raises human-factor risk",
+      action:"Establish a recurring annual security awareness training program",
+      milestones:[ {d:"2026-09-15", s:"Select content; define annual cadence and role requirements"},
+                   {d:"2026-12-31", s:"Deliver first cycle; reach full completion tracking"} ] },
+    { id:"POAM-0005", controls:"3.11.1", risk:"Stale vulnerability posture",
+      action:"Increase authenticated vulnerability scanning to monthly",
+      milestones:[ {d:"2026-08-15", s:"Reconfigure scanner for monthly authenticated scans"},
+                   {d:"2026-11-15", s:"Validate three monthly cycles; integrate into risk register"} ] },
+  ],
+  /* Verbatim excerpt of the OSCAL source these views render from (compliance as code). */
+  code: '{\n  "system-security-plan": {\n    "control-implementation": {\n      "implemented-requirements": [\n        {\n          "control-id": "3.5.3",\n          "props": [\n            { "name": "control-family", "value": "IA - Identification and Authentication" },\n            { "name": "implementation-status", "value": "partial" }\n          ],\n          "statements": [{ "by-components": [{ "description":\n            "MFA is enforced for standard and admin access ... legacy\n             console still permits single-factor break-glass login.\n             Tracked in POA&M item POAM-0001." }]\n          }]\n        }\n      ]\n    }\n  }\n}',
+};
+
+const GRC = { ASSESSMENT, FUNCTIONS, SUBSCORES, RISKS, TESTS, POAM, CROSSWALK, FRAMEWORK_COUNTS, TPRM, DELIVERABLES, EVIDENCE, CLAIMS, CMMC };
 
 /* Dual export: browser (window.GRC) and Node/Vercel API (module.exports). */
 if (typeof window !== "undefined") { window.GRC = GRC; }

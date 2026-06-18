@@ -40,6 +40,7 @@
     <a href="#risk">Risk</a>
     <a href="#controls">Controls</a>
     <a href="#crosswalk">Crosswalk</a>
+    <a href="#cmmc">OSCAL</a>
     <a href="#claimmap">Proof</a>
     <a href="#demo">Demo</a>
   </nav>
@@ -489,10 +490,43 @@
   <ul class="counts" id="counts"></ul>
 </section>
 
+<!-- ================= CMMC / 800-171 COMPLIANCE AS CODE ================= -->
+<section class="section" id="cmmc">
+  <div class="section__head">
+    <span class="kicker">06 - Compliance as Code</span>
+    <h2 class="section__title">Controls that compile. OSCAL, not a binder.</h2>
+    <p class="section__sub">
+      The same discipline, expressed the way modern compliance teams ship it: a NIST&nbsp;SP&nbsp;800-171&nbsp;Rev&nbsp;2 /
+      CMMC&nbsp;Level&nbsp;2 System Security Plan and POA&amp;M authored as machine-readable <strong>OSCAL</strong> (JSON).
+      Everything below renders live, in your browser, straight from <code>oscal/ssp.json</code> and
+      <code>oscal/poam.json</code> - the format FedRAMP and continuous-ATO programs run on.
+      <span class="cmmc__sim">Simulated portfolio system · fictional defense subcontractor · no real CUI, no DoD contract, no CMMC certification.</span>
+    </p>
+  </div>
+
+  <ul class="cmmc__summary" id="cmmcSummary" aria-label="800-171 / CMMC artifact summary"></ul>
+
+  <div class="cmmc__grid">
+    <div class="cmmc__controls">
+      <span class="cmmc__h">12 requirements · 8 families · native 800-171 numbering</span>
+      <div class="cctls" id="cmmcCtrls" aria-label="Modeled 800-171 control implementations"></div>
+    </div>
+    <figure class="cmmc__code" aria-label="OSCAL source excerpt">
+      <figcaption class="cmmc__codecap">oscal/ssp.json <span class="muted">· the source these views render from</span></figcaption>
+      <pre id="cmmcCode" tabindex="0" role="group" aria-label="Excerpt of the OSCAL system security plan JSON"></pre>
+    </figure>
+  </div>
+
+  <div class="cmmc__poamwrap">
+    <span class="cmmc__h">POA&amp;M remediation milestones <span class="muted">· Aug 2026 - Feb 2027</span></span>
+    <ol class="cpoam" id="cmmcPoam" aria-label="Plan of action and milestones"></ol>
+  </div>
+</section>
+
 <!-- ================= THIRD-PARTY RISK / TPRM ================= -->
 <section class="section" id="vendors">
   <div class="section__head">
-    <span class="kicker">06 - Third-Party Risk</span>
+    <span class="kicker">07 - Third-Party Risk</span>
     <h2 class="section__title">No simulated ePHI vendor passes intake unscreened.</h2>
     <p class="section__sub">
       A tiered third-party-risk program: rank a vendor on <em>inherent</em> risk at intake, run a
@@ -523,7 +557,7 @@
 <!-- ================= DELIVERABLES / ARTIFACT SET ================= -->
 <section class="section" id="deliverables">
   <div class="section__head">
-    <span class="kicker">07 - The Deliverables</span>
+    <span class="kicker">08 - The Deliverables</span>
     <h2 class="section__title">Twelve artifacts. One defensible assessment package.</h2>
     <p class="section__sub">
       Everything visualized above is backed by a complete readiness artifact set - the same
@@ -536,7 +570,7 @@
 <!-- ================= TRANSFERABLE EXPERIENCE ================= -->
 <section class="section" id="transferable">
   <div class="section__head">
-    <span class="kicker">08 - Transferable Audit Experience</span>
+    <span class="kicker">09 - Transferable Audit Experience</span>
     <h2 class="section__title">Regulated-operations discipline, retooled for GRC.</h2>
     <p class="section__sub">
       This project translates prior regulated-operations discipline into cybersecurity GRC artifacts:
@@ -581,7 +615,7 @@
 <!-- ================= RESUME CLAIM PROOF MAP ================= -->
 <section class="section" id="claimmap">
   <div class="section__head">
-    <span class="kicker">09 - Resume Claim Proof Map</span>
+    <span class="kicker">10 - Resume Claim Proof Map</span>
     <h2 class="section__title">Every claim, tied to evidence you can open.</h2>
     <p class="section__sub">
       Each card maps a résumé claim to the artifact, endpoint, or script that backs it - with the
@@ -596,7 +630,7 @@
 <!-- ================= INTERVIEW DEMO MODE ================= -->
 <section class="section" id="demo">
   <div class="section__head">
-    <span class="kicker">10 - Interview Demo Mode</span>
+    <span class="kicker">11 - Interview Demo Mode</span>
     <h2 class="section__title">Poke the backend. It answers in real time.</h2>
     <p class="section__sub">
       Live serverless endpoints computing over the same repository data. Click a probe and the raw JSON

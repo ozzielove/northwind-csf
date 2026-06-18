@@ -1,0 +1,421 @@
+{
+  "//": "SIMULATED / PORTFOLIO -- fictional system, not a real assessment. CUI handling is hypothetical. No real DoD contract, no C3PAO assessment, no CMMC certification.",
+  "system-security-plan": {
+    "uuid": "11111111-aaaa-4bbb-8ccc-000000000001",
+    "metadata": {
+      "title": "SIMULATED / PORTFOLIO -- System Security Plan (Excerpt): Aegis Defense Logistics Platform (NIST SP 800-171 Rev 2 / CMMC Level 2)",
+      "last-modified": "2026-06-18T00:00:00Z",
+      "version": "0.1.0-portfolio",
+      "oscal-version": "1.1.2",
+      "roles": [
+        {
+          "id": "system-owner",
+          "title": "System Owner (Simulated)"
+        },
+        {
+          "id": "isso",
+          "title": "Information System Security Officer (Simulated)"
+        },
+        {
+          "id": "author",
+          "title": "Portfolio Author / Engineer-Analyst"
+        },
+        {
+          "id": "remediation-owner",
+          "title": "Remediation Owner (Simulated)"
+        }
+      ],
+      "parties": [
+        {
+          "uuid": "22222222-aaaa-4bbb-8ccc-000000000001",
+          "type": "organization",
+          "name": "Ironwood Defense Systems LLC (FICTIONAL)",
+          "remarks": "Fictional defense subcontractor invented for this portfolio exercise. Not a real company."
+        },
+        {
+          "uuid": "22222222-aaaa-4bbb-8ccc-000000000002",
+          "type": "person",
+          "name": "Ozirus B. Morency",
+          "remarks": "Portfolio author. Engineer-analyst. This is a SIMULATED artifact authored to demonstrate compliance-as-code literacy. The author holds no active clearance and no CMMC/CISSP/CISA certification, and has no production ISSO authority."
+        }
+      ],
+      "responsible-parties": [
+        {
+          "role-id": "system-owner",
+          "party-uuids": ["22222222-aaaa-4bbb-8ccc-000000000001"]
+        },
+        {
+          "role-id": "author",
+          "party-uuids": ["22222222-aaaa-4bbb-8ccc-000000000002"]
+        }
+      ]
+    },
+    "import-profile": {
+      "href": "https://csrc.nist.gov/files/oscal/profiles/cmmc-level2-800-171r2-profile.json",
+      "remarks": "Descriptive href to a CMMC Level 2 / NIST SP 800-171 Rev 2 baseline profile. SIMULATED reference; not a fetched live profile."
+    },
+    "system-characteristics": {
+      "system-name": "Aegis Defense Logistics Platform (FICTIONAL)",
+      "description": "SIMULATED / PORTFOLIO. The Aegis Defense Logistics Platform is a fictional multi-tenant SaaS operated by Ironwood Defense Systems LLC that hypothetically supports defense supply-chain logistics tracking for a notional prime contractor. It is described here only to exercise OSCAL SSP modeling. CUI handling is hypothetical and simulated; no real Controlled Unclassified Information is stored, processed, or transmitted.",
+      "security-sensitivity-level": "moderate",
+      "system-information": {
+        "information-types": [
+          {
+            "uuid": "33333333-aaaa-4bbb-8ccc-000000000001",
+            "title": "Simulated Controlled Unclassified Information (CUI) -- Logistics",
+            "description": "Hypothetical CUI consisting of notional defense logistics records (shipment manifests, part numbers, delivery schedules). SIMULATED data only.",
+            "categorizations": [
+              {
+                "system": "https://doi.org/10.6028/NIST.SP.800-60v2r1",
+                "information-type-ids": ["C.3.5.1"]
+              }
+            ],
+            "confidentiality-impact": {
+              "base": "fips-199-moderate"
+            },
+            "integrity-impact": {
+              "base": "fips-199-moderate"
+            },
+            "availability-impact": {
+              "base": "fips-199-low"
+            }
+          }
+        ]
+      },
+      "security-impact-level": {
+        "security-objective-confidentiality": "fips-199-moderate",
+        "security-objective-integrity": "fips-199-moderate",
+        "security-objective-availability": "fips-199-low"
+      },
+      "status": {
+        "state": "under-development",
+        "remarks": "SIMULATED. The system is a portfolio construct and is not operational."
+      },
+      "authorization-boundary": {
+        "description": "SIMULATED authorization boundary. The boundary notionally includes the Aegis web application tier, an application/API tier, a managed PostgreSQL database, a centralized logging service, an identity provider for single sign-on, and administrator access paths. All cloud infrastructure is hypothetically hosted in a FedRAMP-aligned region. This boundary description exists only to model OSCAL structure and does not reflect a real deployment."
+      }
+    },
+    "system-implementation": {
+      "users": [
+        {
+          "uuid": "44444444-aaaa-4bbb-8ccc-000000000001",
+          "title": "Standard Logistics User (Simulated)",
+          "role-ids": ["system-owner"],
+          "authorized-privileges": [
+            {
+              "title": "Read/write logistics records",
+              "functions-performed": ["view shipments", "update manifests"]
+            }
+          ]
+        },
+        {
+          "uuid": "44444444-aaaa-4bbb-8ccc-000000000002",
+          "title": "Platform Administrator (Simulated)",
+          "role-ids": ["isso"],
+          "authorized-privileges": [
+            {
+              "title": "Administer platform configuration",
+              "functions-performed": ["manage users", "configure controls"]
+            }
+          ]
+        }
+      ],
+      "components": [
+        {
+          "uuid": "55555555-aaaa-4bbb-8ccc-000000000001",
+          "type": "this-system",
+          "title": "Aegis Defense Logistics Platform (This System)",
+          "description": "SIMULATED. The overall fictional system under assessment.",
+          "status": {
+            "state": "under-development"
+          }
+        },
+        {
+          "uuid": "55555555-aaaa-4bbb-8ccc-000000000002",
+          "type": "service",
+          "title": "Aegis Identity Provider (SSO/MFA Service)",
+          "description": "SIMULATED single sign-on and multi-factor authentication service for the platform.",
+          "status": {
+            "state": "operational",
+            "remarks": "Simulated operational state."
+          }
+        },
+        {
+          "uuid": "55555555-aaaa-4bbb-8ccc-000000000003",
+          "type": "service",
+          "title": "Aegis Centralized Logging Service",
+          "description": "SIMULATED log aggregation and retention service intended to centralize audit records across tiers.",
+          "status": {
+            "state": "under-development"
+          }
+        },
+        {
+          "uuid": "55555555-aaaa-4bbb-8ccc-000000000004",
+          "type": "service",
+          "title": "Aegis Vulnerability Scanning Service",
+          "description": "SIMULATED authenticated and unauthenticated vulnerability scanning service for the platform attack surface.",
+          "status": {
+            "state": "under-development"
+          }
+        }
+      ]
+    },
+    "control-implementation": {
+      "description": "SIMULATED control implementation narratives for 12 representative NIST SP 800-171 Rev 2 requirements. Control ids use the native 800-171 numbering (for example, 3.1.1).",
+      "implemented-requirements": [
+        {
+          "uuid": "66666666-aaaa-4bbb-8ccc-000000000001",
+          "control-id": "3.1.1",
+          "props": [
+            {"name": "control-family", "value": "AC - Access Control"},
+            {"name": "implementation-status", "value": "implemented"}
+          ],
+          "statements": [
+            {
+              "statement-id": "3.1.1_smt",
+              "uuid": "77777777-aaaa-4bbb-8ccc-000000000001",
+              "by-components": [
+                {
+                  "component-uuid": "55555555-aaaa-4bbb-8ccc-000000000001",
+                  "uuid": "88888888-aaaa-4bbb-8ccc-000000000001",
+                  "description": "SIMULATED. Account provisioning is centralized in the Aegis Identity Provider. Only named, approved organizational users, processes, and devices are granted access; access requests route through a documented approval workflow and deprovisioning occurs on role change or separation."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "uuid": "66666666-aaaa-4bbb-8ccc-000000000002",
+          "control-id": "3.1.2",
+          "props": [
+            {"name": "control-family", "value": "AC - Access Control"},
+            {"name": "implementation-status", "value": "implemented"}
+          ],
+          "statements": [
+            {
+              "statement-id": "3.1.2_smt",
+              "uuid": "77777777-aaaa-4bbb-8ccc-000000000002",
+              "by-components": [
+                {
+                  "component-uuid": "55555555-aaaa-4bbb-8ccc-000000000001",
+                  "uuid": "88888888-aaaa-4bbb-8ccc-000000000002",
+                  "description": "SIMULATED. System access is limited to the transactions and functions authorized users are permitted to execute via role-based access control roles mapped to least privilege. Standard logistics users cannot reach administrative functions."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "uuid": "66666666-aaaa-4bbb-8ccc-000000000003",
+          "control-id": "3.1.5",
+          "props": [
+            {"name": "control-family", "value": "AC - Access Control"},
+            {"name": "implementation-status", "value": "partial"}
+          ],
+          "statements": [
+            {
+              "statement-id": "3.1.5_smt",
+              "uuid": "77777777-aaaa-4bbb-8ccc-000000000003",
+              "by-components": [
+                {
+                  "component-uuid": "55555555-aaaa-4bbb-8ccc-000000000001",
+                  "uuid": "88888888-aaaa-4bbb-8ccc-000000000003",
+                  "description": "SIMULATED. Least privilege and separation of duties are enforced in the primary application. A legacy administrative console retains a shared elevated role pending migration to individually scoped admin accounts. Tracked in POA&M item POAM-0001."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "uuid": "66666666-aaaa-4bbb-8ccc-000000000004",
+          "control-id": "3.3.1",
+          "props": [
+            {"name": "control-family", "value": "AU - Audit and Accountability"},
+            {"name": "implementation-status", "value": "partial"}
+          ],
+          "statements": [
+            {
+              "statement-id": "3.3.1_smt",
+              "uuid": "77777777-aaaa-4bbb-8ccc-000000000004",
+              "by-components": [
+                {
+                  "component-uuid": "55555555-aaaa-4bbb-8ccc-000000000003",
+                  "uuid": "88888888-aaaa-4bbb-8ccc-000000000004",
+                  "description": "SIMULATED. Application and identity tiers emit audit records that enable monitoring and after-the-fact investigation. The database and a batch worker tier are not yet shipping logs to the centralized logging service, leaving an audit coverage gap. Tracked in POA&M item POAM-0002."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "uuid": "66666666-aaaa-4bbb-8ccc-000000000005",
+          "control-id": "3.5.1",
+          "props": [
+            {"name": "control-family", "value": "IA - Identification and Authentication"},
+            {"name": "implementation-status", "value": "implemented"}
+          ],
+          "statements": [
+            {
+              "statement-id": "3.5.1_smt",
+              "uuid": "77777777-aaaa-4bbb-8ccc-000000000005",
+              "by-components": [
+                {
+                  "component-uuid": "55555555-aaaa-4bbb-8ccc-000000000002",
+                  "uuid": "88888888-aaaa-4bbb-8ccc-000000000005",
+                  "description": "SIMULATED. Every user and device is uniquely identified through the Aegis Identity Provider before access is granted. Shared accounts are prohibited in the primary application."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "uuid": "66666666-aaaa-4bbb-8ccc-000000000006",
+          "control-id": "3.5.3",
+          "props": [
+            {"name": "control-family", "value": "IA - Identification and Authentication"},
+            {"name": "implementation-status", "value": "partial"}
+          ],
+          "statements": [
+            {
+              "statement-id": "3.5.3_smt",
+              "uuid": "77777777-aaaa-4bbb-8ccc-000000000006",
+              "by-components": [
+                {
+                  "component-uuid": "55555555-aaaa-4bbb-8ccc-000000000002",
+                  "uuid": "88888888-aaaa-4bbb-8ccc-000000000006",
+                  "description": "SIMULATED. Multi-factor authentication is enforced for all standard users and for administrative access to the primary application. A legacy admin console still permits single-factor password login for break-glass access. Tracked in POA&M item POAM-0001."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "uuid": "66666666-aaaa-4bbb-8ccc-000000000007",
+          "control-id": "3.13.1",
+          "props": [
+            {"name": "control-family", "value": "SC - System and Communications Protection"},
+            {"name": "implementation-status", "value": "implemented"}
+          ],
+          "statements": [
+            {
+              "statement-id": "3.13.1_smt",
+              "uuid": "77777777-aaaa-4bbb-8ccc-000000000007",
+              "by-components": [
+                {
+                  "component-uuid": "55555555-aaaa-4bbb-8ccc-000000000001",
+                  "uuid": "88888888-aaaa-4bbb-8ccc-000000000007",
+                  "description": "SIMULATED. Communications at external boundaries and key internal boundaries are monitored, controlled, and protected. TLS terminates at a managed gateway and internal service-to-service traffic is segmented by security group."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "uuid": "66666666-aaaa-4bbb-8ccc-000000000008",
+          "control-id": "3.13.11",
+          "props": [
+            {"name": "control-family", "value": "SC - System and Communications Protection"},
+            {"name": "implementation-status", "value": "planned"}
+          ],
+          "statements": [
+            {
+              "statement-id": "3.13.11_smt",
+              "uuid": "77777777-aaaa-4bbb-8ccc-000000000008",
+              "by-components": [
+                {
+                  "component-uuid": "55555555-aaaa-4bbb-8ccc-000000000001",
+                  "uuid": "88888888-aaaa-4bbb-8ccc-000000000008",
+                  "description": "SIMULATED. The platform currently uses industry-standard TLS, but not all cryptographic modules are FIPS-validated. A rollout to FIPS 140-validated cryptographic modules for protecting simulated CUI confidentiality is planned. Tracked in POA&M item POAM-0003."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "uuid": "66666666-aaaa-4bbb-8ccc-000000000009",
+          "control-id": "3.14.1",
+          "props": [
+            {"name": "control-family", "value": "SI - System and Information Integrity"},
+            {"name": "implementation-status", "value": "implemented"}
+          ],
+          "statements": [
+            {
+              "statement-id": "3.14.1_smt",
+              "uuid": "77777777-aaaa-4bbb-8ccc-000000000009",
+              "by-components": [
+                {
+                  "component-uuid": "55555555-aaaa-4bbb-8ccc-000000000001",
+                  "uuid": "88888888-aaaa-4bbb-8ccc-000000000009",
+                  "description": "SIMULATED. System flaws are identified, reported, and corrected. Operating system and dependency patches are applied on a monthly cadence with emergency patching for critical advisories."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "uuid": "66666666-aaaa-4bbb-8ccc-000000000010",
+          "control-id": "3.4.1",
+          "props": [
+            {"name": "control-family", "value": "CM - Configuration Management"},
+            {"name": "implementation-status", "value": "implemented"}
+          ],
+          "statements": [
+            {
+              "statement-id": "3.4.1_smt",
+              "uuid": "77777777-aaaa-4bbb-8ccc-000000000010",
+              "by-components": [
+                {
+                  "component-uuid": "55555555-aaaa-4bbb-8ccc-000000000001",
+                  "uuid": "88888888-aaaa-4bbb-8ccc-000000000010",
+                  "description": "SIMULATED. Baseline configurations and inventories are established and maintained as infrastructure-as-code in version control, with peer-reviewed change management for the development lifecycle."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "uuid": "66666666-aaaa-4bbb-8ccc-000000000011",
+          "control-id": "3.11.1",
+          "props": [
+            {"name": "control-family", "value": "RA - Risk Assessment"},
+            {"name": "implementation-status", "value": "partial"}
+          ],
+          "statements": [
+            {
+              "statement-id": "3.11.1_smt",
+              "uuid": "77777777-aaaa-4bbb-8ccc-000000000011",
+              "by-components": [
+                {
+                  "component-uuid": "55555555-aaaa-4bbb-8ccc-000000000004",
+                  "uuid": "88888888-aaaa-4bbb-8ccc-000000000011",
+                  "description": "SIMULATED. Risk to operations and assets is periodically assessed. Vulnerability scanning currently runs quarterly rather than the targeted monthly cadence, reducing risk-assessment freshness. Tracked in POA&M item POAM-0005."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "uuid": "66666666-aaaa-4bbb-8ccc-000000000012",
+          "control-id": "3.2.1",
+          "props": [
+            {"name": "control-family", "value": "AT - Awareness and Training"},
+            {"name": "implementation-status", "value": "planned"}
+          ],
+          "statements": [
+            {
+              "statement-id": "3.2.1_smt",
+              "uuid": "77777777-aaaa-4bbb-8ccc-000000000012",
+              "by-components": [
+                {
+                  "component-uuid": "55555555-aaaa-4bbb-8ccc-000000000001",
+                  "uuid": "88888888-aaaa-4bbb-8ccc-000000000012",
+                  "description": "SIMULATED. Security awareness for managers, administrators, and users on security risks and applicable policies exists ad hoc. A formal recurring annual training cadence with completion tracking is planned. Tracked in POA&M item POAM-0004."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
