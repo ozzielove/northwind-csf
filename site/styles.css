@@ -1,5 +1,5 @@
 /* ============================================================================
-   Northwind CSF 2.0 — "Audit Instrument"
+   Northwind CSF 2.0 - "Audit Instrument"
    Dark phosphor-mint compliance console. Editorial serif + instrument mono.
    ========================================================================== */
 
@@ -12,7 +12,7 @@
   --line-2:    #2a3744;
   --ink:       #eef3ee;
   --ink-soft:  #cdd6d3;   /* brightened for dark-mode legibility */
-  --muted:     #a6b3ae;   /* brightened ~45% — nav tabs + captions */
+  --muted:     #a6b3ae;   /* brightened ~45% - nav tabs + captions */
   --faint:     #9caaa5;   /* brightened */
 
   --mint:      #6ef2c0;   /* primary signal - verified / healthy */

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# build_flat_review.sh — copy every source file into ONE flat folder (no subdirs)
+# build_flat_review.sh - copy every source file into ONE flat folder (no subdirs)
 # for drag-and-drop into ChatGPT. Nested files are prefixed with their origin folder
 # (api_, data_, scripts_, tests_) so nothing collides and structure stays obvious.
 #
@@ -27,5 +27,5 @@ for f in tests/*.js;   do [ -f "$f" ] && cp "$f" "$OUT/tests_$(basename "$f")"; 
 
 COUNT=$(find "$OUT" -maxdepth 1 -type f | wc -l | tr -d ' ')
 SUBDIRS=$(find "$OUT" -mindepth 1 -type d | wc -l | tr -d ' ')
-echo "Built $OUT/ — $COUNT files, $SUBDIRS subfolders"
+echo "Built $OUT/ - $COUNT files, $SUBDIRS subfolders"
 ls -1 "$OUT"

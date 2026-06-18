@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-build_bundle.py — regenerate FRONTEND_REVIEW_BUNDLE.md
+build_bundle.py - regenerate FRONTEND_REVIEW_BUNDLE.md
 
 Single-file concat of the full-stack portfolio for external (ChatGPT) drag-and-drop review.
 Robust fencing: each file is wrapped in a backtick fence one longer than the longest
@@ -47,12 +47,12 @@ FILES = [
     ("DEPLOY.md", "markdown"),
 ]
 
-HEADER = """# Northwind CSF 2.0 — Full Source Review Bundle
+HEADER = """# Northwind CSF 2.0 - Full Source Review Bundle
 
 Single-file concat of the **full-stack** portfolio (frontend + serverless API + Python +
 tests + data + docs) for external review. Generated for ChatGPT audit drag-and-drop.
 
-**Integrity:** Northwind is fictional; assessment is simulated; readiness only — not audit/
+**Integrity:** Northwind is fictional; assessment is simulated; readiness only - not audit/
 compliance/attestation/client/production. Crosswalk = 4 row-level frameworks (800-53, ISO
 27001:2022, SOC 2, HIPAA); no HITRUST row-level mapping is claimed. Overall maturity =
 sum(23 subscores=36)/23 = 1.57 (subcategory-weighted, not the 1.53 simple mean).

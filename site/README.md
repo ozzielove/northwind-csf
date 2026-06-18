@@ -1,4 +1,4 @@
-# Northwind Health Systems — NIST CSF 2.0 GRC Assessment (Portfolio)
+# Northwind Health Systems - NIST CSF 2.0 GRC Assessment (Portfolio)
 
 A **simulated** Governance, Risk & Compliance assessment of a **fictional** healthcare-SaaS
 organization, built as an interactive readiness instrument with a live backend, a Python scoring
@@ -6,7 +6,7 @@ workflow, and a test suite. Built by **Ozirus B. Morency** as an entry-level GRC
 Risk Analyst portfolio.
 
 > **Simulated portfolio engagement.** Northwind Health Systems is fictional. This is a *readiness
-> self-assessment for demonstration* — **not** a SOC 2 audit, a HIPAA attestation, real client
+> self-assessment for demonstration* - **not** a SOC 2 audit, a HIPAA attestation, real client
 > work, or production GRC employment. No real ePHI is involved.
 
 **Live:** https://northwind-csf.vercel.app
@@ -58,7 +58,7 @@ Function averages:
 overall = sum(all 23 subcategory scores) / 23 = 36 / 23 = 1.565 → 1.57
 ```
 
-(The simple mean of the six Function averages is 1.53 — shown only for contrast.)
+(The simple mean of the six Function averages is 1.53 - shown only for contrast.)
 
 ---
 
@@ -112,7 +112,7 @@ See [`DEPLOY.md`](DEPLOY.md). Deploys to Vercel with zero secrets; the `/api` fo
 serverless functions automatically.
 
 ## Integrity boundaries
-- Fictional org; simulated assessment; readiness — never compliance/attestation/audit authority.
+- Fictional org; simulated assessment; readiness - never compliance/attestation/audit authority.
 - Four frameworks crosswalked at control level; no HITRUST row-level mapping is claimed.
 - Splunk/Chronicle/Suricata/SQL/PCI DSS/OWASP/RMF/SAP = coursework or prior-ops exposure, not
   production work, unless an artifact in this repo proves otherwise.

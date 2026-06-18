@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-validate_crosswalk.py — sanity-check control identifiers in the framework crosswalk.
+validate_crosswalk.py - sanity-check control identifiers in the framework crosswalk.
 
 Reads data/crosswalk.csv and validates every control identifier in the four
 ROW-LEVEL frameworks with regular expressions:
@@ -70,7 +70,7 @@ def main(argv=None):
                         problems.append((ln, sub, LABELS[col], ident))
 
     print("─" * 58)
-    print("  Crosswalk control-ID validation — Northwind CSF 2.0")
+    print("  Crosswalk control-ID validation - Northwind CSF 2.0")
     print("  (simulated portfolio; 4 row-level frameworks)")
     print("─" * 58)
     print(f"  Rows checked .............. {rows_seen}")

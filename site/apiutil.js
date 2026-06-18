@@ -1,5 +1,5 @@
 /* ============================================================================
-   apiutil.js — tiny request/response helpers shared by the /api functions.
+   apiutil.js - tiny request/response helpers shared by the /api functions.
    Lives at repo root (not /api) so Vercel never treats it as a route.
    No dependencies. Works under @vercel/node, `vercel dev`, and mock req/res.
    ========================================================================== */

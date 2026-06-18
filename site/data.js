@@ -1,8 +1,8 @@
 /* ============================================================================
-   data.js — Northwind Health Systems · NIST CSF 2.0 GRC Assessment
+   data.js - Northwind Health Systems · NIST CSF 2.0 GRC Assessment
    Displayed figures are derived from the published portfolio artifacts
    (csf_scores.csv, risk_register.csv, poam.csv, control_test_plan.csv, crosswalk md).
-   Subject is a FICTIONAL organization — simulated portfolio engagement.
+   Subject is a FICTIONAL organization - simulated portfolio engagement.
    ========================================================================== */
 
 const ASSESSMENT = {
@@ -17,14 +17,14 @@ const ASSESSMENT = {
   analyst: "Ozirus B. Morency",
 };
 
-/* Six CSF 2.0 Functions — maturity on the 1–4 Tier scale (from the scorer). */
+/* Six CSF 2.0 Functions - maturity on the 1-4 Tier scale (from the scorer). */
 const FUNCTIONS = [
   { key: "GV", name: "Govern",   score: 1.40, tier: "Tier 1 · Partial",        priority: false,
     blurb: "Risk strategy, policy, and oversight. Risk-appetite statement still missing." },
   { key: "ID", name: "Identify", score: 1.60, tier: "Tier 2 · Risk Informed",  priority: false,
     blurb: "Asset and risk visibility. No formal software inventory yet." },
   { key: "PR", name: "Protect",  score: 2.00, tier: "Tier 2 · Risk Informed",  priority: false,
-    blurb: "Strongest Function — encryption in place; access control is the weak seam." },
+    blurb: "Strongest Function - encryption in place; access control is the weak seam." },
   { key: "DE", name: "Detect",   score: 1.33, tier: "Tier 1 · Partial",        priority: true,
     blurb: "No SIEM, no log review, no endpoint detection. Breaches would go unseen." },
   { key: "RS", name: "Respond",  score: 1.33, tier: "Tier 1 · Partial",        priority: true,
@@ -43,7 +43,7 @@ const SUBSCORES = [
   ["RC","RC.RP-01",2],["RC","RC.CO-03",1],
 ];
 
-/* Risk register — likelihood × impact (1–5), score = L×I. */
+/* Risk register - likelihood × impact (1-5), score = L×I. */
 const RISKS = [
   { id:"R-001", l:4, i:5, score:20, level:"Critical", owner:"CTO",
     desc:"Shared AWS admin account without MFA enables full environment compromise", sub:"PR.AA-01" },
@@ -67,7 +67,7 @@ const RISKS = [
     desc:"No risk appetite statement; inconsistent risk decisions", sub:"GV.RM-01" },
 ];
 
-/* Control testing — design vs operating effectiveness. */
+/* Control testing - design vs operating effectiveness. */
 const TESTS = [
   { id:"TEST-01", control:"IA-2",  sub:"PR.AA-01", obj:"MFA on privileged accounts",  design:"Fail",    operating:"Fail" },
   { id:"TEST-02", control:"AC-6",  sub:"PR.AA-05", obj:"Least privilege / RBAC",       design:"Fail",    operating:"Fail" },
@@ -76,7 +76,7 @@ const TESTS = [
   { id:"TEST-05", control:"AT-2",  sub:"PR.AT-01", obj:"Security awareness training",  design:"Fail",    operating:"Fail" },
 ];
 
-/* POA&M — 10 sequenced remediation items, Jul→Oct 2026. */
+/* POA&M - 10 sequenced remediation items, Jul→Oct 2026. */
 const POAM = [
   { id:"POAM-001", sev:"Critical", sub:"PR.AA-01", owner:"CTO",          start:"2026-07-01", due:"2026-07-07", status:"In Progress",
     action:"Provision individual IAM users; enforce MFA; secure root with break-glass" },
@@ -100,7 +100,7 @@ const POAM = [
     action:"Draft and ratify risk appetite + risk management policy" },
 ];
 
-/* Multi-framework crosswalk — one CSF subcategory → 4 row-level framework mappings. */
+/* Multi-framework crosswalk - one CSF subcategory → 4 row-level framework mappings. */
 const CROSSWALK = [
   { fn:"GV", sub:"GV.RM-01", obj:"Risk management strategy",   n8:"PM-9, RA-1",  iso:"A.5.1, A.5.2", soc:"CC3.1, CC3.2", hi:"§164.308(a)(1)(ii)(A)" },
   { fn:"GV", sub:"GV.PO-01", obj:"Security policy",            n8:"PL-1, PM-1",  iso:"A.5.1",        soc:"CC1.1, CC5.3", hi:"§164.316(a)" },
@@ -135,14 +135,14 @@ const FRAMEWORK_COUNTS = [
 /* Third-party / vendor risk program (TPRM). */
 const TPRM = {
   tiers: [
-    { t:"T1", label:"Critical", tone:"critical", def:"Simulated ePHI / PII-class data or production-like system access — BAA review required before data flows." },
+    { t:"T1", label:"Critical", tone:"critical", def:"Simulated ePHI / PII-class data or production-like system access - BAA review required before data flows." },
     { t:"T2", label:"High",     tone:"high",     def:"Access to confidential business data or internal systems." },
     { t:"T3", label:"Moderate", tone:"mod",      def:"Limited or de-identified data; no production-like system access." },
     { t:"T4", label:"Low",      tone:"low",      def:"No sensitive data; informational / marketing only." },
   ],
   lifecycle: [
     { n:"01", s:"Intake & data classification", d:"Capture sponsor, service, data accessed, subprocessors." },
-    { n:"02", s:"Inherent-risk tiering",        d:"Tier on what could go wrong before controls — by data sensitivity." },
+    { n:"02", s:"Inherent-risk tiering",        d:"Tier on what could go wrong before controls - by data sensitivity." },
     { n:"03", s:"SIG / CAIQ questionnaire",     d:"SIG-Lite-aligned domains, exportable to CAIQ." },
     { n:"04", s:"SOC 2 report review",          d:"Read the Type II report; check scope, period, exceptions." },
     { n:"05", s:"Gap identification",           d:"Compare answers + report against required controls." },
@@ -162,7 +162,7 @@ const TPRM = {
   },
 };
 
-/* Full deliverable / artifact set — the complete body of work. */
+/* Full deliverable / artifact set - the complete body of work. */
 const DELIVERABLES = [
   { n:"01", t:"Assessment scope statement",        d:"Boundary, systems, data types, and exclusions for the engagement." },
   { n:"02", t:"CSF 2.0 controls checklist",        d:"All six Functions assessed across 23 subcategories." },
@@ -174,21 +174,21 @@ const DELIVERABLES = [
   { n:"08", t:"Information security policy",        d:"Baseline policy tied to assessed control objectives." },
   { n:"09", t:"Evidence collection log",           d:"Nine evidence items mapped to the controls they satisfy." },
   { n:"10", t:"Tiered third-party-risk program",   d:"4-tier model, SIG/CAIQ questionnaire, SOC 2 review, worked example." },
-  { n:"11", t:"CSF maturity scoring tool",         d:"Python — per-Function scores, KPI summary, priority sequencing." },
+  { n:"11", t:"CSF maturity scoring tool",         d:"Python - per-Function scores, KPI summary, priority sequencing." },
   { n:"12", t:"Gap analysis & roadmap",            d:"Current vs. target state with a phased path to Tier 3." },
 ];
 
-/* Evidence collection log — nine simulated/portfolio evidence items, each mapped to a
+/* Evidence collection log - nine simulated/portfolio evidence items, each mapped to a
    control and CSF subcategory. All items are portfolio artifacts for a FICTIONAL org. */
 const EVIDENCE = [
-  { id:"E-01", artifact:"IAM configuration export",          map:"PR.AA-01 · IA-2",  type:"Configuration", status:"Simulated", note:"Shared admin account, MFA disabled — substantiates R-001." },
+  { id:"E-01", artifact:"IAM configuration export",          map:"PR.AA-01 · IA-2",  type:"Configuration", status:"Simulated", note:"Shared admin account, MFA disabled - substantiates R-001." },
   { id:"E-02", artifact:"IAM policy JSON review",            map:"PR.AA-05 · AC-6",  type:"Configuration", status:"Simulated", note:"Wildcard permissions; no least-privilege roles." },
   { id:"E-03", artifact:"Logging architecture diagram",     map:"DE.AE-02 · AU-6",  type:"Diagram",       status:"Simulated", note:"No SIEM; CloudTrail not forwarded or reviewed." },
   { id:"E-04", artifact:"Incident response plan v1",        map:"RS.MA-01 · IR-8",  type:"Plan",          status:"Portfolio", note:"Authored end to end; tabletop not yet exercised." },
   { id:"E-05", artifact:"Security awareness training log",  map:"PR.AT-01 · AT-2",  type:"Records",       status:"Simulated", note:"No completion records on file." },
   { id:"E-06", artifact:"Backup & restore runbook",         map:"RC.RP-01 · CP-10", type:"Procedure",     status:"Portfolio", note:"Backups configured; restore never tested end to end." },
   { id:"E-07", artifact:"Vendor inventory & BAA tracker",   map:"GV.SC-01 · SR-3",  type:"Register",      status:"Portfolio", note:"Tiered vendor list; BAA status per vendor." },
-  { id:"E-08", artifact:"Encryption-at-rest settings",      map:"PR.DS-01 · SC-28", type:"Configuration", status:"Simulated", note:"AES-256 enabled on data stores — a passing control." },
+  { id:"E-08", artifact:"Encryption-at-rest settings",      map:"PR.DS-01 · SC-28", type:"Configuration", status:"Simulated", note:"AES-256 enabled on data stores - a passing control." },
   { id:"E-09", artifact:"Software inventory gap memo",      map:"ID.AM-02 · CM-8",  type:"Memo",          status:"Portfolio", note:"No authoritative software/SBOM inventory yet." },
 ];
 
@@ -207,13 +207,13 @@ const CLAIMS = [
   { cat:"backend", types:["Portfolio","Backend"],
     claim:"Risk assessment methodology and risk register",
     evidence:"5×5 likelihood×impact matrix · risk_register.csv · GET /api/risks",
-    demo:"Open /api/risks?level=Critical — returns the three critical risks with summary counts.",
+    demo:"Open /api/risks?level=Critical - returns the three critical risks with summary counts.",
     boundary:"Simulated risks for a fictional org." },
   { cat:"portfolio", types:["Portfolio"],
-    claim:"Control testing — design vs. operating effectiveness",
+    claim:"Control testing - design vs. operating effectiveness",
     evidence:"Five control tests (IA-2, AC-6, AU-6, IR-8, AT-2) · control_tests.csv",
     demo:"Walk TEST-04: the IR plan is designed (pass) but was never exercised (operating: fail).",
-    boundary:"Readiness testing — not a SOC 2 audit opinion." },
+    boundary:"Readiness testing - not a SOC 2 audit opinion." },
   { cat:"portfolio", types:["Portfolio"],
     claim:"POA&M remediation tracking",
     evidence:"10 sequenced POA&M items with owners and dates · poam.csv",
@@ -227,13 +227,13 @@ const CLAIMS = [
   { cat:"script", types:["Script"],
     claim:"Python, file parsing, regex, JSON, CSV automation",
     evidence:"score_maturity.py (CSV → KPI JSON) · validate_crosswalk.py (regex ID validation)",
-    demo:"Run python3 scripts/score_maturity.py — prints per-Function scores and overall 1.57.",
+    demo:"Run python3 scripts/score_maturity.py - prints per-Function scores and overall 1.57.",
     boundary:"Portfolio tooling over simulated data." },
   { cat:"script", types:["Script"],
     claim:"Bash automation",
     evidence:"scripts/run_demo.sh runs the scorer and validator end to end",
     demo:"Run bash scripts/run_demo.sh from a clean clone.",
-    boundary:"Light demo script — not a production pipeline." },
+    boundary:"Light demo script - not a production pipeline." },
   { cat:"docs", types:["Documentation"],
     claim:"Technical & executive report writing, policy, SOPs",
     evidence:"README · CLAIM_MATRIX · DEMO_SCRIPT · 12-artifact deliverable set",
@@ -248,17 +248,17 @@ const CLAIMS = [
     claim:"Splunk, Chronicle, Suricata; SIEM queries, log review, alert triage",
     evidence:"Coursework exposure; Detect findings reference missing SIEM / log review",
     demo:"Discuss what a SIEM would catch for R-003 / DE.AE-02.",
-    boundary:"Coursework / tool exposure — no production tool administration." },
+    boundary:"Coursework / tool exposure - no production tool administration." },
   { cat:"operations", types:["Prior operations"],
     claim:"4+ yrs client-facing ops in federally audited environments; OSHA/EPA audit support; 50+ RCA investigations",
     evidence:"Transferable-experience section mapping RCA discipline to finding → root cause → corrective action → POA&M",
     demo:"Explain how RCA discipline maps to the audit findings and POA&M workflow.",
-    boundary:"Regulated-operations experience — not cybersecurity employment." },
+    boundary:"Regulated-operations experience - not cybersecurity employment." },
   { cat:"military", types:["Military"],
     claim:"U.S. Army National Guard veteran",
     evidence:"Candidate background section",
     demo:"Connect mission discipline and documentation rigor to GRC evidence handling.",
-    boundary:"Military service — context for work ethic and clearance-readiness." },
+    boundary:"Military service - context for work ethic and clearance-readiness." },
 ];
 
 const GRC = { ASSESSMENT, FUNCTIONS, SUBSCORES, RISKS, TESTS, POAM, CROSSWALK, FRAMEWORK_COUNTS, TPRM, DELIVERABLES, EVIDENCE, CLAIMS };

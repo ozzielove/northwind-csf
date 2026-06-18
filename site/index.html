@@ -7,15 +7,15 @@
   /* Set theme before paint to avoid a flash. Stored choice wins; otherwise dark. */
   (function(){try{var t=localStorage.getItem('nw_theme');if(t!=='light'&&t!=='dark'){t='dark';}document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();
 </script>
-<title>Northwind Health Systems — NIST CSF 2.0 Assessment</title>
-<meta name="description" content="A simulated NIST Cybersecurity Framework 2.0 GRC readiness assessment — interactive readiness instrument. Portfolio work by Ozirus B. Morency." />
+<title>Northwind Health Systems - NIST CSF 2.0 Assessment</title>
+<meta name="description" content="A simulated NIST Cybersecurity Framework 2.0 GRC readiness assessment - interactive readiness instrument. Portfolio work by Ozirus B. Morency." />
 <meta name="theme-color" content="#07090c" />
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Northwind Health Systems — NIST CSF 2.0 Assessment" />
+<meta property="og:title" content="Northwind Health Systems - NIST CSF 2.0 Assessment" />
 <meta property="og:description" content="Simulated employer-facing GRC portfolio: CSF 2.0 maturity scoring, risk register, control testing, POA&amp;M, TPRM, and framework crosswalk." />
 <meta property="og:site_name" content="Northwind CSF 2.0 Portfolio" />
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Northwind Health Systems — NIST CSF 2.0 Assessment" />
+<meta name="twitter:title" content="Northwind Health Systems - NIST CSF 2.0 Assessment" />
 <meta name="twitter:description" content="Simulated GRC readiness portfolio built as a static assessment instrument." />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2307090c'/%3E%3Cpath d='M16 6l8 10-8 10-8-10z' fill='none' stroke='%236ef2c0' stroke-width='1.6'/%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -70,7 +70,7 @@
     </h1>
     <p class="hero__lede reveal" data-d="4">
       A full governance, risk &amp; compliance readiness assessment of <strong>Northwind Health Systems</strong>,
-      a fictional healthcare-SaaS scenario involving simulated ePHI-class data — scored against
+      a fictional healthcare-SaaS scenario involving simulated ePHI-class data - scored against
       all six Functions of the <em>NIST Cybersecurity Framework&nbsp;2.0</em> and mapped, at the
       control level, to four adjacent frameworks.
     </p>
@@ -96,7 +96,7 @@
     </div>
 
     <p class="hero__by reveal" data-d="6">
-      Assessment, tooling &amp; report — <strong>Ozirus&nbsp;B.&nbsp;Morency</strong> ·
+      Assessment, tooling &amp; report - <strong>Ozirus&nbsp;B.&nbsp;Morency</strong> ·
       <span class="muted">Q2 2026</span>
     </p>
   </div>
@@ -391,11 +391,11 @@
 <!-- ================= POSTURE / RADAR ================= -->
 <section class="section" id="posture">
   <div class="section__head">
-    <span class="kicker">01 — Posture</span>
+    <span class="kicker">01 - Posture</span>
     <h2 class="section__title">Six Functions, one honest verdict.</h2>
     <p class="section__sub">
       Maturity on the CSF implementation-tier scale (1 Partial → 4 Adaptive). The program sits at
-      <strong>1.57 — Tier 2</strong>. <span class="flag">Detect</span> and <span class="flag">Respond</span>
+      <strong>1.57 - Tier 2</strong>. <span class="flag">Detect</span> and <span class="flag">Respond</span>
       are the floor, and they sequence first in remediation.
     </p>
   </div>
@@ -407,14 +407,14 @@
     <ol class="fnlist" id="fnlist"></ol>
   </div>
 
-  <div class="density" id="density" aria-hidden="true"></div>
-  <p class="density__cap">23 assessed subcategories · cell brightness = subcategory score (1–3)</p>
+  <div class="density" id="density" role="list" aria-label="Subcategory maturity heatmap: 23 assessed subcategories scored 1 to 3"></div>
+  <p class="density__cap">23 assessed subcategories · cell brightness = subcategory score (1-3)</p>
 </section>
 
 <!-- ================= RISK HEATMAP ================= -->
 <section class="section" id="risk">
   <div class="section__head">
-    <span class="kicker">02 — Risk Register</span>
+    <span class="kicker">02 - Risk Register</span>
     <h2 class="section__title">Where the exposure actually lives.</h2>
     <p class="section__sub">
       Ten risks plotted by <em>likelihood</em> × <em>impact</em>. The top-right quadrant contains
@@ -423,8 +423,8 @@
   </div>
 
   <div class="risk">
-    <figure class="matrix" role="img" aria-label="Five by five risk matrix, likelihood by impact">
-      <svg viewBox="0 0 520 520" id="matrix"></svg>
+    <figure class="matrix">
+      <svg viewBox="0 0 520 520" id="matrix" role="group" aria-label="Five by five risk matrix, likelihood by impact, containing ten interactive risk markers"></svg>
     </figure>
     <aside class="riskcard" id="riskcard" aria-live="polite">
       <span class="riskcard__id">R-001</span>
@@ -444,11 +444,11 @@
 <!-- ================= CONTROL TESTING ================= -->
 <section class="section" id="controls">
   <div class="section__head">
-    <span class="kicker">03 — Control Testing</span>
+    <span class="kicker">03 - Control Testing</span>
     <h2 class="section__title">Design vs. operating effectiveness.</h2>
     <p class="section__sub">
       A control can be perfectly <em>designed</em> on paper and still fail in <em>operation</em>.
-      The incident-response plan exists (design: pass) — but was never exercised (operating: fail).
+      The incident-response plan exists (design: pass) - but was never exercised (operating: fail).
       That gap is the whole point of testing both.
     </p>
   </div>
@@ -458,10 +458,10 @@
 <!-- ================= REMEDIATION TIMELINE ================= -->
 <section class="section" id="remediation">
   <div class="section__head">
-    <span class="kicker">04 — Plan of Action &amp; Milestones</span>
+    <span class="kicker">04 - Plan of Action &amp; Milestones</span>
     <h2 class="section__title">A sequenced path to Tier 3.</h2>
     <p class="section__sub">
-      Ten remediation items, ordered by severity and dependency across Q3 2026 — critical
+      Ten remediation items, ordered by severity and dependency across Q3 2026 - critical
       access &amp; detection gaps close first, governance polish lands last.
     </p>
   </div>
@@ -472,7 +472,7 @@
 <!-- ================= CROSSWALK ================= -->
 <section class="section" id="crosswalk">
   <div class="section__head">
-    <span class="kicker">05 — Multi-Framework Crosswalk</span>
+    <span class="kicker">05 - Multi-Framework Crosswalk</span>
     <h2 class="section__title">Map once. Trace four control frameworks.</h2>
     <p class="section__sub">
       The core efficiency argument of a unified GRC program: one assessed control can support
@@ -492,7 +492,7 @@
 <!-- ================= THIRD-PARTY RISK / TPRM ================= -->
 <section class="section" id="vendors">
   <div class="section__head">
-    <span class="kicker">06 — Third-Party Risk</span>
+    <span class="kicker">06 - Third-Party Risk</span>
     <h2 class="section__title">No simulated ePHI vendor passes intake unscreened.</h2>
     <p class="section__sub">
       A tiered third-party-risk program: rank a vendor on <em>inherent</em> risk at intake, run a
@@ -523,10 +523,10 @@
 <!-- ================= DELIVERABLES / ARTIFACT SET ================= -->
 <section class="section" id="deliverables">
   <div class="section__head">
-    <span class="kicker">07 — The Deliverables</span>
+    <span class="kicker">07 - The Deliverables</span>
     <h2 class="section__title">Twelve artifacts. One defensible assessment package.</h2>
     <p class="section__sub">
-      Everything visualized above is backed by a complete readiness artifact set — the same
+      Everything visualized above is backed by a complete readiness artifact set - the same
       document types a simulated GRC assessment should produce, authored end to end.
     </p>
   </div>
@@ -536,24 +536,24 @@
 <!-- ================= TRANSFERABLE EXPERIENCE ================= -->
 <section class="section" id="transferable">
   <div class="section__head">
-    <span class="kicker">08 — Transferable Audit Experience</span>
+    <span class="kicker">08 - Transferable Audit Experience</span>
     <h2 class="section__title">Regulated-operations discipline, retooled for GRC.</h2>
     <p class="section__sub">
       This project translates prior regulated-operations discipline into cybersecurity GRC artifacts:
       findings, root cause, corrective action, evidence, ownership, and remediation tracking. The
-      background below is operations and military experience — not prior cybersecurity employment.
+      background below is operations and military experience - not prior cybersecurity employment.
     </p>
   </div>
   <ul class="xfer">
     <li class="xcard">
       <span class="xcard__from">4+ years client-facing operations in federally audited environments</span>
       <span class="xcard__arrow" aria-hidden="true">→</span>
-      <span class="xcard__to">Comfort working to written standards, scope, and external review — the operating context of an audit.</span>
+      <span class="xcard__to">Comfort working to written standards, scope, and external review - the operating context of an audit.</span>
     </li>
     <li class="xcard">
       <span class="xcard__from">OSHA / EPA audit support</span>
       <span class="xcard__arrow" aria-hidden="true">→</span>
-      <span class="xcard__to">Evidence collection and audit readiness under a regulator — the same muscle as a SOC 2 / HIPAA evidence log.</span>
+      <span class="xcard__to">Evidence collection and audit readiness under a regulator - the same muscle as a SOC 2 / HIPAA evidence log.</span>
     </li>
     <li class="xcard">
       <span class="xcard__from">50+ Root Cause Analysis investigations</span>
@@ -568,7 +568,7 @@
     <li class="xcard">
       <span class="xcard__from">Google Cybersecurity Professional Certificate · June 2026</span>
       <span class="xcard__arrow" aria-hidden="true">→</span>
-      <span class="xcard__to">Foundational SIEM, log-review, and triage concepts — beginner-level coursework, not production SOC work.</span>
+      <span class="xcard__to">Foundational SIEM, log-review, and triage concepts - beginner-level coursework, not production SOC work.</span>
     </li>
     <li class="xcard">
       <span class="xcard__from">U.S. Army National Guard veteran</span>
@@ -581,10 +581,10 @@
 <!-- ================= RESUME CLAIM PROOF MAP ================= -->
 <section class="section" id="claimmap">
   <div class="section__head">
-    <span class="kicker">09 — Resume Claim Proof Map</span>
+    <span class="kicker">09 - Resume Claim Proof Map</span>
     <h2 class="section__title">Every claim, tied to evidence you can open.</h2>
     <p class="section__sub">
-      Each card maps a résumé claim to the artifact, endpoint, or script that backs it — with the
+      Each card maps a résumé claim to the artifact, endpoint, or script that backs it - with the
       proof type and the honest boundary. Nothing here is asserted as real client work; coursework and
       prior operations are labeled as exactly that.
     </p>
@@ -596,12 +596,12 @@
 <!-- ================= INTERVIEW DEMO MODE ================= -->
 <section class="section" id="demo">
   <div class="section__head">
-    <span class="kicker">10 — Interview Demo Mode</span>
+    <span class="kicker">10 - Interview Demo Mode</span>
     <h2 class="section__title">Poke the backend. It answers in real time.</h2>
     <p class="section__sub">
       Live serverless endpoints computing over the same repository data. Click a probe and the raw JSON
       appears below. If the API is offline (static hosting), the page falls back to the bundled data and
-      says so — every figure still resolves.
+      says so - every figure still resolves.
     </p>
   </div>
 
@@ -657,7 +657,7 @@
 <!-- ================= FOOTER ================= -->
 <footer class="footer" id="foot">
   <div class="footer__lead">
-    <h2>A readiness assessment you can read in five minutes —<br /><span class="serif-em">and defend for an hour.</span></h2>
+    <h2>A readiness assessment you can read in five minutes -<br /><span class="serif-em">and defend for an hour.</span></h2>
     <p>
       Every figure on this page traces to an artifact in the repository: scope statement,
       control checklist, risk register, control test plan, POA&amp;M, evidence log, and a tiered
@@ -691,7 +691,7 @@
   </div>
   <p class="footer__disclaimer">
     <strong>Simulated portfolio engagement.</strong> Northwind Health Systems is a fictional organization.
-    This is a readiness self-assessment for demonstration — not a SOC 2 audit, HIPAA attestation, or real client work.
+    This is a readiness self-assessment for demonstration - not a SOC 2 audit, HIPAA attestation, or real client work.
   </p>
   <p class="footer__sig">◇ Designed &amp; built from raw assessment data · 2026</p>
 </footer>

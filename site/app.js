@@ -1,5 +1,5 @@
 /* ============================================================================
-   app.js — render + choreography for the Northwind CSF 2.0 audit instrument.
+   app.js - render + choreography for the Northwind CSF 2.0 audit instrument.
    Vanilla JS. Hand-built SVG/DOM viz. No frameworks, no build step.
    ========================================================================== */
 (function () {
@@ -89,7 +89,7 @@
       countUp(el, +el.dataset.count, { dur: 1300 });
     });
   }
-  // hero is above the fold — fire on load
+  // hero is above the fold - fire on load
   window.addEventListener("load", () => setTimeout(heroReadout, 350));
 
   /* ===================== POSTURE: radar ===================== */
@@ -186,6 +186,8 @@
       i.style.background = `color-mix(in srgb, var(--mint) ${Math.round(a * 100)}%, var(--surface))`;
       i.style.borderColor = sc >= 3 ? "color-mix(in srgb,var(--mint) 60%,transparent)" : "var(--line)";
       i.title = `${sub} · ${sc}/3`;
+      i.setAttribute("role", "listitem");
+      i.setAttribute("aria-label", `${sub}, score ${sc} of 3`);
       i.style.transitionDelay = (idx * 22) + "ms";
       wrap.appendChild(i);
     });
@@ -436,7 +438,7 @@
     TPRM.tiers.forEach((t) => {
       const li = document.createElement("li");
       li.className = "tier"; li.dataset.tone = t.tone;
-      li.innerHTML = `<span class="tier__t">${t.t} — Inherent</span>
+      li.innerHTML = `<span class="tier__t">${t.t} - Inherent</span>
         <span class="tier__label">${t.label}</span>
         <span class="tier__def">${t.def}</span>`;
       tiers.appendChild(li);
@@ -533,18 +535,18 @@
 
   /* ===================== INTERVIEW DEMO MODE ===================== */
   const SCORING_EXPLAINER = {
-    note: "Scoring formula — subcategory-weighted maturity",
+    note: "Scoring formula - subcategory-weighted maturity",
     rule: "overall = sum(all assessed subcategory scores) / count(assessed subcategories)",
     worked: "sum = 36 across 23 subcategories → 36 / 23 = 1.565 → 1.57",
     contrast: "A simple mean of the six Function averages would be 1.53. The weighting by how many subcategories each Function carries is what makes the number defensible.",
-    scale: "Tiers: <1.5 Partial · 1.5–2.5 Risk Informed · 2.5–3.5 Repeatable · >=3.5 Adaptive",
+    scale: "Tiers: <1.5 Partial · 1.5-2.5 Risk Informed · 2.5-3.5 Repeatable · >=3.5 Adaptive",
   };
 
   function localFallback(path, method, body) {
     if (!SCORE) return { _offline: true, error: "Local scoring module unavailable" };
     const url = new URL(path, "http://x");
     const p = url.pathname; const q = Object.fromEntries(url.searchParams);
-    if (p === "/api/health") return { ok: true, mode: "static-fallback", note: "API offline — computed from bundled data", timestamp: new Date().toISOString() };
+    if (p === "/api/health") return { ok: true, mode: "static-fallback", note: "API offline - computed from bundled data", timestamp: new Date().toISOString() };
     if (p === "/api/assessment") return SCORE.assessmentSummary(GRC);
     if (p === "/api/risks") return { ok: true, ...SCORE.filterRisks(RISKS, q) };
     if (p === "/api/crosswalk") return { ok: true, ...SCORE.filterCrosswalk(CROSSWALK, q) };

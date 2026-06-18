@@ -1,5 +1,5 @@
 /* ============================================================================
-   scoring.js — pure GRC compute. No DOM, no I/O. Dual-exported so the browser
+   scoring.js - pure GRC compute. No DOM, no I/O. Dual-exported so the browser
    (window.GRCScore), the Vercel API handlers, the Node test suite, and the
    Python scorer all agree on one definition of every number.
 
@@ -17,7 +17,7 @@
   const FN_NAMES = { GV:"Govern", ID:"Identify", PR:"Protect", DE:"Detect", RS:"Respond", RC:"Recover" };
   const round2 = (n) => Math.round(n * 100) / 100;
 
-  /* Tier interpretation on the 1–4 implementation-tier scale. */
+  /* Tier interpretation on the 1-4 implementation-tier scale. */
   function tierFor(score) {
     if (score == null || Number.isNaN(score)) return "Unscored";
     if (score < 1.5) return "Tier 1 · Partial";
@@ -125,7 +125,7 @@
     let tier, label, tone;
     if ((touchesEphi || touchesPii) && prod) {
       tier = "T1"; label = "Critical"; tone = "critical";
-      why.push("Production-like access combined with simulated ePHI/PII-class data — highest inherent loss before controls.");
+      why.push("Production-like access combined with simulated ePHI/PII-class data - highest inherent loss before controls.");
     } else if (touchesEphi || prod) {
       tier = "T2"; label = "High"; tone = "high";
       why.push(touchesEphi ? "Handles simulated ePHI-class data without production-like access." : "Production-like access without regulated data.");
@@ -134,9 +134,9 @@
       why.push("Confidential/internal data or system access; no production-like access or simulated ePHI-class data.");
     } else {
       tier = "T4"; label = "Low"; tone = "low";
-      why.push("No sensitive data and no production-like/system access — informational only.");
+      why.push("No sensitive data and no production-like/system access - informational only.");
     }
-    if (subprocessors) why.push("Subprocessors present — fourth-party flow-down review required.");
+    if (subprocessors) why.push("Subprocessors present - fourth-party flow-down review required.");
 
     const critical = tier === "T1";
     const high = tier === "T1" || tier === "T2";
@@ -157,7 +157,7 @@
       baaReviewRequired: critical,
       soc2ReviewRequired: high,
       questionnaireRequired: high,
-      disclaimer: "Simulated TPRM demonstration — fictional vendor, no real third-party data.",
+      disclaimer: "Simulated TPRM demonstration - fictional vendor, no real third-party data.",
     };
   }
 
@@ -184,7 +184,7 @@
       rowLevelFrameworks: 4,
       analyst: a.analyst,
       mode: "simulated-portfolio",
-      disclaimer: "Simulated portfolio engagement. Northwind Health Systems is fictional. Readiness assessment — not a SOC 2 audit, HIPAA attestation, or real client work.",
+      disclaimer: "Simulated portfolio engagement. Northwind Health Systems is fictional. Readiness assessment - not a SOC 2 audit, HIPAA attestation, or real client work.",
     };
   }
 

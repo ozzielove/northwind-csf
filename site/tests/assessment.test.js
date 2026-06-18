@@ -116,3 +116,23 @@ test("claim map covers every proof-type category", () => {
   ["portfolio", "backend", "script", "docs", "coursework", "operations", "military"]
     .forEach((c) => assert.ok(cats.has(c), `missing category ${c}`));
 });
+
+/* SCORE-03 drift guard: the hardcoded display figures (the dial reads
+   ASSESSMENT.overall/overallTier; the radar + Function list read FUNCTIONS[].score/.tier)
+   must equal what the scorer computes from SUBSCORES, so a future SUBSCORES edit cannot
+   silently desync the headline numbers from the math while the suite stays green. */
+test("hardcoded display figures equal the computed scorer output", () => {
+  const r = S.scoreFromSubscores(GRC.SUBSCORES);
+  assert.equal(GRC.ASSESSMENT.overall, r.overall, "ASSESSMENT.overall == computed overall");
+  assert.equal(GRC.ASSESSMENT.overallTier, r.overallTier, "ASSESSMENT.overallTier == computed tier");
+  assert.equal(GRC.ASSESSMENT.subcategories, r.assessedSubcategories, "subcategory count matches");
+
+  const computed = Object.fromEntries(r.functions.map((f) => [f.key, f]));
+  for (const fn of GRC.FUNCTIONS) {
+    const c = computed[fn.key];
+    assert.ok(c, `computed score exists for ${fn.key}`);
+    assert.equal(fn.score, c.score, `${fn.key} hardcoded score == computed`);
+    assert.equal(fn.tier, S.tierFor(c.score), `${fn.key} hardcoded tier == tierFor(computed)`);
+    assert.equal(fn.priority, c.priority, `${fn.key} hardcoded priority == computed`);
+  }
+});

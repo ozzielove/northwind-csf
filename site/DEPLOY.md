@@ -1,4 +1,4 @@
-# Deploy — Northwind CSF 2.0 site
+# Deploy - Northwind CSF 2.0 site
 
 Vanilla frontend + Vercel serverless functions (`/api`). No secrets, no database.
 The `/api/*.js` files become serverless functions automatically; everything else is static.
@@ -8,7 +8,7 @@ The `/api/*.js` files become serverless functions automatically; everything else
 ```bash
 cd /Users/ozirusmorency/Downloads/Pal/Projects/grc-nist-csf-assessment/site
 
-# Static only (no API) — fastest:
+# Static only (no API) - fastest:
 python3 -m http.server 8777        # → http://localhost:8777  (nav shows "static mode")
 
 # Full stack with live /api/* :
@@ -17,7 +17,7 @@ vercel dev                         # → http://localhost:3000  (nav shows "API 
 
 ## One-time auth
 ```bash
-vercel login        # interactive (browser) — run yourself in Terminal
+vercel login        # interactive (browser) - run yourself in Terminal
 ```
 > In this session, prefix with `!` so output lands here:
 > `! cd /Users/ozirusmorency/Downloads/Pal/Projects/grc-nist-csf-assessment/site && vercel login`

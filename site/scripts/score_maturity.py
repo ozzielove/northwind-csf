@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-score_maturity.py — Northwind CSF 2.0 maturity scorer.
+score_maturity.py - Northwind CSF 2.0 maturity scorer.
 
 Reads the assessed CSF subcategory scores from data/csf_scores.csv, computes
 per-Function maturity and the subcategory-WEIGHTED overall maturity, identifies
@@ -26,7 +26,7 @@ import sys
 
 PROJECT = "Northwind CSF 2.0 GRC Assessment"
 DISCLAIMER = ("Simulated portfolio engagement. Northwind Health Systems is fictional. "
-              "Readiness assessment — not a SOC 2 audit, HIPAA attestation, or real client work.")
+              "Readiness assessment - not a SOC 2 audit, HIPAA attestation, or real client work.")
 
 FN_NAMES = {"GV": "Govern", "ID": "Identify", "PR": "Protect",
             "DE": "Detect", "RS": "Respond", "RC": "Recover"}
@@ -67,15 +67,15 @@ def load_scores(csv_path):
             if not fn and not sub and not val:
                 continue  # skip blank line
             if fn not in FN_NAMES:
-                print(f"  ! line {ln}: unknown Function '{fn}' — skipped", file=sys.stderr)
+                print(f"  ! line {ln}: unknown Function '{fn}' - skipped", file=sys.stderr)
                 continue
             try:
                 score = float(val)
             except ValueError:
-                print(f"  ! line {ln} ({sub}): non-numeric score '{val}' — skipped", file=sys.stderr)
+                print(f"  ! line {ln} ({sub}): non-numeric score '{val}' - skipped", file=sys.stderr)
                 continue
             if not (1 <= score <= 4):
-                print(f"  ! line {ln} ({sub}): score {score} out of range 1–4 — skipped", file=sys.stderr)
+                print(f"  ! line {ln} ({sub}): score {score} out of range 1-4 - skipped", file=sys.stderr)
                 continue
             rows.append((fn, sub, score))
 
@@ -149,7 +149,7 @@ def print_summary(result):
     print(f"  Assessed subcategories .... {result['assessedSubcategories']}")
     print(f"  Functions scored .......... {result['functionsScored']}")
     print(f"  Priority remediation ...... {', '.join(result['priorityFunctions'])}")
-    print(f"  (Simple mean of Functions . {result['kpi']['simpleMeanOfFunctions']:.2f} — "
+    print(f"  (Simple mean of Functions . {result['kpi']['simpleMeanOfFunctions']:.2f} - "
           f"shown only to contrast; not the reported number)")
     print(line)
 

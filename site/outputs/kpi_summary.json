@@ -1,7 +1,7 @@
 {
   "project": "Northwind CSF 2.0 GRC Assessment",
   "mode": "simulated-portfolio",
-  "disclaimer": "Simulated portfolio engagement. Northwind Health Systems is fictional. Readiness assessment — not a SOC 2 audit, HIPAA attestation, or real client work.",
+  "disclaimer": "Simulated portfolio engagement. Northwind Health Systems is fictional. Readiness assessment - not a SOC 2 audit, HIPAA attestation, or real client work.",
   "functions": [
     {
       "key": "GV",

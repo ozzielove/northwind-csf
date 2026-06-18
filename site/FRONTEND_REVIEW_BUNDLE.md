@@ -1,9 +1,9 @@
-# Northwind CSF 2.0 — Full Source Review Bundle
+# Northwind CSF 2.0 - Full Source Review Bundle
 
 Single-file concat of the **full-stack** portfolio (frontend + serverless API + Python +
 tests + data + docs) for external review. Generated for ChatGPT audit drag-and-drop.
 
-**Integrity:** Northwind is fictional; assessment is simulated; readiness only — not audit/
+**Integrity:** Northwind is fictional; assessment is simulated; readiness only - not audit/
 compliance/attestation/client/production. Crosswalk = 4 row-level frameworks (800-53, ISO
 27001:2022, SOC 2, HIPAA); no HITRUST row-level mapping is claimed. Overall maturity =
 sum(23 subscores=36)/23 = 1.57 (subcategory-weighted, not the 1.53 simple mean).
@@ -54,15 +54,15 @@ vercel.json
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Northwind Health Systems — NIST CSF 2.0 Assessment</title>
-<meta name="description" content="A simulated NIST Cybersecurity Framework 2.0 GRC readiness assessment — interactive readiness instrument. Portfolio work by Ozirus B. Morency." />
+<title>Northwind Health Systems - NIST CSF 2.0 Assessment</title>
+<meta name="description" content="A simulated NIST Cybersecurity Framework 2.0 GRC readiness assessment - interactive readiness instrument. Portfolio work by Ozirus B. Morency." />
 <meta name="theme-color" content="#07090c" />
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Northwind Health Systems — NIST CSF 2.0 Assessment" />
+<meta property="og:title" content="Northwind Health Systems - NIST CSF 2.0 Assessment" />
 <meta property="og:description" content="Simulated employer-facing GRC portfolio: CSF 2.0 maturity scoring, risk register, control testing, POA&amp;M, TPRM, and framework crosswalk." />
 <meta property="og:site_name" content="Northwind CSF 2.0 Portfolio" />
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Northwind Health Systems — NIST CSF 2.0 Assessment" />
+<meta name="twitter:title" content="Northwind Health Systems - NIST CSF 2.0 Assessment" />
 <meta name="twitter:description" content="Simulated GRC readiness portfolio built as a static assessment instrument." />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2307090c'/%3E%3Cpath d='M16 6l8 10-8 10-8-10z' fill='none' stroke='%236ef2c0' stroke-width='1.6'/%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -110,7 +110,7 @@ vercel.json
     </h1>
     <p class="hero__lede reveal" data-d="4">
       A full governance, risk &amp; compliance readiness assessment of <strong>Northwind Health Systems</strong>,
-      a fictional healthcare-SaaS scenario involving simulated ePHI-class data — scored against
+      a fictional healthcare-SaaS scenario involving simulated ePHI-class data - scored against
       all six Functions of the <em>NIST Cybersecurity Framework&nbsp;2.0</em> and mapped, at the
       control level, to four adjacent frameworks.
     </p>
@@ -136,7 +136,7 @@ vercel.json
     </div>
 
     <p class="hero__by reveal" data-d="6">
-      Assessment, tooling &amp; report — <strong>Ozirus&nbsp;B.&nbsp;Morency</strong> ·
+      Assessment, tooling &amp; report - <strong>Ozirus&nbsp;B.&nbsp;Morency</strong> ·
       <span class="muted">Q2 2026</span>
     </p>
   </div>
@@ -146,11 +146,11 @@ vercel.json
 <!-- ================= POSTURE / RADAR ================= -->
 <section class="section" id="posture">
   <div class="section__head">
-    <span class="kicker">01 — Posture</span>
+    <span class="kicker">01 - Posture</span>
     <h2 class="section__title">Six Functions, one honest verdict.</h2>
     <p class="section__sub">
       Maturity on the CSF implementation-tier scale (1 Partial → 4 Adaptive). The program sits at
-      <strong>1.57 — Tier 2</strong>. <span class="flag">Detect</span> and <span class="flag">Respond</span>
+      <strong>1.57 - Tier 2</strong>. <span class="flag">Detect</span> and <span class="flag">Respond</span>
       are the floor, and they sequence first in remediation.
     </p>
   </div>
@@ -163,13 +163,13 @@ vercel.json
   </div>
 
   <div class="density" id="density" aria-hidden="true"></div>
-  <p class="density__cap">23 assessed subcategories · cell brightness = subcategory score (1–3)</p>
+  <p class="density__cap">23 assessed subcategories · cell brightness = subcategory score (1-3)</p>
 </section>
 
 <!-- ================= RISK HEATMAP ================= -->
 <section class="section" id="risk">
   <div class="section__head">
-    <span class="kicker">02 — Risk Register</span>
+    <span class="kicker">02 - Risk Register</span>
     <h2 class="section__title">Where the exposure actually lives.</h2>
     <p class="section__sub">
       Ten risks plotted by <em>likelihood</em> × <em>impact</em>. The top-right quadrant contains
@@ -199,11 +199,11 @@ vercel.json
 <!-- ================= CONTROL TESTING ================= -->
 <section class="section" id="controls">
   <div class="section__head">
-    <span class="kicker">03 — Control Testing</span>
+    <span class="kicker">03 - Control Testing</span>
     <h2 class="section__title">Design vs. operating effectiveness.</h2>
     <p class="section__sub">
       A control can be perfectly <em>designed</em> on paper and still fail in <em>operation</em>.
-      The incident-response plan exists (design: pass) — but was never exercised (operating: fail).
+      The incident-response plan exists (design: pass) - but was never exercised (operating: fail).
       That gap is the whole point of testing both.
     </p>
   </div>
@@ -213,10 +213,10 @@ vercel.json
 <!-- ================= REMEDIATION TIMELINE ================= -->
 <section class="section" id="remediation">
   <div class="section__head">
-    <span class="kicker">04 — Plan of Action &amp; Milestones</span>
+    <span class="kicker">04 - Plan of Action &amp; Milestones</span>
     <h2 class="section__title">A sequenced path to Tier 3.</h2>
     <p class="section__sub">
-      Ten remediation items, ordered by severity and dependency across Q3 2026 — critical
+      Ten remediation items, ordered by severity and dependency across Q3 2026 - critical
       access &amp; detection gaps close first, governance polish lands last.
     </p>
   </div>
@@ -227,7 +227,7 @@ vercel.json
 <!-- ================= CROSSWALK ================= -->
 <section class="section" id="crosswalk">
   <div class="section__head">
-    <span class="kicker">05 — Multi-Framework Crosswalk</span>
+    <span class="kicker">05 - Multi-Framework Crosswalk</span>
     <h2 class="section__title">Map once. Trace four control frameworks.</h2>
     <p class="section__sub">
       The core efficiency argument of a unified GRC program: one assessed control can support
@@ -247,7 +247,7 @@ vercel.json
 <!-- ================= THIRD-PARTY RISK / TPRM ================= -->
 <section class="section" id="vendors">
   <div class="section__head">
-    <span class="kicker">06 — Third-Party Risk</span>
+    <span class="kicker">06 - Third-Party Risk</span>
     <h2 class="section__title">No simulated ePHI vendor passes intake unscreened.</h2>
     <p class="section__sub">
       A tiered third-party-risk program: rank a vendor on <em>inherent</em> risk at intake, run a
@@ -278,10 +278,10 @@ vercel.json
 <!-- ================= DELIVERABLES / ARTIFACT SET ================= -->
 <section class="section" id="deliverables">
   <div class="section__head">
-    <span class="kicker">07 — The Deliverables</span>
+    <span class="kicker">07 - The Deliverables</span>
     <h2 class="section__title">Twelve artifacts. One defensible assessment package.</h2>
     <p class="section__sub">
-      Everything visualized above is backed by a complete readiness artifact set — the same
+      Everything visualized above is backed by a complete readiness artifact set - the same
       document types a simulated GRC assessment should produce, authored end to end.
     </p>
   </div>
@@ -291,24 +291,24 @@ vercel.json
 <!-- ================= TRANSFERABLE EXPERIENCE ================= -->
 <section class="section" id="transferable">
   <div class="section__head">
-    <span class="kicker">08 — Transferable Audit Experience</span>
+    <span class="kicker">08 - Transferable Audit Experience</span>
     <h2 class="section__title">Regulated-operations discipline, retooled for GRC.</h2>
     <p class="section__sub">
       This project translates prior regulated-operations discipline into cybersecurity GRC artifacts:
       findings, root cause, corrective action, evidence, ownership, and remediation tracking. The
-      background below is operations and military experience — not prior cybersecurity employment.
+      background below is operations and military experience - not prior cybersecurity employment.
     </p>
   </div>
   <ul class="xfer">
     <li class="xcard">
       <span class="xcard__from">4+ years client-facing operations in federally audited environments</span>
       <span class="xcard__arrow" aria-hidden="true">→</span>
-      <span class="xcard__to">Comfort working to written standards, scope, and external review — the operating context of an audit.</span>
+      <span class="xcard__to">Comfort working to written standards, scope, and external review - the operating context of an audit.</span>
     </li>
     <li class="xcard">
       <span class="xcard__from">OSHA / EPA audit support</span>
       <span class="xcard__arrow" aria-hidden="true">→</span>
-      <span class="xcard__to">Evidence collection and audit readiness under a regulator — the same muscle as a SOC 2 / HIPAA evidence log.</span>
+      <span class="xcard__to">Evidence collection and audit readiness under a regulator - the same muscle as a SOC 2 / HIPAA evidence log.</span>
     </li>
     <li class="xcard">
       <span class="xcard__from">50+ Root Cause Analysis investigations</span>
@@ -323,7 +323,7 @@ vercel.json
     <li class="xcard">
       <span class="xcard__from">Google Cybersecurity Professional Certificate · June 2026</span>
       <span class="xcard__arrow" aria-hidden="true">→</span>
-      <span class="xcard__to">Foundational SIEM, log-review, and triage concepts — beginner-level coursework, not production SOC work.</span>
+      <span class="xcard__to">Foundational SIEM, log-review, and triage concepts - beginner-level coursework, not production SOC work.</span>
     </li>
     <li class="xcard">
       <span class="xcard__from">U.S. Army National Guard veteran</span>
@@ -336,10 +336,10 @@ vercel.json
 <!-- ================= RESUME CLAIM PROOF MAP ================= -->
 <section class="section" id="claimmap">
   <div class="section__head">
-    <span class="kicker">09 — Resume Claim Proof Map</span>
+    <span class="kicker">09 - Resume Claim Proof Map</span>
     <h2 class="section__title">Every claim, tied to evidence you can open.</h2>
     <p class="section__sub">
-      Each card maps a résumé claim to the artifact, endpoint, or script that backs it — with the
+      Each card maps a résumé claim to the artifact, endpoint, or script that backs it - with the
       proof type and the honest boundary. Nothing here is asserted as real client work; coursework and
       prior operations are labeled as exactly that.
     </p>
@@ -351,12 +351,12 @@ vercel.json
 <!-- ================= INTERVIEW DEMO MODE ================= -->
 <section class="section" id="demo">
   <div class="section__head">
-    <span class="kicker">10 — Interview Demo Mode</span>
+    <span class="kicker">10 - Interview Demo Mode</span>
     <h2 class="section__title">Poke the backend. It answers in real time.</h2>
     <p class="section__sub">
       Live serverless endpoints computing over the same repository data. Click a probe and the raw JSON
       appears below. If the API is offline (static hosting), the page falls back to the bundled data and
-      says so — every figure still resolves.
+      says so - every figure still resolves.
     </p>
   </div>
 
@@ -412,7 +412,7 @@ vercel.json
 <!-- ================= FOOTER ================= -->
 <footer class="footer" id="foot">
   <div class="footer__lead">
-    <h2>A readiness assessment you can read in five minutes —<br /><span class="serif-em">and defend for an hour.</span></h2>
+    <h2>A readiness assessment you can read in five minutes -<br /><span class="serif-em">and defend for an hour.</span></h2>
     <p>
       Every figure on this page traces to an artifact in the repository: scope statement,
       control checklist, risk register, control test plan, POA&amp;M, evidence log, and a tiered
@@ -446,7 +446,7 @@ vercel.json
   </div>
   <p class="footer__disclaimer">
     <strong>Simulated portfolio engagement.</strong> Northwind Health Systems is a fictional organization.
-    This is a readiness self-assessment for demonstration — not a SOC 2 audit, HIPAA attestation, or real client work.
+    This is a readiness self-assessment for demonstration - not a SOC 2 audit, HIPAA attestation, or real client work.
   </p>
   <p class="footer__sig">◇ Designed &amp; built from raw assessment data · 2026</p>
 </footer>
@@ -477,7 +477,7 @@ vercel.json
 
 ```css
 /* ============================================================================
-   Northwind CSF 2.0 — "Audit Instrument"
+   Northwind CSF 2.0 - "Audit Instrument"
    Dark phosphor-mint compliance console. Editorial serif + instrument mono.
    ========================================================================== */
 
@@ -493,7 +493,7 @@ vercel.json
   --muted:     #74837f;
   --faint:     #70807c;
 
-  --mint:      #6ef2c0;   /* primary signal — verified / healthy */
+  --mint:      #6ef2c0;   /* primary signal - verified / healthy */
   --mint-dim:  #3aa784;
   --cyan:      #74d0ff;
 
@@ -1011,7 +1011,7 @@ body::before{
 
 ```javascript
 /* ============================================================================
-   app.js — render + choreography for the Northwind CSF 2.0 audit instrument.
+   app.js - render + choreography for the Northwind CSF 2.0 audit instrument.
    Vanilla JS. Hand-built SVG/DOM viz. No frameworks, no build step.
    ========================================================================== */
 (function () {
@@ -1101,7 +1101,7 @@ body::before{
       countUp(el, +el.dataset.count, { dur: 1300 });
     });
   }
-  // hero is above the fold — fire on load
+  // hero is above the fold - fire on load
   window.addEventListener("load", () => setTimeout(heroReadout, 350));
 
   /* ===================== POSTURE: radar ===================== */
@@ -1448,7 +1448,7 @@ body::before{
     TPRM.tiers.forEach((t) => {
       const li = document.createElement("li");
       li.className = "tier"; li.dataset.tone = t.tone;
-      li.innerHTML = `<span class="tier__t">${t.t} — Inherent</span>
+      li.innerHTML = `<span class="tier__t">${t.t} - Inherent</span>
         <span class="tier__label">${t.label}</span>
         <span class="tier__def">${t.def}</span>`;
       tiers.appendChild(li);
@@ -1545,18 +1545,18 @@ body::before{
 
   /* ===================== INTERVIEW DEMO MODE ===================== */
   const SCORING_EXPLAINER = {
-    note: "Scoring formula — subcategory-weighted maturity",
+    note: "Scoring formula - subcategory-weighted maturity",
     rule: "overall = sum(all assessed subcategory scores) / count(assessed subcategories)",
     worked: "sum = 36 across 23 subcategories → 36 / 23 = 1.565 → 1.57",
     contrast: "A simple mean of the six Function averages would be 1.53. The weighting by how many subcategories each Function carries is what makes the number defensible.",
-    scale: "Tiers: <1.5 Partial · 1.5–2.5 Risk Informed · 2.5–3.5 Repeatable · >=3.5 Adaptive",
+    scale: "Tiers: <1.5 Partial · 1.5-2.5 Risk Informed · 2.5-3.5 Repeatable · >=3.5 Adaptive",
   };
 
   function localFallback(path, method, body) {
     if (!SCORE) return { _offline: true, error: "Local scoring module unavailable" };
     const url = new URL(path, "http://x");
     const p = url.pathname; const q = Object.fromEntries(url.searchParams);
-    if (p === "/api/health") return { ok: true, mode: "static-fallback", note: "API offline — computed from bundled data", timestamp: new Date().toISOString() };
+    if (p === "/api/health") return { ok: true, mode: "static-fallback", note: "API offline - computed from bundled data", timestamp: new Date().toISOString() };
     if (p === "/api/assessment") return SCORE.assessmentSummary(GRC);
     if (p === "/api/risks") return { ok: true, ...SCORE.filterRisks(RISKS, q) };
     if (p === "/api/crosswalk") return { ok: true, ...SCORE.filterCrosswalk(CROSSWALK, q) };
@@ -1683,10 +1683,10 @@ body::before{
 
 ```javascript
 /* ============================================================================
-   data.js — Northwind Health Systems · NIST CSF 2.0 GRC Assessment
+   data.js - Northwind Health Systems · NIST CSF 2.0 GRC Assessment
    Displayed figures are derived from the published portfolio artifacts
    (csf_scores.csv, risk_register.csv, poam.csv, control_test_plan.csv, crosswalk md).
-   Subject is a FICTIONAL organization — simulated portfolio engagement.
+   Subject is a FICTIONAL organization - simulated portfolio engagement.
    ========================================================================== */
 
 const ASSESSMENT = {
@@ -1701,14 +1701,14 @@ const ASSESSMENT = {
   analyst: "Ozirus B. Morency",
 };
 
-/* Six CSF 2.0 Functions — maturity on the 1–4 Tier scale (from the scorer). */
+/* Six CSF 2.0 Functions - maturity on the 1-4 Tier scale (from the scorer). */
 const FUNCTIONS = [
   { key: "GV", name: "Govern",   score: 1.40, tier: "Tier 1 · Partial",        priority: false,
     blurb: "Risk strategy, policy, and oversight. Risk-appetite statement still missing." },
   { key: "ID", name: "Identify", score: 1.60, tier: "Tier 2 · Risk Informed",  priority: false,
     blurb: "Asset and risk visibility. No formal software inventory yet." },
   { key: "PR", name: "Protect",  score: 2.00, tier: "Tier 2 · Risk Informed",  priority: false,
-    blurb: "Strongest Function — encryption in place; access control is the weak seam." },
+    blurb: "Strongest Function - encryption in place; access control is the weak seam." },
   { key: "DE", name: "Detect",   score: 1.33, tier: "Tier 1 · Partial",        priority: true,
     blurb: "No SIEM, no log review, no endpoint detection. Breaches would go unseen." },
   { key: "RS", name: "Respond",  score: 1.33, tier: "Tier 1 · Partial",        priority: true,
@@ -1727,7 +1727,7 @@ const SUBSCORES = [
   ["RC","RC.RP-01",2],["RC","RC.CO-03",1],
 ];
 
-/* Risk register — likelihood × impact (1–5), score = L×I. */
+/* Risk register - likelihood × impact (1-5), score = L×I. */
 const RISKS = [
   { id:"R-001", l:4, i:5, score:20, level:"Critical", owner:"CTO",
     desc:"Shared AWS admin account without MFA enables full environment compromise", sub:"PR.AA-01" },
@@ -1751,7 +1751,7 @@ const RISKS = [
     desc:"No risk appetite statement; inconsistent risk decisions", sub:"GV.RM-01" },
 ];
 
-/* Control testing — design vs operating effectiveness. */
+/* Control testing - design vs operating effectiveness. */
 const TESTS = [
   { id:"TEST-01", control:"IA-2",  sub:"PR.AA-01", obj:"MFA on privileged accounts",  design:"Fail",    operating:"Fail" },
   { id:"TEST-02", control:"AC-6",  sub:"PR.AA-05", obj:"Least privilege / RBAC",       design:"Fail",    operating:"Fail" },
@@ -1760,7 +1760,7 @@ const TESTS = [
   { id:"TEST-05", control:"AT-2",  sub:"PR.AT-01", obj:"Security awareness training",  design:"Fail",    operating:"Fail" },
 ];
 
-/* POA&M — 10 sequenced remediation items, Jul→Oct 2026. */
+/* POA&M - 10 sequenced remediation items, Jul→Oct 2026. */
 const POAM = [
   { id:"POAM-001", sev:"Critical", sub:"PR.AA-01", owner:"CTO",          start:"2026-07-01", due:"2026-07-07", status:"In Progress",
     action:"Provision individual IAM users; enforce MFA; secure root with break-glass" },
@@ -1784,7 +1784,7 @@ const POAM = [
     action:"Draft and ratify risk appetite + risk management policy" },
 ];
 
-/* Multi-framework crosswalk — one CSF subcategory → 4 row-level framework mappings. */
+/* Multi-framework crosswalk - one CSF subcategory → 4 row-level framework mappings. */
 const CROSSWALK = [
   { fn:"GV", sub:"GV.RM-01", obj:"Risk management strategy",   n8:"PM-9, RA-1",  iso:"A.5.1, A.5.2", soc:"CC3.1, CC3.2", hi:"§164.308(a)(1)(ii)(A)" },
   { fn:"GV", sub:"GV.PO-01", obj:"Security policy",            n8:"PL-1, PM-1",  iso:"A.5.1",        soc:"CC1.1, CC5.3", hi:"§164.316(a)" },
@@ -1819,14 +1819,14 @@ const FRAMEWORK_COUNTS = [
 /* Third-party / vendor risk program (TPRM). */
 const TPRM = {
   tiers: [
-    { t:"T1", label:"Critical", tone:"critical", def:"Simulated ePHI / PII-class data or production-like system access — BAA review required before data flows." },
+    { t:"T1", label:"Critical", tone:"critical", def:"Simulated ePHI / PII-class data or production-like system access - BAA review required before data flows." },
     { t:"T2", label:"High",     tone:"high",     def:"Access to confidential business data or internal systems." },
     { t:"T3", label:"Moderate", tone:"mod",      def:"Limited or de-identified data; no production-like system access." },
     { t:"T4", label:"Low",      tone:"low",      def:"No sensitive data; informational / marketing only." },
   ],
   lifecycle: [
     { n:"01", s:"Intake & data classification", d:"Capture sponsor, service, data accessed, subprocessors." },
-    { n:"02", s:"Inherent-risk tiering",        d:"Tier on what could go wrong before controls — by data sensitivity." },
+    { n:"02", s:"Inherent-risk tiering",        d:"Tier on what could go wrong before controls - by data sensitivity." },
     { n:"03", s:"SIG / CAIQ questionnaire",     d:"SIG-Lite-aligned domains, exportable to CAIQ." },
     { n:"04", s:"SOC 2 report review",          d:"Read the Type II report; check scope, period, exceptions." },
     { n:"05", s:"Gap identification",           d:"Compare answers + report against required controls." },
@@ -1846,7 +1846,7 @@ const TPRM = {
   },
 };
 
-/* Full deliverable / artifact set — the complete body of work. */
+/* Full deliverable / artifact set - the complete body of work. */
 const DELIVERABLES = [
   { n:"01", t:"Assessment scope statement",        d:"Boundary, systems, data types, and exclusions for the engagement." },
   { n:"02", t:"CSF 2.0 controls checklist",        d:"All six Functions assessed across 23 subcategories." },
@@ -1858,21 +1858,21 @@ const DELIVERABLES = [
   { n:"08", t:"Information security policy",        d:"Baseline policy tied to assessed control objectives." },
   { n:"09", t:"Evidence collection log",           d:"Nine evidence items mapped to the controls they satisfy." },
   { n:"10", t:"Tiered third-party-risk program",   d:"4-tier model, SIG/CAIQ questionnaire, SOC 2 review, worked example." },
-  { n:"11", t:"CSF maturity scoring tool",         d:"Python — per-Function scores, KPI summary, priority sequencing." },
+  { n:"11", t:"CSF maturity scoring tool",         d:"Python - per-Function scores, KPI summary, priority sequencing." },
   { n:"12", t:"Gap analysis & roadmap",            d:"Current vs. target state with a phased path to Tier 3." },
 ];
 
-/* Evidence collection log — nine simulated/portfolio evidence items, each mapped to a
+/* Evidence collection log - nine simulated/portfolio evidence items, each mapped to a
    control and CSF subcategory. All items are portfolio artifacts for a FICTIONAL org. */
 const EVIDENCE = [
-  { id:"E-01", artifact:"IAM configuration export",          map:"PR.AA-01 · IA-2",  type:"Configuration", status:"Simulated", note:"Shared admin account, MFA disabled — substantiates R-001." },
+  { id:"E-01", artifact:"IAM configuration export",          map:"PR.AA-01 · IA-2",  type:"Configuration", status:"Simulated", note:"Shared admin account, MFA disabled - substantiates R-001." },
   { id:"E-02", artifact:"IAM policy JSON review",            map:"PR.AA-05 · AC-6",  type:"Configuration", status:"Simulated", note:"Wildcard permissions; no least-privilege roles." },
   { id:"E-03", artifact:"Logging architecture diagram",     map:"DE.AE-02 · AU-6",  type:"Diagram",       status:"Simulated", note:"No SIEM; CloudTrail not forwarded or reviewed." },
   { id:"E-04", artifact:"Incident response plan v1",        map:"RS.MA-01 · IR-8",  type:"Plan",          status:"Portfolio", note:"Authored end to end; tabletop not yet exercised." },
   { id:"E-05", artifact:"Security awareness training log",  map:"PR.AT-01 · AT-2",  type:"Records",       status:"Simulated", note:"No completion records on file." },
   { id:"E-06", artifact:"Backup & restore runbook",         map:"RC.RP-01 · CP-10", type:"Procedure",     status:"Portfolio", note:"Backups configured; restore never tested end to end." },
   { id:"E-07", artifact:"Vendor inventory & BAA tracker",   map:"GV.SC-01 · SR-3",  type:"Register",      status:"Portfolio", note:"Tiered vendor list; BAA status per vendor." },
-  { id:"E-08", artifact:"Encryption-at-rest settings",      map:"PR.DS-01 · SC-28", type:"Configuration", status:"Simulated", note:"AES-256 enabled on data stores — a passing control." },
+  { id:"E-08", artifact:"Encryption-at-rest settings",      map:"PR.DS-01 · SC-28", type:"Configuration", status:"Simulated", note:"AES-256 enabled on data stores - a passing control." },
   { id:"E-09", artifact:"Software inventory gap memo",      map:"ID.AM-02 · CM-8",  type:"Memo",          status:"Portfolio", note:"No authoritative software/SBOM inventory yet." },
 ];
 
@@ -1891,13 +1891,13 @@ const CLAIMS = [
   { cat:"backend", types:["Portfolio","Backend"],
     claim:"Risk assessment methodology and risk register",
     evidence:"5×5 likelihood×impact matrix · risk_register.csv · GET /api/risks",
-    demo:"Open /api/risks?level=Critical — returns the three critical risks with summary counts.",
+    demo:"Open /api/risks?level=Critical - returns the three critical risks with summary counts.",
     boundary:"Simulated risks for a fictional org." },
   { cat:"portfolio", types:["Portfolio"],
-    claim:"Control testing — design vs. operating effectiveness",
+    claim:"Control testing - design vs. operating effectiveness",
     evidence:"Five control tests (IA-2, AC-6, AU-6, IR-8, AT-2) · control_tests.csv",
     demo:"Walk TEST-04: the IR plan is designed (pass) but was never exercised (operating: fail).",
-    boundary:"Readiness testing — not a SOC 2 audit opinion." },
+    boundary:"Readiness testing - not a SOC 2 audit opinion." },
   { cat:"portfolio", types:["Portfolio"],
     claim:"POA&M remediation tracking",
     evidence:"10 sequenced POA&M items with owners and dates · poam.csv",
@@ -1911,13 +1911,13 @@ const CLAIMS = [
   { cat:"script", types:["Script"],
     claim:"Python, file parsing, regex, JSON, CSV automation",
     evidence:"score_maturity.py (CSV → KPI JSON) · validate_crosswalk.py (regex ID validation)",
-    demo:"Run python3 scripts/score_maturity.py — prints per-Function scores and overall 1.57.",
+    demo:"Run python3 scripts/score_maturity.py - prints per-Function scores and overall 1.57.",
     boundary:"Portfolio tooling over simulated data." },
   { cat:"script", types:["Script"],
     claim:"Bash automation",
     evidence:"scripts/run_demo.sh runs the scorer and validator end to end",
     demo:"Run bash scripts/run_demo.sh from a clean clone.",
-    boundary:"Light demo script — not a production pipeline." },
+    boundary:"Light demo script - not a production pipeline." },
   { cat:"docs", types:["Documentation"],
     claim:"Technical & executive report writing, policy, SOPs",
     evidence:"README · CLAIM_MATRIX · DEMO_SCRIPT · 12-artifact deliverable set",
@@ -1932,17 +1932,17 @@ const CLAIMS = [
     claim:"Splunk, Chronicle, Suricata; SIEM queries, log review, alert triage",
     evidence:"Coursework exposure; Detect findings reference missing SIEM / log review",
     demo:"Discuss what a SIEM would catch for R-003 / DE.AE-02.",
-    boundary:"Coursework / tool exposure — no production tool administration." },
+    boundary:"Coursework / tool exposure - no production tool administration." },
   { cat:"operations", types:["Prior operations"],
     claim:"4+ yrs client-facing ops in federally audited environments; OSHA/EPA audit support; 50+ RCA investigations",
     evidence:"Transferable-experience section mapping RCA discipline to finding → root cause → corrective action → POA&M",
     demo:"Explain how RCA discipline maps to the audit findings and POA&M workflow.",
-    boundary:"Regulated-operations experience — not cybersecurity employment." },
+    boundary:"Regulated-operations experience - not cybersecurity employment." },
   { cat:"military", types:["Military"],
     claim:"U.S. Army National Guard veteran",
     evidence:"Candidate background section",
     demo:"Connect mission discipline and documentation rigor to GRC evidence handling.",
-    boundary:"Military service — context for work ethic and clearance-readiness." },
+    boundary:"Military service - context for work ethic and clearance-readiness." },
 ];
 
 const GRC = { ASSESSMENT, FUNCTIONS, SUBSCORES, RISKS, TESTS, POAM, CROSSWALK, FRAMEWORK_COUNTS, TPRM, DELIVERABLES, EVIDENCE, CLAIMS };
@@ -1958,7 +1958,7 @@ if (typeof module !== "undefined" && module.exports) { module.exports = GRC; }
 
 ```javascript
 /* ============================================================================
-   scoring.js — pure GRC compute. No DOM, no I/O. Dual-exported so the browser
+   scoring.js - pure GRC compute. No DOM, no I/O. Dual-exported so the browser
    (window.GRCScore), the Vercel API handlers, the Node test suite, and the
    Python scorer all agree on one definition of every number.
 
@@ -1976,7 +1976,7 @@ if (typeof module !== "undefined" && module.exports) { module.exports = GRC; }
   const FN_NAMES = { GV:"Govern", ID:"Identify", PR:"Protect", DE:"Detect", RS:"Respond", RC:"Recover" };
   const round2 = (n) => Math.round(n * 100) / 100;
 
-  /* Tier interpretation on the 1–4 implementation-tier scale. */
+  /* Tier interpretation on the 1-4 implementation-tier scale. */
   function tierFor(score) {
     if (score == null || Number.isNaN(score)) return "Unscored";
     if (score < 1.5) return "Tier 1 · Partial";
@@ -2084,7 +2084,7 @@ if (typeof module !== "undefined" && module.exports) { module.exports = GRC; }
     let tier, label, tone;
     if ((touchesEphi || touchesPii) && prod) {
       tier = "T1"; label = "Critical"; tone = "critical";
-      why.push("Production-like access combined with simulated ePHI/PII-class data — highest inherent loss before controls.");
+      why.push("Production-like access combined with simulated ePHI/PII-class data - highest inherent loss before controls.");
     } else if (touchesEphi || prod) {
       tier = "T2"; label = "High"; tone = "high";
       why.push(touchesEphi ? "Handles simulated ePHI-class data without production-like access." : "Production-like access without regulated data.");
@@ -2093,9 +2093,9 @@ if (typeof module !== "undefined" && module.exports) { module.exports = GRC; }
       why.push("Confidential/internal data or system access; no production-like access or simulated ePHI-class data.");
     } else {
       tier = "T4"; label = "Low"; tone = "low";
-      why.push("No sensitive data and no production-like/system access — informational only.");
+      why.push("No sensitive data and no production-like/system access - informational only.");
     }
-    if (subprocessors) why.push("Subprocessors present — fourth-party flow-down review required.");
+    if (subprocessors) why.push("Subprocessors present - fourth-party flow-down review required.");
 
     const critical = tier === "T1";
     const high = tier === "T1" || tier === "T2";
@@ -2116,7 +2116,7 @@ if (typeof module !== "undefined" && module.exports) { module.exports = GRC; }
       baaReviewRequired: critical,
       soc2ReviewRequired: high,
       questionnaireRequired: high,
-      disclaimer: "Simulated TPRM demonstration — fictional vendor, no real third-party data.",
+      disclaimer: "Simulated TPRM demonstration - fictional vendor, no real third-party data.",
     };
   }
 
@@ -2143,7 +2143,7 @@ if (typeof module !== "undefined" && module.exports) { module.exports = GRC; }
       rowLevelFrameworks: 4,
       analyst: a.analyst,
       mode: "simulated-portfolio",
-      disclaimer: "Simulated portfolio engagement. Northwind Health Systems is fictional. Readiness assessment — not a SOC 2 audit, HIPAA attestation, or real client work.",
+      disclaimer: "Simulated portfolio engagement. Northwind Health Systems is fictional. Readiness assessment - not a SOC 2 audit, HIPAA attestation, or real client work.",
     };
   }
 
@@ -2157,7 +2157,7 @@ if (typeof module !== "undefined" && module.exports) { module.exports = GRC; }
 
 ```javascript
 /* ============================================================================
-   apiutil.js — tiny request/response helpers shared by the /api functions.
+   apiutil.js - tiny request/response helpers shared by the /api functions.
    Lives at repo root (not /api) so Vercel never treats it as a route.
    No dependencies. Works under @vercel/node, `vercel dev`, and mock req/res.
    ========================================================================== */
@@ -2407,7 +2407,7 @@ module.exports = handler("GET", (req, res) => {
 ```python
 #!/usr/bin/env python3
 """
-score_maturity.py — Northwind CSF 2.0 maturity scorer.
+score_maturity.py - Northwind CSF 2.0 maturity scorer.
 
 Reads the assessed CSF subcategory scores from data/csf_scores.csv, computes
 per-Function maturity and the subcategory-WEIGHTED overall maturity, identifies
@@ -2433,7 +2433,7 @@ import sys
 
 PROJECT = "Northwind CSF 2.0 GRC Assessment"
 DISCLAIMER = ("Simulated portfolio engagement. Northwind Health Systems is fictional. "
-              "Readiness assessment — not a SOC 2 audit, HIPAA attestation, or real client work.")
+              "Readiness assessment - not a SOC 2 audit, HIPAA attestation, or real client work.")
 
 FN_NAMES = {"GV": "Govern", "ID": "Identify", "PR": "Protect",
             "DE": "Detect", "RS": "Respond", "RC": "Recover"}
@@ -2474,15 +2474,15 @@ def load_scores(csv_path):
             if not fn and not sub and not val:
                 continue  # skip blank line
             if fn not in FN_NAMES:
-                print(f"  ! line {ln}: unknown Function '{fn}' — skipped", file=sys.stderr)
+                print(f"  ! line {ln}: unknown Function '{fn}' - skipped", file=sys.stderr)
                 continue
             try:
                 score = float(val)
             except ValueError:
-                print(f"  ! line {ln} ({sub}): non-numeric score '{val}' — skipped", file=sys.stderr)
+                print(f"  ! line {ln} ({sub}): non-numeric score '{val}' - skipped", file=sys.stderr)
                 continue
             if not (1 <= score <= 4):
-                print(f"  ! line {ln} ({sub}): score {score} out of range 1–4 — skipped", file=sys.stderr)
+                print(f"  ! line {ln} ({sub}): score {score} out of range 1-4 - skipped", file=sys.stderr)
                 continue
             rows.append((fn, sub, score))
 
@@ -2556,7 +2556,7 @@ def print_summary(result):
     print(f"  Assessed subcategories .... {result['assessedSubcategories']}")
     print(f"  Functions scored .......... {result['functionsScored']}")
     print(f"  Priority remediation ...... {', '.join(result['priorityFunctions'])}")
-    print(f"  (Simple mean of Functions . {result['kpi']['simpleMeanOfFunctions']:.2f} — "
+    print(f"  (Simple mean of Functions . {result['kpi']['simpleMeanOfFunctions']:.2f} - "
           f"shown only to contrast; not the reported number)")
     print(line)
 
@@ -2595,7 +2595,7 @@ if __name__ == "__main__":
 ```python
 #!/usr/bin/env python3
 """
-validate_crosswalk.py — sanity-check control identifiers in the framework crosswalk.
+validate_crosswalk.py - sanity-check control identifiers in the framework crosswalk.
 
 Reads data/crosswalk.csv and validates every control identifier in the four
 ROW-LEVEL frameworks with regular expressions:
@@ -2665,7 +2665,7 @@ def main(argv=None):
                         problems.append((ln, sub, LABELS[col], ident))
 
     print("─" * 58)
-    print("  Crosswalk control-ID validation — Northwind CSF 2.0")
+    print("  Crosswalk control-ID validation - Northwind CSF 2.0")
     print("  (simulated portfolio; 4 row-level frameworks)")
     print("─" * 58)
     print(f"  Rows checked .............. {rows_seen}")
@@ -2694,7 +2694,7 @@ if __name__ == "__main__":
 
 ```bash
 #!/usr/bin/env bash
-# run_demo.sh — one-shot interview demo of the offline scoring + validation tools.
+# run_demo.sh - one-shot interview demo of the offline scoring + validation tools.
 # Runs the Python maturity scorer and the crosswalk validator end to end.
 # Usage:  bash scripts/run_demo.sh
 set -euo pipefail
@@ -2703,7 +2703,7 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
 echo "=============================================================="
-echo "  Northwind CSF 2.0 — offline demo (simulated portfolio data)"
+echo "  Northwind CSF 2.0 - offline demo (simulated portfolio data)"
 echo "=============================================================="
 
 echo
@@ -2956,7 +2956,7 @@ test("disallowed method returns 405 with Allow header", async () => {
   "name": "northwind-csf",
   "version": "1.0.0",
   "private": true,
-  "description": "Northwind Health Systems — simulated NIST CSF 2.0 GRC assessment portfolio (static frontend + serverless API + Python scoring).",
+  "description": "Northwind Health Systems - simulated NIST CSF 2.0 GRC assessment portfolio (static frontend + serverless API + Python scoring).",
   "type": "commonjs",
   "scripts": {
     "dev": "vercel dev",
@@ -3088,14 +3088,14 @@ TEST-05,AT-2,PR.AT-01,Security awareness training,Fail,Fail
 
 ```csv
 id,artifact,mapping,type,status,note
-E-01,IAM configuration export,PR.AA-01 · IA-2,Configuration,Simulated,"Shared admin account, MFA disabled — substantiates R-001"
+E-01,IAM configuration export,PR.AA-01 · IA-2,Configuration,Simulated,"Shared admin account, MFA disabled - substantiates R-001"
 E-02,IAM policy JSON review,PR.AA-05 · AC-6,Configuration,Simulated,"Wildcard permissions; no least-privilege roles"
 E-03,Logging architecture diagram,DE.AE-02 · AU-6,Diagram,Simulated,"No SIEM; CloudTrail not forwarded or reviewed"
 E-04,Incident response plan v1,RS.MA-01 · IR-8,Plan,Portfolio,"Authored end to end; tabletop not yet exercised"
 E-05,Security awareness training log,PR.AT-01 · AT-2,Records,Simulated,"No completion records on file"
 E-06,Backup & restore runbook,RC.RP-01 · CP-10,Procedure,Portfolio,"Backups configured; restore never tested end to end"
 E-07,Vendor inventory & BAA tracker,GV.SC-01 · SR-3,Register,Portfolio,"Tiered vendor list; BAA status per vendor"
-E-08,Encryption-at-rest settings,PR.DS-01 · SC-28,Configuration,Simulated,"AES-256 enabled on data stores — a passing control"
+E-08,Encryption-at-rest settings,PR.DS-01 · SC-28,Configuration,Simulated,"AES-256 enabled on data stores - a passing control"
 E-09,Software inventory gap memo,ID.AM-02 · CM-8,Memo,Portfolio,"No authoritative software/SBOM inventory yet"
 ```
 
@@ -3131,7 +3131,7 @@ RC,RC.CO-03,"Recovery communication","CP-2, IR-7","A.5.26","CC7.5","§164.308(a)
 ## `README.md`
 
 ````markdown
-# Northwind Health Systems — NIST CSF 2.0 GRC Assessment (Portfolio)
+# Northwind Health Systems - NIST CSF 2.0 GRC Assessment (Portfolio)
 
 A **simulated** Governance, Risk & Compliance assessment of a **fictional** healthcare-SaaS
 organization, built as an interactive readiness instrument with a live backend, a Python scoring
@@ -3139,7 +3139,7 @@ workflow, and a test suite. Built by **Ozirus B. Morency** as an entry-level GRC
 Risk Analyst portfolio.
 
 > **Simulated portfolio engagement.** Northwind Health Systems is fictional. This is a *readiness
-> self-assessment for demonstration* — **not** a SOC 2 audit, a HIPAA attestation, real client
+> self-assessment for demonstration* - **not** a SOC 2 audit, a HIPAA attestation, real client
 > work, or production GRC employment. No real ePHI is involved.
 
 **Live:** https://northwind-csf.vercel.app
@@ -3191,7 +3191,7 @@ Function averages:
 overall = sum(all 23 subcategory scores) / 23 = 36 / 23 = 1.565 → 1.57
 ```
 
-(The simple mean of the six Function averages is 1.53 — shown only for contrast.)
+(The simple mean of the six Function averages is 1.53 - shown only for contrast.)
 
 ---
 
@@ -3245,7 +3245,7 @@ See [`DEPLOY.md`](DEPLOY.md). Deploys to Vercel with zero secrets; the `/api` fo
 serverless functions automatically.
 
 ## Integrity boundaries
-- Fictional org; simulated assessment; readiness — never compliance/attestation/audit authority.
+- Fictional org; simulated assessment; readiness - never compliance/attestation/audit authority.
 - Four frameworks crosswalked at control level; no HITRUST row-level mapping is claimed.
 - Splunk/Chronicle/Suricata/SQL/PCI DSS/OWASP/RMF/SAP = coursework or prior-ops exposure, not
   production work, unless an artifact in this repo proves otherwise.
@@ -3256,58 +3256,58 @@ serverless functions automatically.
 ## `DEMO_SCRIPT.md`
 
 ````markdown
-# 5-Minute Interview Demo Script — Northwind CSF 2.0
+# 5-Minute Interview Demo Script - Northwind CSF 2.0
 
 Say it out loud. Times are approximate. Keep the honesty framing in every section.
 
 ---
 
-### 0:00 — Open & frame (30s)
+### 0:00 - Open & frame (30s)
 > "This is a **simulated** GRC assessment I built for a **fictional** healthcare-SaaS company,
-> Northwind Health Systems. It's a readiness assessment and portfolio piece — not real client work,
+> Northwind Health Systems. It's a readiness assessment and portfolio piece - not real client work,
 > not a SOC 2 audit. Everything you see traces to an artifact in the repo, and there's a live API
 > behind it you can poke."
 
 Open **https://northwind-csf.vercel.app**. Point to the nav badge: *"API online."*
 
-### 0:30 — CSF maturity scoring (45s)
+### 0:30 - CSF maturity scoring (45s)
 Scroll to **Posture**. 
-> "Six NIST CSF 2.0 Functions, scored on the 1–4 tier scale. Overall is **1.57 — Tier 2**. That
-> number is **weighted by how many subcategories each Function carries**, not a flat average — a flat
+> "Six NIST CSF 2.0 Functions, scored on the 1-4 tier scale. Overall is **1.57 - Tier 2**. That
+> number is **weighted by how many subcategories each Function carries**, not a flat average - a flat
 > average would be 1.53. Detect and Respond are the floor, so they sequence first."
 
-### 1:15 — Risk register (40s)
+### 1:15 - Risk register (40s)
 Scroll to **Risk**. Click the top-right dot (**R-001**).
 > "Ten risks scored likelihood × impact. The critical cluster is shared admin access without MFA,
 > over-permissioned IAM, and no detection coverage."
 
-### 1:55 — Control testing (30s)
+### 1:55 - Control testing (30s)
 Scroll to **Controls**. Point to **TEST-04**.
-> "Design vs. operating effectiveness. The IR plan is *designed* — it passes on paper — but it was
+> "Design vs. operating effectiveness. The IR plan is *designed* - it passes on paper - but it was
 > never exercised, so it **fails in operation**. Testing both is the whole point."
 
-### 2:25 — POA&M (25s)
+### 2:25 - POA&M (25s)
 Scroll to **Plan of Action & Milestones**.
 > "Ten remediation items with owners and dates. Critical access and detection close first; governance
 > polish lands last."
 
-### 2:50 — Crosswalk (35s)
+### 2:50 - Crosswalk (35s)
 Scroll to **Crosswalk**. Filter to **Protect**.
-> "One assessed control maps to **four** frameworks at once — 800-53, ISO 27001:2022, SOC 2, and
+> "One assessed control maps to **four** frameworks at once - 800-53, ISO 27001:2022, SOC 2, and
 > HIPAA. That's the efficiency argument for a unified program. I do not claim HITRUST row-level
 > mapping here because the repo only exposes four row-level framework mappings."
 
-### 3:25 — TPRM (25s)
+### 3:25 - TPRM (25s)
 Scroll to **Third-Party Risk**.
 > "A four-tier vendor model. A simulated vendor touching ePHI-class data with production-like access
-> is Tier 1 — BAA review before data flows, SOC 2 review, SIG/CAIQ questionnaire."
+> is Tier 1 - BAA review before data flows, SOC 2 review, SIG/CAIQ questionnaire."
 
-### 3:50 — Live backend (45s)
+### 3:50 - Live backend (45s)
 Scroll to **Interview Demo Mode**.
 - Click **API health check** → *"Live serverless endpoint."*
 - Click **Recalculate maturity → 1.57** → *"The backend recomputes from the same data and returns 1.57."*
 - In the **vendor tiering** form, leave simulated ePHI + production-like access checked, click **Run vendor tiering** →
-  *"Tier 1, Critical, BAA required — computed server-side."*
+  *"Tier 1, Critical, BAA required - computed server-side."*
 
 > "And if the API is ever down, the page falls back to the bundled data and tells you so."
 
@@ -3315,17 +3315,17 @@ Optionally, in a terminal:
 ```bash
 python3 scripts/score_maturity.py
 ```
-> "Same scoring, offline, in Python — prints per-Function scores and overall 1.57."
+> "Same scoring, offline, in Python - prints per-Function scores and overall 1.57."
 
-### 4:35 — Resume claim proof map (25s)
+### 4:35 - Resume claim proof map (25s)
 Scroll to **Resume Claim Proof Map**.
 > "Every résumé claim is tied to the artifact, endpoint, or script that backs it, with the proof type
-> and the honest boundary — what's portfolio work, what's coursework, what's prior operations."
+> and the honest boundary - what's portfolio work, what's coursework, what's prior operations."
 
-### 5:00 — Close (honesty)
+### 5:00 - Close (honesty)
 > "To be precise about boundaries: the assessment is simulated on a fictional org. My SIEM and tooling
-> exposure — Splunk, Chronicle, Suricata — is **coursework**, not production. The audit discipline —
-> OSHA/EPA support, 50-plus root-cause investigations — is **prior operations**, not cybersecurity
+> exposure - Splunk, Chronicle, Suricata - is **coursework**, not production. The audit discipline -
+> OSHA/EPA support, 50-plus root-cause investigations - is **prior operations**, not cybersecurity
 > employment. This portfolio is how I translate that discipline into GRC artifacts: findings, root
 > cause, corrective action, evidence, ownership, remediation."
 ````
@@ -3335,7 +3335,7 @@ Scroll to **Resume Claim Proof Map**.
 ## `CLAIM_MATRIX.md`
 
 ```markdown
-# Claim Matrix — résumé claim → evidence
+# Claim Matrix - résumé claim → evidence
 
 Proof types: **Portfolio-proven** · **Backend-demo-proven** · **Script-proven** ·
 **Documentation-proven** · **Coursework exposure** · **Prior operations** · **Military** ·
@@ -3352,33 +3352,33 @@ not compliance, attestation, audit authority, client work, or production employm
 | 4 | SOC 2 Trust Services Criteria mapping | Crosswalk col 3 | `GET /api/crosswalk?framework=soc` | Portfolio | "CC + Availability criteria" | Mapping, not a SOC 2 report |
 | 5 | HIPAA Security Rule mapping | Crosswalk col 4 | `GET /api/crosswalk?framework=hipaa` | Portfolio | "Admin/Physical/Technical safeguard cites" | No real ePHI; readiness |
 | 6 | Multi-framework crosswalk | Crosswalk (19 rows × 4) | `validate_crosswalk.py` (102 IDs) | Portfolio + Script | "Map once, trace four control frameworks" | **4** frameworks; no HITRUST row-level mapping claimed |
-| 7 | Control crosswalk / gap analysis | Posture blurbs; deliverable #12 | — | Portfolio | "Current vs target, phased to Tier 3" | Simulated |
+| 7 | Control crosswalk / gap analysis | Posture blurbs; deliverable #12 | - | Portfolio | "Current vs target, phased to Tier 3" | Simulated |
 | 8 | Risk assessment methodology | Risk matrix; `risk_register.csv` | `GET /api/risks` | Portfolio + Backend | "Likelihood × impact, owned + treated" | Simulated risks |
 | 9 | Risk register | 10 risks | `GET /api/risks?minScore=12` | Portfolio + Backend | "Top-right quadrant = highest loss" | Simulated |
-| 10 | Control testing (design vs operating) | 5 tests; `control_tests.csv` | — | Portfolio | "IR plan passes design, fails operation" | Readiness testing |
+| 10 | Control testing (design vs operating) | 5 tests; `control_tests.csv` | - | Portfolio | "IR plan passes design, fails operation" | Readiness testing |
 | 11 | Audit findings / readiness / evidence | Findings report (#06); evidence log (#09) | `GET /api/evidence` | Portfolio + Backend | "9 evidence items mapped to controls" | Simulated artifacts |
-| 12 | POA&M remediation tracking | Gantt; `poam.csv` | — | Portfolio | "10 items, owners, dates, sequencing" | Simulated plan |
+| 12 | POA&M remediation tracking | Gantt; `poam.csv` | - | Portfolio | "10 items, owners, dates, sequencing" | Simulated plan |
 | 13 | TPRM / tiered vendor / SIG / CAIQ / SOC 2 review | Vendors section | `POST /api/vendor-tier` | Portfolio + Backend | "simulated ePHI + production-like access → Tier 1, BAA review required" | Simulated TPRM demo |
-| 14 | NIST IR lifecycle | TEST-04 (IR-8); POAM-004 tabletop | — | Portfolio (light) | "IR plan → test → lessons learned" | Simulated; not a real incident |
+| 14 | NIST IR lifecycle | TEST-04 (IR-8); POAM-004 tabletop | - | Portfolio (light) | "IR plan → test → lessons learned" | Simulated; not a real incident |
 | 15 | Python, file parsing, regex, JSON, CSV | `score_maturity.py`, `validate_crosswalk.py` | `npm test` (27) | Script | "CSV → KPI JSON; regex ID validation" | Portfolio tooling |
-| 16 | Bash | `scripts/run_demo.sh` | — | Script | "One-shot offline demo" | Light script |
-| 17 | Git version control | repo history | — | Documentation | "Versioned, branchable" | — |
-| 18 | Technical & executive report writing, policy, SOPs | README, CLAIM_MATRIX, DEMO_SCRIPT, deliverables #06/#08 | — | Documentation | "The deliverable form of expository writing" | Portfolio docs |
-| 19 | Google Cybersecurity Cert (June 2026) | Transferable section | — | Coursework | "Foundational SIEM/log/triage" | Beginner-level; not production SOC |
-| 20 | Splunk / Chronicle / Suricata; SIEM, log review, triage | Transferable section; Detect findings | — | Coursework exposure | "What a SIEM would catch for DE.AE-02" | Coursework, **not** production tooling |
-| 21 | 4+ yrs federally-audited ops; OSHA/EPA support; 50+ RCA | Transferable section | — | Prior operations | "RCA → finding → root cause → corrective action → POA&M" | Not cybersecurity employment |
-| 22 | SAP S/4HANA | (not in this repo) | — | Prior operations | "ERP/tool exposure from prior ops" | Prior ops only; not used here |
-| 23 | Army National Guard veteran | Transferable section | — | Military | "Mission discipline, documentation rigor" | Context, not a technical claim |
-| 24 | PCI DSS | — | — | **Not yet evidenced** | Name only; would add a cardholder-data scope artifact | No artifact in repo |
-| 25 | OWASP Top 10 | — | — | **Not yet evidenced** | Name only; would add an app-sec finding set | No artifact in repo |
-| 26 | NIST RMF | — | — | **Not yet evidenced** (adjacent to the CSF work) | Would add a categorize→authorize artifact | No standalone RMF artifact |
-| 27 | SQL filters and joins | — | — | **Not yet evidenced** | Would add a `.sql` query over the register | No SQL artifact (CSV/JSON only) |
+| 16 | Bash | `scripts/run_demo.sh` | - | Script | "One-shot offline demo" | Light script |
+| 17 | Git version control | repo history | - | Documentation | "Versioned, branchable" | - |
+| 18 | Technical & executive report writing, policy, SOPs | README, CLAIM_MATRIX, DEMO_SCRIPT, deliverables #06/#08 | - | Documentation | "The deliverable form of expository writing" | Portfolio docs |
+| 19 | Google Cybersecurity Cert (June 2026) | Transferable section | - | Coursework | "Foundational SIEM/log/triage" | Beginner-level; not production SOC |
+| 20 | Splunk / Chronicle / Suricata; SIEM, log review, triage | Transferable section; Detect findings | - | Coursework exposure | "What a SIEM would catch for DE.AE-02" | Coursework, **not** production tooling |
+| 21 | 4+ yrs federally-audited ops; OSHA/EPA support; 50+ RCA | Transferable section | - | Prior operations | "RCA → finding → root cause → corrective action → POA&M" | Not cybersecurity employment |
+| 22 | SAP S/4HANA | (not in this repo) | - | Prior operations | "ERP/tool exposure from prior ops" | Prior ops only; not used here |
+| 23 | Army National Guard veteran | Transferable section | - | Military | "Mission discipline, documentation rigor" | Context, not a technical claim |
+| 24 | PCI DSS | - | - | **Not yet evidenced** | Name only; would add a cardholder-data scope artifact | No artifact in repo |
+| 25 | OWASP Top 10 | - | - | **Not yet evidenced** | Name only; would add an app-sec finding set | No artifact in repo |
+| 26 | NIST RMF | - | - | **Not yet evidenced** (adjacent to the CSF work) | Would add a categorize→authorize artifact | No standalone RMF artifact |
+| 27 | SQL filters and joins | - | - | **Not yet evidenced** | Would add a `.sql` query over the register | No SQL artifact (CSV/JSON only) |
 
 ## Not-yet-evidenced summary (be upfront in interviews)
 PCI DSS, OWASP Top 10, NIST RMF (standalone), and SQL are listed on the résumé as skills but have
 **no artifact in this repo**. Present them as coursework/skill exposure, or add a small artifact
 before claiming them as demonstrated. ISO / SOC 2 / HIPAA appear only as a **readiness
-crosswalk** — never as a compliance attestation. HITRUST is not evidenced in this repo as a row-level mapping.
+crosswalk** - never as a compliance attestation. HITRUST is not evidenced in this repo as a row-level mapping.
 ```
 
 ---
@@ -3386,7 +3386,7 @@ crosswalk** — never as a compliance attestation. HITRUST is not evidenced in t
 ## `DEPLOY.md`
 
 ````markdown
-# Deploy — Northwind CSF 2.0 site
+# Deploy - Northwind CSF 2.0 site
 
 Vanilla frontend + Vercel serverless functions (`/api`). No secrets, no database.
 The `/api/*.js` files become serverless functions automatically; everything else is static.
@@ -3396,7 +3396,7 @@ The `/api/*.js` files become serverless functions automatically; everything else
 ```bash
 cd /Users/ozirusmorency/Downloads/Pal/Projects/grc-nist-csf-assessment/site
 
-# Static only (no API) — fastest:
+# Static only (no API) - fastest:
 python3 -m http.server 8777        # → http://localhost:8777  (nav shows "static mode")
 
 # Full stack with live /api/* :
@@ -3405,7 +3405,7 @@ vercel dev                         # → http://localhost:3000  (nav shows "API 
 
 ## One-time auth
 ```bash
-vercel login        # interactive (browser) — run yourself in Terminal
+vercel login        # interactive (browser) - run yourself in Terminal
 ```
 > In this session, prefix with `!` so output lands here:
 > `! cd /Users/ozirusmorency/Downloads/Pal/Projects/grc-nist-csf-assessment/site && vercel login`

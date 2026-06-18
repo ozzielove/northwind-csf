@@ -1,0 +1,15 @@
+# Keep internal review/dev artifacts out of the public static deploy (PERF-03).
+# Runtime assets (index.html, styles.css, *.js, api/, data/) still ship.
+FRONTEND_REVIEW_BUNDLE.md
+ChatGPT_Review_Flat/
+MOBILE_DESKTOP_AUDIT.md
+DEMO_SCRIPT.md
+CLAIM_MATRIX.md
+DEPLOY.md
+README.md
+outputs/
+tests/
+scripts/
+.planning/
+.letta/
+.DS_Store
