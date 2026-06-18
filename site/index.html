@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script>
+  /* Set theme before paint to avoid a flash. Stored choice wins; otherwise dark. */
+  (function(){try{var t=localStorage.getItem('nw_theme');if(t!=='light'&&t!=='dark'){t='dark';}document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();
+</script>
 <title>Northwind Health Systems — NIST CSF 2.0 Assessment</title>
 <meta name="description" content="A simulated NIST Cybersecurity Framework 2.0 GRC readiness assessment — interactive readiness instrument. Portfolio work by Ozirus B. Morency." />
 <meta name="theme-color" content="#07090c" />
@@ -31,6 +35,7 @@
     <span class="nav__id">NORTHWIND&nbsp;/&nbsp;CSF&nbsp;2.0</span>
   </a>
   <nav class="nav__links" aria-label="Primary sections">
+    <a href="#start">Start Here</a>
     <a href="#posture">Posture</a>
     <a href="#risk">Risk</a>
     <a href="#controls">Controls</a>
@@ -41,6 +46,12 @@
   <span class="apistat" id="apistat" role="status" aria-live="polite" data-state="checking">
     <span class="apistat__dot"></span><span class="apistat__txt">checking API…</span>
   </span>
+  <button class="themeswitch" id="themeToggle" type="button" role="switch" aria-checked="true" aria-label="Toggle light or dark mode" title="Light / dark mode">
+    <span class="themeswitch__knob">
+      <svg class="ts-icon ts-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 1.6v2.4M12 20v2.4M3.5 3.5l1.7 1.7M18.8 18.8l1.7 1.7M1.6 12h2.4M20 12h2.4M3.5 20.5l1.7-1.7M18.8 5.2l1.7-1.7"/></svg>
+      <svg class="ts-icon ts-moon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </span>
+  </button>
   <a class="nav__cta" href="#demo">Live demo ↓</a>
 </header>
 
@@ -73,7 +84,7 @@
         <div class="dial__center">
           <span class="dial__num" id="dialNum">0.00</span>
           <span class="dial__scale">/ 4.00</span>
-          <span class="dial__tier">Tier 2 · Risk Informed</span>
+          <span class="dial__tier"><span class="dial__tier-t">Tier 2</span><span class="dial__tier-n">Risk Informed</span></span>
         </div>
       </div>
       <ul class="hero__stats">
@@ -90,6 +101,291 @@
     </p>
   </div>
   <div class="hero__scrollcue" aria-hidden="true"><span>scroll</span><i></i></div>
+</section>
+
+<!-- ================= START HERE / GUIDED WALKTHROUGH ================= -->
+<section class="section" id="start">
+  <div class="section__head">
+    <span class="kicker">00 - Start Here</span>
+    <h2 class="section__title">New here? Take the guided tour.</h2>
+    <p class="section__sub">
+      This is a simulated security review of a fictional company, Northwind Health Systems. No one needs
+      to be present to explain it. Press the button to be walked through every part in order, or just read
+      the full written walkthrough below. Written for a total newcomer: short sentences, plain words, and one
+      everyday example per idea.
+    </p>
+    <div class="start__cta">
+      <button class="probe probe--solid" type="button" id="startTourBtn">Start the guided tour</button>
+      <span class="start__cta-note">About 60 seconds. You can stop at any time with Escape.</span>
+    </div>
+  </div>
+
+  <div class="start__body">
+    <h3 class="start__h">What am I looking at?</h3>
+    <p>
+      This website is a security check-up for a company. The company, Northwind Health Systems, is not real.
+      It is a made-up company used for practice, the way a flight simulator uses a made-up flight to train a
+      pilot. Everything here was built by Ozirus B. Morency as a portfolio project to show how a real security
+      review is done from start to finish. Think of it as a worked example, not paid client work.
+    </p>
+    <p class="start__honest">
+      One honest note: this is entry-level, learning-stage work. It shows the full workflow of a security and
+      compliance review, not years of senior experience. Every number traces back to a file in the project,
+      and nothing is exaggerated. If a claim cannot be backed by a file, it is not made here.
+    </p>
+
+    <h3 class="start__h">The 30-second version</h3>
+    <p>
+      For a busy reader, here is the whole thing in one paragraph. This site grades the security program of a
+      fictional healthcare-software company against a well-known government standard, the way a home inspector
+      grades a house against a building code. The company scored 1.57 out of 4.0, which lands it in Tier 2
+      (Risk Informed): better than chaos, but with clear gaps. The two weakest areas are catching problems and
+      reacting to them. The site then shows the ten biggest risks, tests whether the written safety rules
+      actually work in practice, lays out a repair plan with dates and owners, and proves that one good control
+      can satisfy four different rulebooks at once. There is even a live backend you can poke that recomputes
+      the score in real time.
+    </p>
+
+    <h3 class="start__h">What is GRC, in plain English</h3>
+    <p>
+      This whole project is an example of GRC, which stands for Governance, Risk, and Compliance. Those are
+      three connected jobs that keep an organization safe and trustworthy.
+    </p>
+    <ul class="start__list">
+      <li><b>Governance</b> is making the rules and deciding who is in charge. Think of the rulebook and the
+        referees for a sports team. Without it, everyone plays by their own rules and no one knows who is
+        responsible when something breaks.</li>
+      <li><b>Risk</b> is figuring out what could go wrong, how likely it is, and how bad it would be. Think of a
+        weather forecast: the chance of a storm times how strong it might be. A risk score is the chance of a
+        bad event multiplied by the damage it would cause.</li>
+      <li><b>Compliance</b> is proving you actually follow the rules that apply to you. Think of a restaurant
+        health inspection. Saying the kitchen is clean is not enough; you show the logs and the temperatures.
+        Compliance is the evidence behind your promises.</li>
+    </ul>
+    <p>
+      A few short terms you will meet, defined simply. <b>NIST</b> is the National Institute of Standards and
+      Technology, a United States government body that publishes trusted security guides. <b>CSF</b> is its
+      Cybersecurity Framework. <b>MFA</b> is Multi-Factor Authentication: logging in with more than a password,
+      such as a password plus a phone code. <b>ePHI</b> is electronic Protected Health Information, meaning
+      digital medical data. <b>POA&amp;M</b> is a Plan of Action and Milestones, a to-do list of fixes with
+      owners and dates. <b>SOC 2</b>, <b>ISO 27001</b>, and <b>HIPAA</b> are three security or privacy rulebooks.
+      <b>TPRM</b> is Third-Party Risk Management: checking the outside vendors you rely on. Each term is defined
+      again the first time it appears in a section, so you never need to memorize this list.
+    </p>
+
+    <h3 class="start__h">How to use this page</h3>
+    <p>
+      You have two ways to move around. Click a tab at the top, or simply scroll from top to bottom. Either
+      works. Each section is one part of a real assessment, arranged in the order a review actually happens:
+      first measure where you stand, then find the risks, then test the controls, then plan the fixes. The page
+      is reachable by keyboard and by touch, not just mouse: press Tab to move between buttons and links, and
+      the charts respond to taps on a phone. If you prefer to be guided, press Start the guided tour and it
+      points at each part in turn, like a video-game tutorial.
+    </p>
+
+    <h3 class="start__h">Tab-by-tab tour</h3>
+    <p class="start__lead">
+      Each part below matches one section of the page, in order. For each: what you see, what to do, the one
+      fact worth remembering, a plain comparison, and why it matters to you as someone evaluating the candidate.
+    </p>
+
+    <div class="start__step">
+      <h4>Posture (the maturity radar)</h4>
+      <p><b>What you see:</b> a six-sided radar chart and six scores. These are the Functions of the NIST
+        Cybersecurity Framework: Govern, Identify, Protect, Detect, Respond, and Recover, each scored 1 to 4.</p>
+      <p><b>What to do:</b> read the shape. The further a point reaches out, the stronger that area.</p>
+      <p><b>The one fact:</b> the overall score is 1.57 out of 4.0, which is Tier 2 (Risk Informed). Protect is
+        strongest at 2.00. Detect and Respond tie for weakest at 1.33 each.</p>
+      <p><b>Plain comparison:</b> a report card for the whole security program. It shows this company protects
+        itself fairly well but is poor at noticing and reacting to attacks.</p>
+      <p class="start__why">Why this matters: starting with an honest overall grade, bad parts included, shows
+        judgment. The weakest areas are named first and fixed first.</p>
+    </div>
+
+    <div class="start__step">
+      <h4>Risk (the 5 by 5 matrix)</h4>
+      <p><b>What you see:</b> a grid five squares wide and five tall, with numbered dots. Side to side is
+        likelihood; up and down is impact. A side card shows the selected risk's details.</p>
+      <p><b>What to do:</b> hover, tap, or use the keyboard to select a dot. The card updates.</p>
+      <p><b>The one fact:</b> there are ten risks. The biggest is R-001, a shared cloud administrator account
+        with no Multi-Factor Authentication (password-only login). Likelihood 4 of 5 times impact 5 of 5 equals
+        a score of 20, the highest, rated Critical. The owner is the CTO; it maps to control PR.AA-01.</p>
+      <p><b>Plain comparison:</b> a weather map for danger. The top-right corner is the hurricane zone, where
+        storms are both likely and severe. R-001 sits there.</p>
+      <p class="start__why">Why this matters: scoring risk as likelihood times impact is the standard method, and
+        putting an owner on each risk shows accountability.</p>
+    </div>
+
+    <div class="start__step">
+      <h4>Controls (design versus operating)</h4>
+      <p><b>What you see:</b> cards, each with a control and two test results, design and operating.</p>
+      <p><b>What to do:</b> read both results. Design asks if the control is correct on paper. Operating asks if
+        it actually works in real life.</p>
+      <p><b>The one fact:</b> control TEST-04 is the incident-response plan. It passes design because the written
+        plan exists. It fails operating because the plan was never practiced.</p>
+      <p><b>Plain comparison:</b> owning a fire extinguisher versus knowing how to use it. The one on the wall
+        passes design. If no one has ever sprayed it, it fails operating, and in an emergency only operating
+        matters.</p>
+      <p class="start__why">Why this matters: testing both shows the candidate knows a rule on paper is worthless
+        if it does not work when it counts.</p>
+    </div>
+
+    <div class="start__step">
+      <h4>POA&amp;M (the repair plan)</h4>
+      <p><b>What you see:</b> a timeline where each bar is one scheduled fix. POA&amp;M means Plan of Action and
+        Milestones, a to-do list of fixes with owners and dates.</p>
+      <p><b>What to do:</b> read top to bottom. The most urgent items come first.</p>
+      <p><b>The one fact:</b> ten tracked repair items, each with an owner and a due date. Critical access and
+        detection gaps close first; lower-priority polish lands last.</p>
+      <p><b>Plain comparison:</b> a home-renovation schedule. Fix the leaking roof before repainting the guest
+        room. Order matters, and every job gets a name and a deadline.</p>
+      <p class="start__why">Why this matters: finding problems is easy. Sequencing fixes by severity, assigning
+        owners, and setting dates is the part employers pay for.</p>
+    </div>
+
+    <div class="start__step">
+      <h4>Crosswalk (one control, four rulebooks)</h4>
+      <p><b>What you see:</b> a table with tabs. Each row is a control, and the columns show how that one control
+        maps to four security frameworks at once.</p>
+      <p><b>What to do:</b> click the tabs to filter, and read across one row.</p>
+      <p><b>The one fact:</b> one Multi-Factor Authentication control maps to all four frameworks at the same
+        time: CSF PR.AA-01, NIST 800-53 IA-2, ISO 27001 A.5.17, SOC 2 CC6.1, and HIPAA 164.312(a)(2)(i).</p>
+      <p><b>Plain comparison:</b> learning that one good habit, brushing your teeth, satisfies your dentist, your
+        doctor, and your own goal of fresh breath. You do the work once and check several boxes.</p>
+      <p class="start__why">Why this matters: this is the money-saving argument of a unified compliance program,
+        avoiding duplicate work across frameworks.</p>
+    </div>
+
+    <div class="start__step">
+      <h4>Third-Party Risk (checking vendors)</h4>
+      <p><b>What you see:</b> a four-level vendor ranking, a review process, questionnaire topics, and one worked
+        example. This is TPRM, Third-Party Risk Management: judging the safety of outside companies you depend
+        on.</p>
+      <p><b>What to do:</b> read the four tiers, then the worked example.</p>
+      <p><b>The one fact:</b> the example vendor, MedStream Analytics, would handle electronic Protected Health
+        Information (digital medical data) with production-like access, making it Tier 1, the highest risk.
+        Before any data flows, the company must sign a Business Associate Agreement (the required healthcare-data
+        contract) and review the vendor's SOC 2 report.</p>
+      <p><b>Plain comparison:</b> a background check before handing over your house keys. The more sensitive the
+        access, the deeper the check.</p>
+      <p class="start__why">Why this matters: most modern breaches come through a trusted vendor, not the front
+        door. Screening by potential damage shows where real risk lives.</p>
+    </div>
+
+    <div class="start__step">
+      <h4>Deliverables (the paperwork produced)</h4>
+      <p><b>What you see:</b> a grid of the actual documents this assessment produced.</p>
+      <p><b>What to do:</b> scan the list to see the full artifact set behind the charts.</p>
+      <p><b>The one fact:</b> the set includes a scope statement, risk register, crosswalk, control test plan,
+        findings report, POA&amp;M, policy, evidence log, and vendor-risk program.</p>
+      <p><b>Plain comparison:</b> the charts are the photos in a real-estate listing; the deliverables are the
+        full inspection binder behind them.</p>
+      <p class="start__why">Why this matters: it proves the visuals are not decoration. Each chart is backed by a
+        written document, which makes the assessment defensible.</p>
+    </div>
+
+    <div class="start__step">
+      <h4>Transferable experience (where the skills come from)</h4>
+      <p><b>What you see:</b> cards mapping the owner's prior experience to the skills GRC needs.</p>
+      <p><b>What to do:</b> read how each past role connects to a GRC skill.</p>
+      <p><b>The one fact:</b> the owner has led more than fifty root-cause analyses and supported federal audits
+        in industrial operations, the same habits of investigation, evidence, and documentation GRC runs on.</p>
+      <p><b>Plain comparison:</b> a chef becoming a food-safety inspector. The kitchen skills transfer and make
+        the inspection sharper.</p>
+      <p class="start__why">Why this matters: it answers why to trust someone newer to cybersecurity. The field is
+        new; the audit discipline, from regulated industry and seven years in the National Guard, is not.</p>
+    </div>
+
+    <div class="start__step">
+      <h4>Proof (claim-to-evidence map)</h4>
+      <p><b>What you see:</b> a grid where each résumé claim is tagged with a proof type and tied to the exact
+        file or endpoint that backs it.</p>
+      <p><b>What to do:</b> read a claim, see its proof type, note that it points to a real public file.</p>
+      <p><b>The one fact:</b> every claim is labeled by how it is proven and traces to a repository file or live
+        endpoint. Nothing is asserted without a source.</p>
+      <p><b>Plain comparison:</b> showing your work on a math test. The answer alone is not enough; the steps
+        prove you did not guess.</p>
+      <p class="start__why">Why this matters: this is the anti-exaggeration section. It lets a recruiter verify
+        each claim instead of trusting it, and labels coursework as coursework.</p>
+    </div>
+
+    <div class="start__step">
+      <h4>Demo (poke the live backend)</h4>
+      <p><b>What you see:</b> buttons that call a live server, plus a vendor form. Raw answers appear below.</p>
+      <p><b>What to do:</b> click the buttons and submit the form. See the next part for exact steps.</p>
+      <p><b>The one fact:</b> the buttons call real endpoints that compute over the same data, and one recomputes
+        the maturity score to 1.57 on demand. If the server is offline, the page falls back to bundled data and
+        says so.</p>
+      <p><b>Plain comparison:</b> a photo of a car versus a test drive. A static report is the photo; a live
+        backend is the test drive.</p>
+      <p class="start__why">Why this matters: it proves the candidate can build working software, not just write
+        documents. The headline number is computed by code, not typed by hand.</p>
+    </div>
+
+    <h3 class="start__h">Running the live demo yourself</h3>
+    <p>No technical skill is needed. Follow these steps in the Demo section.</p>
+    <ol class="start__steps-ol">
+      <li>Click <b>API health check</b>. This asks the server if it is awake. You should see a healthy response
+        and a green status indicator, like pinging a friend to see if they are online.</li>
+      <li>Click <b>Recalculate maturity to 1.57</b>. The server adds up all the scores and computes the overall
+        grade again from scratch, using the same data. Watch it return 1.57, proving the headline number is
+        calculated, not hand-typed.</li>
+      <li>In the vendor form, leave the default name MedStream Analytics and submit. The server returns the risk
+        tier, which should be Tier 1, Critical, with a Business Associate Agreement required.</li>
+    </ol>
+    <p>
+      A live backend that answers in real time shows the work is reproducible: anyone can re-run the math and get
+      the same answer, which a static PDF cannot do. If the server sleeps, the page still works from bundled data
+      and tells you it is in fallback mode.
+    </p>
+
+    <h3 class="start__h">The deeper study guide</h3>
+    <p>
+      For more depth, the project includes the NotebookLM GRC Interview Guide, available as
+      <a href="NOTEBOOKLM_GRC_INTERVIEW_GUIDE.pdf" target="_blank" rel="noopener">PDF</a> and
+      <a href="NOTEBOOKLM_GRC_INTERVIEW_GUIDE.txt" target="_blank" rel="noopener">plain text</a>. It explains the
+      frameworks in detail, includes a question-and-answer bank of likely interview questions, and a glossary.
+      Because it is plain text, you can load it into a tool like NotebookLM to hear an audio overview or be
+      quizzed on the contents. It is the full reasoning behind the summary on this page.
+    </p>
+
+    <h3 class="start__h">How to verify nothing is faked</h3>
+    <p>
+      You do not have to take any of this on faith. The whole project is public, so you can open the files
+      yourself. Every figure traces to a file, and the Demo backend recomputes the score live so you can check
+      the math. The Proof section maps each claim to its evidence, and the Deliverables section lists the
+      documents behind the charts. If you wonder where a number came from, the answer is always a specific file
+      you can open. An honest assessment invites checking rather than asking for trust.
+    </p>
+
+    <h3 class="start__h">What this tells you about the candidate</h3>
+    <p>
+      Ozirus B. Morency is early in a cybersecurity career and is learning the field deliberately, by doing the
+      full workflow rather than only reading about it. The cybersecurity coursework, including the Google
+      Cybersecurity Professional Certificate finished in June 2026, is foundational and labeled as exactly that,
+      not as production security operations.
+    </p>
+    <p>
+      What is not new is the discipline. The real background is industrial operations, including chemical
+      production, support for OSHA and EPA work, more than fifty root-cause analyses, and federal audit support,
+      plus seven years in the United States Army National Guard. That is genuine audit and documentation
+      experience. This project is the bridge: it converts that proven discipline into modern GRC artifacts, a
+      risk register, control tests, a crosswalk, a POA&amp;M, and a vendor-risk program.
+    </p>
+    <p>
+      The target is a role in governance, risk, and compliance, moving toward operational-technology and
+      industrial-control-system security, where regulated-industry experience is a real advantage. No claim here
+      is inflated: the work is simulated, the company is fictional, the experience level is entry, and every
+      figure traces to a file. The takeaway is simple. This is someone who can do the whole job honestly,
+      document it clearly, and prove every word of it.
+    </p>
+
+    <p class="start__close">
+      Thank you for taking the tour. To walk through the live page in order, press
+      <button class="start__inline-btn" type="button" id="startTourBtn2">Start the guided tour</button>
+      and it will point you through every part in sequence.
+    </p>
+  </div>
 </section>
 
 <!-- ================= POSTURE / RADAR ================= -->
@@ -416,5 +712,6 @@
 <script src="data.js"></script>
 <script src="scoring.js"></script>
 <script src="app.js"></script>
+<script src="tour.js" defer></script>
 </body>
 </html>
